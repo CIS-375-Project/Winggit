@@ -8,10 +8,5 @@ namespace Winggit
         {
             InitializeComponent();
         }
-
-        private void btnSearch_Click(object sender, System.EventArgs e)
-        {
-            new frmSearch().Show();
-        }
     }
 }

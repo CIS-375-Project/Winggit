@@ -5,21 +5,20 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Winggit
 {
-    public partial class frmMessagingClient : Form
+    public partial class frmMigration : Form
     {
-        public frmMessagingClient()
+        public frmMigration()
         {
             InitializeComponent();
         }
 
-        private void btnCancelMessaging_Click(object sender, EventArgs e)
+        private void btnCancelMigration_Click(object sender, EventArgs e)
         {
-            Close();
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Winggit
 {
-    partial class frmReports
+    partial class frmMigration
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancelReports = new System.Windows.Forms.Button();
+            this.btnCancelMigration = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnCancelReports
+            // btnCancelMigration
             // 
-            this.btnCancelReports.Location = new System.Drawing.Point(197, 226);
-            this.btnCancelReports.Name = "btnCancelReports";
-            this.btnCancelReports.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelReports.TabIndex = 0;
-            this.btnCancelReports.Text = "Cancel";
-            this.btnCancelReports.UseVisualStyleBackColor = true;
-            this.btnCancelReports.Click += new System.EventHandler(this.btnCancelReports_Click);
+            this.btnCancelMigration.Location = new System.Drawing.Point(197, 226);
+            this.btnCancelMigration.Name = "btnCancelMigration";
+            this.btnCancelMigration.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelMigration.TabIndex = 0;
+            this.btnCancelMigration.Text = "Cancel";
+            this.btnCancelMigration.UseVisualStyleBackColor = true;
+            this.btnCancelMigration.Click += new System.EventHandler(this.btnCancelMigration_Click);
             // 
-            // frmReports
+            // frmMigration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.btnCancelReports);
-            this.Name = "frmReports";
-            this.Text = "Generate Reports";
+            this.Controls.Add(this.btnCancelMigration);
+            this.Name = "frmMigration";
+            this.Text = "Migration";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnCancelReports;
+        private System.Windows.Forms.Button btnCancelMigration;
     }
 }
