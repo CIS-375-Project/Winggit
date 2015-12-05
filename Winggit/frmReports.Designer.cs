@@ -39,6 +39,7 @@
             this.btnCancelReports.TabIndex = 0;
             this.btnCancelReports.Text = "Cancel";
             this.btnCancelReports.UseVisualStyleBackColor = true;
+            this.btnCancelReports.Click += new System.EventHandler(this.btnCancelReports_Click);
             // 
             // frmReports
             // 

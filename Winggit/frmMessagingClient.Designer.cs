@@ -51,6 +51,7 @@
             this.btnCancelMessaging.TabIndex = 0;
             this.btnCancelMessaging.Text = "Cancel";
             this.btnCancelMessaging.UseVisualStyleBackColor = true;
+            this.btnCancelMessaging.Click += new System.EventHandler(this.btnCancelMessaging_Click);
             // 
             // btnCompose
             // 

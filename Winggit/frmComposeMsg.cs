@@ -16,5 +16,10 @@ namespace Winggit
         {
             InitializeComponent();
         }
+
+        private void btnCancelCompose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

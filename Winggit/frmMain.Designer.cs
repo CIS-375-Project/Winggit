@@ -32,6 +32,7 @@
             this.btnOpenReports = new System.Windows.Forms.Button();
             this.btnEasterEgg = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOpenMessaging
@@ -70,11 +71,22 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(778, 282);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 4;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 463);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnEasterEgg);
             this.Controls.Add(this.btnOpenReports);
@@ -91,5 +103,6 @@
         private System.Windows.Forms.Button btnOpenReports;
         private System.Windows.Forms.Button btnEasterEgg;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnExit;
     }
 }
