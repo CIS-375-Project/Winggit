@@ -39,6 +39,8 @@
             this.lblMsgTimestamp = new System.Windows.Forms.Label();
             this.txtMsgTimestamp = new System.Windows.Forms.TextBox();
             this.btnDeleteMsg = new System.Windows.Forms.Button();
+            this.dgdMsgInbox = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdMsgInbox)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelMessaging
@@ -138,11 +140,20 @@
             this.btnDeleteMsg.Text = "Delete";
             this.btnDeleteMsg.UseVisualStyleBackColor = true;
             // 
+            // dgdMsgInbox
+            // 
+            this.dgdMsgInbox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgdMsgInbox.Location = new System.Drawing.Point(21, 19);
+            this.dgdMsgInbox.Name = "dgdMsgInbox";
+            this.dgdMsgInbox.Size = new System.Drawing.Size(290, 285);
+            this.dgdMsgInbox.TabIndex = 11;
+            // 
             // frmMessagingClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(613, 357);
+            this.Controls.Add(this.dgdMsgInbox);
             this.Controls.Add(this.btnDeleteMsg);
             this.Controls.Add(this.txtMsgTimestamp);
             this.Controls.Add(this.lblMsgTimestamp);
@@ -156,6 +167,7 @@
             this.Controls.Add(this.btnCancelMessaging);
             this.Name = "frmMessagingClient";
             this.Text = "Kaleidoscope Messaging";
+            ((System.ComponentModel.ISupportInitialize)(this.dgdMsgInbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Label lblMsgTimestamp;
         private System.Windows.Forms.TextBox txtMsgTimestamp;
         private System.Windows.Forms.Button btnDeleteMsg;
+        private System.Windows.Forms.DataGridView dgdMsgInbox;
     }
 }
