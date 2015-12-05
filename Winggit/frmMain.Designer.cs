@@ -31,6 +31,7 @@
             this.btnOpenMessaging = new System.Windows.Forms.Button();
             this.btnOpenReports = new System.Windows.Forms.Button();
             this.btnEasterEgg = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOpenMessaging
@@ -53,18 +54,28 @@
             // 
             // btnEasterEgg
             // 
-            this.btnEasterEgg.Location = new System.Drawing.Point(532, 282);
+            this.btnEasterEgg.Location = new System.Drawing.Point(527, 282);
             this.btnEasterEgg.Name = "btnEasterEgg";
             this.btnEasterEgg.Size = new System.Drawing.Size(75, 23);
             this.btnEasterEgg.TabIndex = 2;
             this.btnEasterEgg.Text = "Winggit!";
             this.btnEasterEgg.UseVisualStyleBackColor = true;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(622, 282);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 463);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnEasterEgg);
             this.Controls.Add(this.btnOpenReports);
             this.Controls.Add(this.btnOpenMessaging);
@@ -79,5 +90,6 @@
         private System.Windows.Forms.Button btnOpenMessaging;
         private System.Windows.Forms.Button btnOpenReports;
         private System.Windows.Forms.Button btnEasterEgg;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
