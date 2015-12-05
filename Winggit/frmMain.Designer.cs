@@ -37,7 +37,7 @@
             // 
             // btnOpenMessaging
             // 
-            this.btnOpenMessaging.Location = new System.Drawing.Point(345, 282);
+            this.btnOpenMessaging.Location = new System.Drawing.Point(420, 282);
             this.btnOpenMessaging.Name = "btnOpenMessaging";
             this.btnOpenMessaging.Size = new System.Drawing.Size(75, 23);
             this.btnOpenMessaging.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // btnOpenReports
             // 
-            this.btnOpenReports.Location = new System.Drawing.Point(435, 282);
+            this.btnOpenReports.Location = new System.Drawing.Point(510, 282);
             this.btnOpenReports.Name = "btnOpenReports";
             this.btnOpenReports.Size = new System.Drawing.Size(75, 23);
             this.btnOpenReports.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             // btnEasterEgg
             // 
-            this.btnEasterEgg.Location = new System.Drawing.Point(527, 282);
+            this.btnEasterEgg.Location = new System.Drawing.Point(602, 282);
             this.btnEasterEgg.Name = "btnEasterEgg";
             this.btnEasterEgg.Size = new System.Drawing.Size(75, 23);
             this.btnEasterEgg.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(622, 282);
+            this.btnSearch.Location = new System.Drawing.Point(697, 282);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 3;
@@ -80,6 +80,7 @@
             this.btnExit.TabIndex = 4;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmMain
             // 

@@ -8,5 +8,15 @@ namespace Winggit
         {
             InitializeComponent();
         }
+
+        private void btnSearch_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, System.EventArgs e)
+        {
+            Close();
+        }
     }
 }
