@@ -2,6 +2,18 @@
 {
     public enum Provinces
     {
-        // TODO Add Canadian provinces.
+        Ontario,
+        Quebec,
+        Saskatchewan,
+        Newfoundland,
+        British_Columbia,
+        Manitoba,
+        Alberta,
+        New_Brunswick,
+        Nova_Scotia,
+        Prince_Edward_Island,
+        Northwest_Territories,
+        Yukon_Territory,
+        Nunavut
     }
 }
