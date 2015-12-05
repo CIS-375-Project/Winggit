@@ -18,7 +18,7 @@ namespace Winggit
 
         private void btnCancelMigration_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }
