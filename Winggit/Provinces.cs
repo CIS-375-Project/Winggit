@@ -2,16 +2,17 @@
 {
     public enum Provinces
     {
+        Alberta,
+        British_Columbia,
+        Canadian_Territories,
+        Manitoba,
+        New_Brunswick,
+        Newfoundland,
+        Nova_Scotia,
         Ontario,
+        Prince_Edward_Island,
         Quebec,
         Saskatchewan,
-        Newfoundland,
-        British_Columbia,
-        Manitoba,
-        Alberta,
-        New_Brunswick,
-        Nova_Scotia,
-        Prince_Edward_Island,
-        Canadian_Territories
+
     }
 }
