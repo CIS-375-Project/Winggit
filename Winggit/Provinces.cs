@@ -12,8 +12,6 @@
         New_Brunswick,
         Nova_Scotia,
         Prince_Edward_Island,
-        Northwest_Territories,
-        Yukon_Territory,
-        Nunavut
+        Canadian_Territories
     }
 }
