@@ -164,6 +164,7 @@
             this.cmbRegStateProv.Size = new System.Drawing.Size(201, 21);
             this.cmbRegStateProv.TabIndex = 13;
             this.cmbRegStateProv.SelectedIndexChanged += new System.EventHandler(this.cmbRegStateProv_SelectedIndexChanged);
+            this.cmbRegStateProv.DataSourceChanged += new System.EventHandler(this.cmbRegStateProv_DataSourceChanged);
             // 
             // label1
             // 

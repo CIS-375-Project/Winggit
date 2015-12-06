@@ -25,25 +25,37 @@ namespace Winggit
         private void txtNewMsgBody_TextChanged(object sender, EventArgs e)
         {
             if (txtNewMsgRecipient.Text.Length > 0 && txtNewMsgSubject.Text.Length > 0)
+            {
                 btnSendMsg.Enabled = true;
+            }
             else
+            {
                 btnSendMsg.Enabled = false;
+            }
         }
 
         private void txtNewMsgSubject_TextChanged(object sender, EventArgs e)
         {
             if (txtNewMsgBody.Text.Length > 0 && txtNewMsgRecipient.Text.Length > 0)
+            {
                 btnSendMsg.Enabled = true;
+            }
             else
+            {
                 btnSendMsg.Enabled = false;
+            }
         }
 
         private void txtNewMsgRecipient_TextChanged(object sender, EventArgs e)
         {
             if (txtNewMsgBody.Text.Length > 0 && txtNewMsgSubject.Text.Length > 0)
+            {
                 btnSendMsg.Enabled = true;
+            }
             else
+            {
                 btnSendMsg.Enabled = false;
+            }
         }
 
         private void btnSendMsg_Click(object sender, EventArgs e)
@@ -54,7 +66,9 @@ namespace Winggit
         private void txtNewMsgRecipient_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
                 e.Handled = true;
+            }
         }
     }
 }

@@ -35,7 +35,9 @@ namespace Winggit
         private void txtLogInID_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                e.Handled = true;
+            {
+                e.Handled = true; // Ensures only numbers are entered.
+            }
         }
     }
 }
