@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Winggit.Enums;
 
-namespace Winggit
+namespace Winggit.Forms
 {
     public partial class frmRegister : Form
     {
@@ -21,7 +15,7 @@ namespace Winggit
         private void btnCancelReg_Click(object sender, EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Are You Sure?", @"Any info you entered will be lost. Proceed?",
+            if (MessageBox.Show(@"Are you sure?", @"Any info you entered will be lost. Proceed?",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Close();

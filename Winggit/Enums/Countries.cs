@@ -1,4 +1,4 @@
-﻿namespace Winggit
+﻿namespace Winggit.Enums
 {
     public enum Countries
     {

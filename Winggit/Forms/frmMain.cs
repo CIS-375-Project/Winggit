@@ -2,7 +2,7 @@
 using System.Media;
 using System.Windows.Forms;
 
-namespace Winggit
+namespace Winggit.Forms
 {
     public partial class frmMain : Form
     {

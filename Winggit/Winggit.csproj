@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Winger.cs" />
+    <Compile Include="Entities\Winger.cs" />
     <Compile Include="DBFunctions.cs" />
     <Compile Include="Enums\Countries.cs" />
     <Compile Include="Forms\frmComposeMsg.cs">

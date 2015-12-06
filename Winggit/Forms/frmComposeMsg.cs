@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Winggit
+namespace Winggit.Forms
 {
     public partial class frmComposeMsg : Form
     {
@@ -21,7 +14,7 @@ namespace Winggit
         private void btnCancelCompose_Click(object sender, EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Return to Inbox?", @"Your message won't be saved. Proceed?", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show(@"Return to inbox?", @"Your message won't be saved. Proceed?", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
                 Close();

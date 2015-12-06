@@ -2,7 +2,7 @@
 using System.Media;
 using System.Windows.Forms;
 
-namespace Winggit
+namespace Winggit.Forms
 {
     public partial class frmMessagingClient : Form
     {
@@ -15,7 +15,7 @@ namespace Winggit
         {
             SystemSounds.Asterisk.Play();
             if (
-                MessageBox.Show(@"Leave Messaging?", @"About to return to main menu. Proceed?", MessageBoxButtons.YesNo) ==
+                MessageBox.Show(@"Leave messaging?", @"About to return to main menu. Proceed?", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
                 Close();
@@ -25,7 +25,7 @@ namespace Winggit
         private void btnDeleteMsg_Click(object sender, EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Delete Message?", @"This can't be undone. Are you sure?", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show(@"Delete message?", @"This can't be undone. Are you sure?", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
                 // TODO delete message.

@@ -1,4 +1,4 @@
-﻿namespace Winggit
+﻿namespace Winggit.Forms
 {
     partial class frmLogInReg
     {
