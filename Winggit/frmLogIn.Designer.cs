@@ -71,6 +71,7 @@
             this.txtLogInID.Size = new System.Drawing.Size(100, 20);
             this.txtLogInID.TabIndex = 3;
             this.txtLogInID.TextChanged += new System.EventHandler(this.txtLogInID_TextChanged);
+            this.txtLogInID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLogInID_KeyPress);
             // 
             // frmLogIn
             // 

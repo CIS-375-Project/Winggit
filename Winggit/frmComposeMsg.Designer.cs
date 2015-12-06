@@ -57,6 +57,7 @@
             this.btnSendMsg.TabIndex = 1;
             this.btnSendMsg.Text = "Send";
             this.btnSendMsg.UseVisualStyleBackColor = true;
+            this.btnSendMsg.Click += new System.EventHandler(this.btnSendMsg_Click);
             // 
             // lblNewMsgRecipient
             // 
@@ -73,6 +74,8 @@
             this.txtNewMsgRecipient.Name = "txtNewMsgRecipient";
             this.txtNewMsgRecipient.Size = new System.Drawing.Size(276, 20);
             this.txtNewMsgRecipient.TabIndex = 3;
+            this.txtNewMsgRecipient.TextChanged += new System.EventHandler(this.txtNewMsgRecipient_TextChanged);
+            this.txtNewMsgRecipient.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNewMsgRecipient_KeyPress);
             // 
             // lblNewMsgSubject
             // 
@@ -89,6 +92,7 @@
             this.txtNewMsgSubject.Name = "txtNewMsgSubject";
             this.txtNewMsgSubject.Size = new System.Drawing.Size(276, 20);
             this.txtNewMsgSubject.TabIndex = 5;
+            this.txtNewMsgSubject.TextChanged += new System.EventHandler(this.txtNewMsgSubject_TextChanged);
             // 
             // txtNewMsgBody
             // 
@@ -97,6 +101,7 @@
             this.txtNewMsgBody.Name = "txtNewMsgBody";
             this.txtNewMsgBody.Size = new System.Drawing.Size(276, 155);
             this.txtNewMsgBody.TabIndex = 6;
+            this.txtNewMsgBody.TextChanged += new System.EventHandler(this.txtNewMsgBody_TextChanged);
             // 
             // lblNewMsgBody
             // 

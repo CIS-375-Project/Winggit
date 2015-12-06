@@ -41,13 +41,14 @@ namespace Winggit
 
         private void txtLogInID_TextChanged(object sender, EventArgs e)
         {
-            if (txtLogInID.Text.Length > 0)
+            btnLogIn.Enabled = txtLogInID.Text.Length > 0;
+        }
+
+        private void txtLogInID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                btnLogIn.Enabled = true;
-            }
-            else
-            {
-                btnLogIn.Enabled = false;
+                e.Handled = true; // Ensures only numbers are entered.
             }
         }
     }

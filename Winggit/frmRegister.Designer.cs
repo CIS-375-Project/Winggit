@@ -82,6 +82,7 @@
             this.txtRegName.Name = "txtRegName";
             this.txtRegName.Size = new System.Drawing.Size(201, 20);
             this.txtRegName.TabIndex = 3;
+            this.txtRegName.TextChanged += new System.EventHandler(this.txtRegName_TextChanged);
             // 
             // lblRegPhoneNum
             // 
@@ -96,8 +97,11 @@
             // 
             this.txtRegPhoneNum.Location = new System.Drawing.Point(121, 47);
             this.txtRegPhoneNum.Name = "txtRegPhoneNum";
+            this.txtRegPhoneNum.ShortcutsEnabled = false;
             this.txtRegPhoneNum.Size = new System.Drawing.Size(201, 20);
             this.txtRegPhoneNum.TabIndex = 5;
+            this.txtRegPhoneNum.TextChanged += new System.EventHandler(this.txtRegPhoneNum_TextChanged);
+            this.txtRegPhoneNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRegPhoneNum_KeyPress);
             // 
             // lblRegAddress
             // 
@@ -123,6 +127,7 @@
             this.txtRegHouseNumStreet.Name = "txtRegHouseNumStreet";
             this.txtRegHouseNumStreet.Size = new System.Drawing.Size(201, 20);
             this.txtRegHouseNumStreet.TabIndex = 9;
+            this.txtRegHouseNumStreet.TextChanged += new System.EventHandler(this.txtRegHouseNumStreet_TextChanged);
             // 
             // lblRegCity
             // 
@@ -139,6 +144,7 @@
             this.txtRegCity.Name = "txtRegCity";
             this.txtRegCity.Size = new System.Drawing.Size(201, 20);
             this.txtRegCity.TabIndex = 11;
+            this.txtRegCity.TextChanged += new System.EventHandler(this.txtRegCity_TextChanged);
             // 
             // lblRegStateProv
             // 
@@ -157,6 +163,8 @@
             this.cmbRegStateProv.Name = "cmbRegStateProv";
             this.cmbRegStateProv.Size = new System.Drawing.Size(201, 21);
             this.cmbRegStateProv.TabIndex = 13;
+            this.cmbRegStateProv.SelectedIndexChanged += new System.EventHandler(this.cmbRegStateProv_SelectedIndexChanged);
+            this.cmbRegStateProv.DataSourceChanged += new System.EventHandler(this.cmbRegStateProv_DataSourceChanged);
             // 
             // label1
             // 
@@ -174,6 +182,7 @@
             this.cmbRegCountry.Name = "cmbRegCountry";
             this.cmbRegCountry.Size = new System.Drawing.Size(201, 21);
             this.cmbRegCountry.TabIndex = 15;
+            this.cmbRegCountry.SelectedIndexChanged += new System.EventHandler(this.cmbRegCountry_SelectedIndexChanged);
             // 
             // pnlRegAddress
             // 

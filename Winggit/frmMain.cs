@@ -125,5 +125,15 @@ namespace Winggit
         {
             Close();
         }
+
+        private void btnOpenMessaging_Click(object sender, EventArgs e)
+        {
+            new frmMessagingClient().Show();
+        }
+
+        private void btnOpenReports_Click(object sender, EventArgs e)
+        {
+            new frmReports().Show();
+        }
     }
 }
