@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMessagingClient));
             this.btnCancelMessaging = new System.Windows.Forms.Button();
             this.btnCompose = new System.Windows.Forms.Button();
             this.txtMsgContents = new System.Windows.Forms.TextBox();
@@ -168,6 +169,7 @@
             this.Controls.Add(this.txtMsgContents);
             this.Controls.Add(this.btnCompose);
             this.Controls.Add(this.btnCancelMessaging);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMessagingClient";
             this.Text = "Kaleidoscope Messaging";
             ((System.ComponentModel.ISupportInitialize)(this.dgdMsgInbox)).EndInit();

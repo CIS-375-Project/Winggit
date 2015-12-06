@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSightings));
             this.btnCancelSightings = new System.Windows.Forms.Button();
             this.btnGoToTagging = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -50,6 +51,7 @@
             this.btnGoToTagging.TabIndex = 1;
             this.btnGoToTagging.Text = "New Tag";
             this.btnGoToTagging.UseVisualStyleBackColor = true;
+            this.btnGoToTagging.Click += new System.EventHandler(this.btnGoToTagging_Click);
             // 
             // frmSightings
             // 
@@ -58,6 +60,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.btnGoToTagging);
             this.Controls.Add(this.btnCancelSightings);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSightings";
             this.Text = "Report Sighting";
             this.ResumeLayout(false);

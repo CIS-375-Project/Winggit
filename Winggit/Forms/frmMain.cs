@@ -35,5 +35,10 @@ namespace Winggit.Forms
         {
             new frmReports().Show();
         }
+
+        private void btnOpenMigration_Click(object sender, EventArgs e)
+        {
+            new frmMigration().Show();
+        }
     }
 }

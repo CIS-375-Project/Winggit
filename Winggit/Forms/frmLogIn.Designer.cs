@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogIn));
             this.btnCancelLogIn = new System.Windows.Forms.Button();
             this.lblLogInID = new System.Windows.Forms.Label();
             this.btnLogIn = new System.Windows.Forms.Button();
@@ -82,6 +83,7 @@
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.lblLogInID);
             this.Controls.Add(this.btnCancelLogIn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogIn";
             this.Text = "Log In";
             this.ResumeLayout(false);

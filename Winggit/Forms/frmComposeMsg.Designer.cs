@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmComposeMsg));
             this.btnCancelCompose = new System.Windows.Forms.Button();
             this.btnSendMsg = new System.Windows.Forms.Button();
             this.lblNewMsgRecipient = new System.Windows.Forms.Label();
@@ -125,6 +126,7 @@
             this.Controls.Add(this.lblNewMsgRecipient);
             this.Controls.Add(this.btnSendMsg);
             this.Controls.Add(this.btnCancelCompose);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmComposeMsg";
             this.Text = "Compose New Message";
             this.ResumeLayout(false);

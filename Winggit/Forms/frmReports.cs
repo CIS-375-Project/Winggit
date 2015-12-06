@@ -20,5 +20,10 @@ namespace Winggit.Forms
                 Close();
             }
         }
+
+        private void btnOpenMigration_Click(object sender, EventArgs e)
+        {
+            new frmMigration().Show();
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTaggerSearch));
             this.lblTaggerSearchLocation = new System.Windows.Forms.Label();
             this.cmbTaggerSearchLocation = new System.Windows.Forms.ComboBox();
             this.btnCancelTaggerSearch = new System.Windows.Forms.Button();
@@ -68,6 +69,7 @@
             this.Controls.Add(this.btnCancelTaggerSearch);
             this.Controls.Add(this.cmbTaggerSearchLocation);
             this.Controls.Add(this.lblTaggerSearchLocation);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTaggerSearch";
             this.Text = "Search for Local Taggers";
             this.ResumeLayout(false);
