@@ -16,5 +16,11 @@ namespace Winggit
         {
             InitializeComponent();
         }
+
+        private void btnGoToLogIn_Click(object sender, EventArgs e)
+        {
+            frmLogIn logIn = new frmLogIn();
+            logIn.Show();
+        }
     }
 }

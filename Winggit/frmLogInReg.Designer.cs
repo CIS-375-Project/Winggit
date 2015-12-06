@@ -52,6 +52,7 @@
             this.btnGoToLogIn.TabIndex = 1;
             this.btnGoToLogIn.Text = "Log In";
             this.btnGoToLogIn.UseVisualStyleBackColor = true;
+            this.btnGoToLogIn.Click += new System.EventHandler(this.btnGoToLogIn_Click);
             // 
             // btnGoToRegister
             // 

@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Winger.cs" />
+    <Compile Include="DBFunctions.cs" />
     <Compile Include="frmComposeMsg.cs">
       <SubType>Form</SubType>
     </Compile>
