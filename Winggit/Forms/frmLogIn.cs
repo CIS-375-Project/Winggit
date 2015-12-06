@@ -25,7 +25,19 @@ namespace Winggit
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            // TODO verify that tagger ID exists.
+            string SQL = "SELECT * FROM Wingers WHERE WingerNum = '" + txtLogInID.Text.Trim() + "'";
+            using (DataSet oDataSet = DBFunctions.getDataset(SQL))
+            {
+                if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show("User not found", "Winggit", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    return;
+                }
+                Winger.currentWinger = new Winger(oDataSet.Tables[0].Rows[0]);
+            }
+            frmMain main = new frmMain();
+            main.Show();
+            Close();
         }
 
         private void txtLogInID_TextChanged(object sender, EventArgs e)
