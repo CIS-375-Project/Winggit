@@ -21,5 +21,21 @@ namespace Winggit
         {
             Close();
         }
+
+        private void btnLogIn_Click(object sender, EventArgs e)
+        {
+            // TODO verify that tagger ID exists.
+        }
+
+        private void txtLogInID_TextChanged(object sender, EventArgs e)
+        {
+            btnLogIn.Enabled = txtLogInID.Text.Length > 0;
+        }
+
+        private void txtLogInID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
     }
 }

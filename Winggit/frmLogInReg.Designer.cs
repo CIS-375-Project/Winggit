@@ -52,6 +52,7 @@
             this.btnGoToLogIn.TabIndex = 1;
             this.btnGoToLogIn.Text = "Log In";
             this.btnGoToLogIn.UseVisualStyleBackColor = true;
+            this.btnGoToLogIn.Click += new System.EventHandler(this.btnGoToLogIn_Click);
             // 
             // btnGoToRegister
             // 
@@ -62,6 +63,7 @@
             this.btnGoToRegister.TabIndex = 1;
             this.btnGoToRegister.Text = "Register";
             this.btnGoToRegister.UseVisualStyleBackColor = true;
+            this.btnGoToRegister.Click += new System.EventHandler(this.btnGoToRegister_Click);
             // 
             // frmLogInReg
             // 

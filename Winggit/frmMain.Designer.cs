@@ -43,6 +43,7 @@
             this.btnOpenMessaging.TabIndex = 0;
             this.btnOpenMessaging.Text = "Messaging";
             this.btnOpenMessaging.UseVisualStyleBackColor = true;
+            this.btnOpenMessaging.Click += new System.EventHandler(this.btnOpenMessaging_Click);
             // 
             // btnOpenReports
             // 
@@ -52,6 +53,7 @@
             this.btnOpenReports.TabIndex = 1;
             this.btnOpenReports.Text = "Reports";
             this.btnOpenReports.UseVisualStyleBackColor = true;
+            this.btnOpenReports.Click += new System.EventHandler(this.btnOpenReports_Click);
             // 
             // btnEasterEgg
             // 

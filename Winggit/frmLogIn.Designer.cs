@@ -30,7 +30,7 @@
         {
             this.btnCancelLogIn = new System.Windows.Forms.Button();
             this.lblLogInID = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLogIn = new System.Windows.Forms.Button();
             this.txtLogInID = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -53,15 +53,16 @@
             this.lblLogInID.TabIndex = 1;
             this.lblLogInID.Text = "Tagger ID:";
             // 
-            // button1
+            // btnLogIn
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(15, 61);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Log In";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLogIn.Enabled = false;
+            this.btnLogIn.Location = new System.Drawing.Point(15, 61);
+            this.btnLogIn.Name = "btnLogIn";
+            this.btnLogIn.Size = new System.Drawing.Size(75, 23);
+            this.btnLogIn.TabIndex = 2;
+            this.btnLogIn.Text = "Log In";
+            this.btnLogIn.UseVisualStyleBackColor = true;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // txtLogInID
             // 
@@ -69,6 +70,8 @@
             this.txtLogInID.Name = "txtLogInID";
             this.txtLogInID.Size = new System.Drawing.Size(100, 20);
             this.txtLogInID.TabIndex = 3;
+            this.txtLogInID.TextChanged += new System.EventHandler(this.txtLogInID_TextChanged);
+            this.txtLogInID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLogInID_KeyPress);
             // 
             // frmLogIn
             // 
@@ -76,7 +79,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(214, 90);
             this.Controls.Add(this.txtLogInID);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.lblLogInID);
             this.Controls.Add(this.btnCancelLogIn);
             this.Name = "frmLogIn";
@@ -90,7 +93,7 @@
 
         private System.Windows.Forms.Button btnCancelLogIn;
         private System.Windows.Forms.Label lblLogInID;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLogIn;
         private System.Windows.Forms.TextBox txtLogInID;
     }
 }
