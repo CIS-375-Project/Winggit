@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,7 +20,12 @@ namespace Winggit
 
         private void btnCancelReg_Click(object sender, EventArgs e)
         {
-            Close();
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"Are You Sure?", @"Any info you entered will be lost. Proceed?",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Close();
+            }
         }
 
         private void frmRegister_Load(object sender, EventArgs e)

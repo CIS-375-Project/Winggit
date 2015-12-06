@@ -95,6 +95,7 @@
             // 
             // txtRegPhoneNum
             // 
+            this.txtRegPhoneNum.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtRegPhoneNum.Location = new System.Drawing.Point(121, 47);
             this.txtRegPhoneNum.Name = "txtRegPhoneNum";
             this.txtRegPhoneNum.ShortcutsEnabled = false;

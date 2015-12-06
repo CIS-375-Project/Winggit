@@ -61,6 +61,7 @@
             this.btnCompose.TabIndex = 1;
             this.btnCompose.Text = "Compose";
             this.btnCompose.UseVisualStyleBackColor = true;
+            this.btnCompose.Click += new System.EventHandler(this.btnCompose_Click);
             // 
             // txtMsgContents
             // 
@@ -140,6 +141,7 @@
             this.btnDeleteMsg.TabIndex = 10;
             this.btnDeleteMsg.Text = "Delete";
             this.btnDeleteMsg.UseVisualStyleBackColor = true;
+            this.btnDeleteMsg.Click += new System.EventHandler(this.btnDeleteMsg_Click);
             // 
             // dgdMsgInbox
             // 

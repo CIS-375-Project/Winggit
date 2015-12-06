@@ -33,7 +33,7 @@
             // 
             // btnCancelMigration
             // 
-            this.btnCancelMigration.Location = new System.Drawing.Point(197, 226);
+            this.btnCancelMigration.Location = new System.Drawing.Point(1127, 378);
             this.btnCancelMigration.Name = "btnCancelMigration";
             this.btnCancelMigration.Size = new System.Drawing.Size(75, 23);
             this.btnCancelMigration.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(1214, 413);
             this.Controls.Add(this.btnCancelMigration);
             this.Name = "frmMigration";
             this.Text = "Migration";

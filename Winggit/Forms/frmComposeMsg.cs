@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,7 +20,12 @@ namespace Winggit
 
         private void btnCancelCompose_Click(object sender, EventArgs e)
         {
-            Close();
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"Return to Inbox?", @"Your message won't be saved. Proceed?", MessageBoxButtons.YesNo) ==
+                DialogResult.Yes)
+            {
+                Close();
+            }
         }
 
         private void txtNewMsgBody_TextChanged(object sender, EventArgs e)

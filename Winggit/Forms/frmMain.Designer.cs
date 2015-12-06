@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 463);
+            this.ClientSize = new System.Drawing.Size(869, 332);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnEasterEgg);
