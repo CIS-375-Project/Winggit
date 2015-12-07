@@ -14,7 +14,7 @@ namespace Winggit.Forms
         private void btnCancelCompose_Click(object sender, EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Return to inbox?", @"Your message won't be saved. Proceed?", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show(@"Your message won't be saved. Proceed?", @"Return to inbox?", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
                 Close();
@@ -60,6 +60,7 @@ namespace Winggit.Forms
         private void btnSendMsg_Click(object sender, EventArgs e)
         {
             // TODO Verify that recipient exists before sending message.
+
         }
 
         private void txtNewMsgRecipient_KeyPress(object sender, KeyPressEventArgs e)

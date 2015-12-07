@@ -15,7 +15,7 @@ namespace Winggit.Forms
         private void btnCancelReg_Click(object sender, EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Are you sure?", @"Any info you entered will be lost. Proceed?",
+            if (MessageBox.Show(@"Any info you entered will be lost. Proceed?", @"Are you sure?",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Close();

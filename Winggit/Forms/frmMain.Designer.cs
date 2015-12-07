@@ -84,7 +84,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(197, 146);
+            this.btnExit.Location = new System.Drawing.Point(197, 145);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 4;
@@ -127,6 +127,7 @@
             this.btnOpenSightings.TabIndex = 7;
             this.btnOpenSightings.Text = "Tags/Sightings";
             this.btnOpenSightings.UseVisualStyleBackColor = true;
+            this.btnOpenSightings.Click += new System.EventHandler(this.btnOpenSightings_Click);
             // 
             // picBee
             // 
@@ -150,7 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 207);
+            this.ClientSize = new System.Drawing.Size(396, 176);
             this.Controls.Add(this.btnOpenMigration);
             this.Controls.Add(this.btnOpenSightings);
             this.Controls.Add(this.btnOpenPokedex);

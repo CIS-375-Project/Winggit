@@ -14,7 +14,7 @@ namespace Winggit.Forms
         private void btnCancelSearch_Click(object sender, EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Are You Sure?", @"Any info you entered will be lost.", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
                 Close();

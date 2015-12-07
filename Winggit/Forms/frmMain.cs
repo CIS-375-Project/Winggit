@@ -19,7 +19,7 @@ namespace Winggit.Forms
         private void btnExit_Click(object sender, System.EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Leave Winggit?", @"Are you sure you want to exit Winggit?", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show(@"Are you sure you want to exit Winggit?", @"Leave Winggit?", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
                 Close();
@@ -39,6 +39,11 @@ namespace Winggit.Forms
         private void btnOpenMigration_Click(object sender, EventArgs e)
         {
             new frmMigration().Show();
+        }
+
+        private void btnOpenSightings_Click(object sender, EventArgs e)
+        {
+            new frmSightings().Show();
         }
     }
 }
