@@ -23,11 +23,6 @@ namespace Winggit.Forms
             }
         }
 
-        private void btnGoToTagging_Click(object sender, EventArgs e)
-        {
-            new frmTagging().Show();
-        }
-
         private void txtSightingTagID_TextChanged(object sender, EventArgs e)
         {
 
@@ -99,6 +94,11 @@ namespace Winggit.Forms
         }
 
         private void cmbSightingStateProv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFinishTagSighting_Click(object sender, EventArgs e)
         {
 
         }

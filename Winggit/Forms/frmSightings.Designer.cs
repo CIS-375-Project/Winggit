@@ -49,6 +49,8 @@
             this.lblLatitude = new System.Windows.Forms.Label();
             this.updLatitude = new System.Windows.Forms.NumericUpDown();
             this.tabLoc = new System.Windows.Forms.TabPage();
+            this.lblSightingStateProv = new System.Windows.Forms.Label();
+            this.cmbSightingStateProv = new System.Windows.Forms.ComboBox();
             this.lblSightingCountry = new System.Windows.Forms.Label();
             this.cmbSightingCountry = new System.Windows.Forms.ComboBox();
             this.lblSightingCity = new System.Windows.Forms.Label();
@@ -58,8 +60,6 @@
             this.grpTempSystem = new System.Windows.Forms.GroupBox();
             this.rdoCelcius = new System.Windows.Forms.RadioButton();
             this.rdoFahrenheit = new System.Windows.Forms.RadioButton();
-            this.cmbSightingStateProv = new System.Windows.Forms.ComboBox();
-            this.lblSightingStateProv = new System.Windows.Forms.Label();
             this.tbcLocationPicker.SuspendLayout();
             this.tabLatLong.SuspendLayout();
             this.grpEastWest.SuspendLayout();
@@ -91,7 +91,7 @@
             this.btnFinishTagSighting.TabIndex = 1;
             this.btnFinishTagSighting.Text = "Finish";
             this.btnFinishTagSighting.UseVisualStyleBackColor = true;
-            this.btnFinishTagSighting.Click += new System.EventHandler(this.btnGoToTagging_Click);
+            this.btnFinishTagSighting.Click += new System.EventHandler(this.btnFinishTagSighting_Click);
             // 
             // calSightingDate
             // 
@@ -309,6 +309,25 @@
             this.tabLoc.Text = "Location";
             this.tabLoc.UseVisualStyleBackColor = true;
             // 
+            // lblSightingStateProv
+            // 
+            this.lblSightingStateProv.AutoSize = true;
+            this.lblSightingStateProv.Location = new System.Drawing.Point(127, 3);
+            this.lblSightingStateProv.Name = "lblSightingStateProv";
+            this.lblSightingStateProv.Size = new System.Drawing.Size(82, 13);
+            this.lblSightingStateProv.TabIndex = 5;
+            this.lblSightingStateProv.Text = "State/Province:";
+            // 
+            // cmbSightingStateProv
+            // 
+            this.cmbSightingStateProv.Enabled = false;
+            this.cmbSightingStateProv.FormattingEnabled = true;
+            this.cmbSightingStateProv.Location = new System.Drawing.Point(127, 19);
+            this.cmbSightingStateProv.Name = "cmbSightingStateProv";
+            this.cmbSightingStateProv.Size = new System.Drawing.Size(131, 21);
+            this.cmbSightingStateProv.TabIndex = 4;
+            this.cmbSightingStateProv.SelectedIndexChanged += new System.EventHandler(this.cmbSightingStateProv_SelectedIndexChanged);
+            // 
             // lblSightingCountry
             // 
             this.lblSightingCountry.AutoSize = true;
@@ -391,25 +410,6 @@
             this.rdoFahrenheit.TabStop = true;
             this.rdoFahrenheit.Text = "°F";
             this.rdoFahrenheit.UseVisualStyleBackColor = true;
-            // 
-            // cmbSightingStateProv
-            // 
-            this.cmbSightingStateProv.Enabled = false;
-            this.cmbSightingStateProv.FormattingEnabled = true;
-            this.cmbSightingStateProv.Location = new System.Drawing.Point(127, 19);
-            this.cmbSightingStateProv.Name = "cmbSightingStateProv";
-            this.cmbSightingStateProv.Size = new System.Drawing.Size(131, 21);
-            this.cmbSightingStateProv.TabIndex = 4;
-            this.cmbSightingStateProv.SelectedIndexChanged += new System.EventHandler(this.cmbSightingStateProv_SelectedIndexChanged);
-            // 
-            // lblSightingStateProv
-            // 
-            this.lblSightingStateProv.AutoSize = true;
-            this.lblSightingStateProv.Location = new System.Drawing.Point(127, 3);
-            this.lblSightingStateProv.Name = "lblSightingStateProv";
-            this.lblSightingStateProv.Size = new System.Drawing.Size(82, 13);
-            this.lblSightingStateProv.TabIndex = 5;
-            this.lblSightingStateProv.Text = "State/Province:";
             // 
             // frmSightings
             // 
