@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Winggit.Forms;
 
-namespace Winggit
+namespace Winggit.Controls
 {
     static class Program
     {

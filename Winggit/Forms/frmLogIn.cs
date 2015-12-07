@@ -2,6 +2,7 @@
 using System.Data;
 using System.Media;
 using System.Windows.Forms;
+using Winggit.Controls;
 using Winggit.Entities;
 
 namespace Winggit.Forms
