@@ -46,6 +46,7 @@
             // 
             // btnCancelMessaging
             // 
+            this.btnCancelMessaging.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelMessaging.Location = new System.Drawing.Point(526, 322);
             this.btnCancelMessaging.Name = "btnCancelMessaging";
             this.btnCancelMessaging.Size = new System.Drawing.Size(75, 23);
@@ -156,6 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelMessaging;
             this.ClientSize = new System.Drawing.Size(613, 357);
             this.Controls.Add(this.dgdMsgInbox);
             this.Controls.Add(this.btnDeleteMsg);
@@ -170,6 +172,8 @@
             this.Controls.Add(this.btnCompose);
             this.Controls.Add(this.btnCancelMessaging);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMessagingClient";
             this.Text = "Kaleidoscope Messaging";
             ((System.ComponentModel.ISupportInitialize)(this.dgdMsgInbox)).EndInit();

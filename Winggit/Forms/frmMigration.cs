@@ -20,5 +20,18 @@ namespace Winggit.Forms
                 Close();
             }
         }
+
+        private void txtMigrationTagID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMigrationTagID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

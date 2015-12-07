@@ -50,6 +50,7 @@
             // 
             // btnCancelReg
             // 
+            this.btnCancelReg.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelReg.Location = new System.Drawing.Point(247, 208);
             this.btnCancelReg.Name = "btnCancelReg";
             this.btnCancelReg.Size = new System.Drawing.Size(75, 23);
@@ -201,8 +202,10 @@
             // 
             // frmRegister
             // 
+            this.AcceptButton = this.btnRegister;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelReg;
             this.ClientSize = new System.Drawing.Size(343, 243);
             this.Controls.Add(this.cmbRegCountry);
             this.Controls.Add(this.cmbRegStateProv);
@@ -217,6 +220,8 @@
             this.Controls.Add(this.btnCancelReg);
             this.Controls.Add(this.pnlRegAddress);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmRegister";
             this.Text = "Register";
             this.Load += new System.EventHandler(this.frmRegister_Load);

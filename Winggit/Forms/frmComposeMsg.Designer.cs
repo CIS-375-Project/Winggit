@@ -41,6 +41,7 @@
             // 
             // btnCancelCompose
             // 
+            this.btnCancelCompose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelCompose.Location = new System.Drawing.Point(274, 225);
             this.btnCancelCompose.Name = "btnCancelCompose";
             this.btnCancelCompose.Size = new System.Drawing.Size(75, 23);
@@ -117,6 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelCompose;
             this.ClientSize = new System.Drawing.Size(360, 260);
             this.Controls.Add(this.lblNewMsgBody);
             this.Controls.Add(this.txtNewMsgBody);
@@ -127,6 +129,8 @@
             this.Controls.Add(this.btnSendMsg);
             this.Controls.Add(this.btnCancelCompose);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmComposeMsg";
             this.Text = "Compose New Message";
             this.ResumeLayout(false);

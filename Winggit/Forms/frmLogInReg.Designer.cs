@@ -32,13 +32,14 @@
             this.lblWelcome = new System.Windows.Forms.Label();
             this.btnGoToLogIn = new System.Windows.Forms.Button();
             this.btnGoToRegister = new System.Windows.Forms.Button();
+            this.btnExitLogInReg = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(77, 9);
+            this.lblWelcome.Location = new System.Drawing.Point(91, 9);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(116, 13);
             this.lblWelcome.TabIndex = 0;
@@ -58,7 +59,7 @@
             // btnGoToRegister
             // 
             this.btnGoToRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGoToRegister.Location = new System.Drawing.Point(167, 46);
+            this.btnGoToRegister.Location = new System.Drawing.Point(104, 46);
             this.btnGoToRegister.Name = "btnGoToRegister";
             this.btnGoToRegister.Size = new System.Drawing.Size(86, 28);
             this.btnGoToRegister.TabIndex = 1;
@@ -66,15 +67,30 @@
             this.btnGoToRegister.UseVisualStyleBackColor = true;
             this.btnGoToRegister.Click += new System.EventHandler(this.btnGoToRegister_Click);
             // 
+            // btnExitLogInReg
+            // 
+            this.btnExitLogInReg.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExitLogInReg.Location = new System.Drawing.Point(196, 46);
+            this.btnExitLogInReg.Name = "btnExitLogInReg";
+            this.btnExitLogInReg.Size = new System.Drawing.Size(86, 28);
+            this.btnExitLogInReg.TabIndex = 2;
+            this.btnExitLogInReg.Text = "Exit";
+            this.btnExitLogInReg.UseVisualStyleBackColor = true;
+            this.btnExitLogInReg.Click += new System.EventHandler(this.btnExitLogInReg_Click);
+            // 
             // frmLogInReg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 86);
+            this.CancelButton = this.btnExitLogInReg;
+            this.ClientSize = new System.Drawing.Size(294, 86);
+            this.Controls.Add(this.btnExitLogInReg);
             this.Controls.Add(this.btnGoToRegister);
             this.Controls.Add(this.btnGoToLogIn);
             this.Controls.Add(this.lblWelcome);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmLogInReg";
             this.Text = "Welcome to Winggit";
             this.ResumeLayout(false);
@@ -87,6 +103,7 @@
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Button btnGoToLogIn;
         private System.Windows.Forms.Button btnGoToRegister;
+        private System.Windows.Forms.Button btnExitLogInReg;
     }
 }
 

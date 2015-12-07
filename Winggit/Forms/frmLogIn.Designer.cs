@@ -37,6 +37,7 @@
             // 
             // btnCancelLogIn
             // 
+            this.btnCancelLogIn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelLogIn.Location = new System.Drawing.Point(127, 61);
             this.btnCancelLogIn.Name = "btnCancelLogIn";
             this.btnCancelLogIn.Size = new System.Drawing.Size(75, 23);
@@ -76,14 +77,18 @@
             // 
             // frmLogIn
             // 
+            this.AcceptButton = this.btnLogIn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelLogIn;
             this.ClientSize = new System.Drawing.Size(214, 90);
             this.Controls.Add(this.txtLogInID);
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.lblLogInID);
             this.Controls.Add(this.btnCancelLogIn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmLogIn";
             this.Text = "Log In";
             this.ResumeLayout(false);

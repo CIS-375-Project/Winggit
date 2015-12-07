@@ -65,7 +65,7 @@
             // 
             // btnEasterEgg
             // 
-            this.btnEasterEgg.Location = new System.Drawing.Point(116, 145);
+            this.btnEasterEgg.Location = new System.Drawing.Point(12, 141);
             this.btnEasterEgg.Name = "btnEasterEgg";
             this.btnEasterEgg.Size = new System.Drawing.Size(75, 23);
             this.btnEasterEgg.TabIndex = 2;
@@ -84,7 +84,8 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(197, 145);
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Location = new System.Drawing.Point(309, 141);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 4;
@@ -143,7 +144,7 @@
             this.btnOpenMigration.Name = "btnOpenMigration";
             this.btnOpenMigration.Size = new System.Drawing.Size(105, 23);
             this.btnOpenMigration.TabIndex = 8;
-            this.btnOpenMigration.Text = "Migration";
+            this.btnOpenMigration.Text = "Migration Tracking";
             this.btnOpenMigration.UseVisualStyleBackColor = true;
             this.btnOpenMigration.Click += new System.EventHandler(this.btnOpenMigration_Click);
             // 
@@ -151,6 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(396, 176);
             this.Controls.Add(this.btnOpenMigration);
             this.Controls.Add(this.btnOpenSightings);
@@ -163,6 +165,8 @@
             this.Controls.Add(this.btnOpenReports);
             this.Controls.Add(this.btnOpenMessaging);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMain";
             this.Text = "Main Menu";
             ((System.ComponentModel.ISupportInitialize)(this.picBee)).EndInit();
