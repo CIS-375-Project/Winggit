@@ -24,7 +24,7 @@ namespace Winggit.Forms
         private void btnDeleteMsg_Click(object sender, EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Delete message?", @"This can't be undone. Are you sure?", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show(@"This can't be undone. Are you sure?", @"Delete message?", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
                 // TODO delete message.
