@@ -14,7 +14,7 @@ namespace Winggit.Forms
         private void btnCancelMessaging_Click(object sender, EventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Leave messaging?", @"About to return to main menu. Proceed?", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show(@"About to return to main menu. Proceed?", @"Leave messaging?", MessageBoxButtons.YesNo) ==
                 DialogResult.Yes)
             {
                 Close();

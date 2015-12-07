@@ -27,7 +27,7 @@ namespace Winggit.Forms
                 if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
                 {
                     SystemSounds.Exclamation.Play();
-                    MessageBox.Show(@"User not found", @"Winggit", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(@"User not found!", @"Winggit", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
                 }
                 Winger.currentWinger = new Winger(oDataSet.Tables[0].Rows[0]);

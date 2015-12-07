@@ -4,10 +4,10 @@ namespace Winggit.Entities
 {
     class Winger
     {
-        public int wingerNum;
-        public string name;
-        public string address;
-        public string phoneNum;
+        private int wingerNum;
+        private string name;
+        private string address;
+        private string phoneNum;
         public static Winger currentWinger;
 
         public Winger(DataRow oRow)

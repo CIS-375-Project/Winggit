@@ -118,5 +118,10 @@ namespace Winggit.Forms
         {
             cmbRegStateProv.SelectedIndex = -1; // Deselect state/province
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
