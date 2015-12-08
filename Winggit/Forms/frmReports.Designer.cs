@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReports));
             this.btnCancelReports = new System.Windows.Forms.Button();
+            this.rptViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
             // btnCancelReports
@@ -43,12 +44,20 @@
             this.btnCancelReports.UseVisualStyleBackColor = true;
             this.btnCancelReports.Click += new System.EventHandler(this.btnCancelReports_Click);
             // 
+            // rptViewer
+            // 
+            this.rptViewer.Location = new System.Drawing.Point(12, 31);
+            this.rptViewer.Name = "rptViewer";
+            this.rptViewer.Size = new System.Drawing.Size(486, 180);
+            this.rptViewer.TabIndex = 1;
+            // 
             // frmReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelReports;
             this.ClientSize = new System.Drawing.Size(510, 401);
+            this.Controls.Add(this.rptViewer);
             this.Controls.Add(this.btnCancelReports);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -57,6 +66,7 @@
             this.Name = "frmReports";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate Reports";
+            this.Load += new System.EventHandler(this.frmReports_Load);
             this.ResumeLayout(false);
 
         }
@@ -64,5 +74,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnCancelReports;
+        private Microsoft.Reporting.WinForms.ReportViewer rptViewer;
     }
 }

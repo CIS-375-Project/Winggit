@@ -72,7 +72,7 @@
             // lblRegName
             // 
             this.lblRegName.AutoSize = true;
-            this.lblRegName.Location = new System.Drawing.Point(15, 24);
+            this.lblRegName.Location = new System.Drawing.Point(17, 24);
             this.lblRegName.Name = "lblRegName";
             this.lblRegName.Size = new System.Drawing.Size(57, 13);
             this.lblRegName.TabIndex = 2;
@@ -89,7 +89,7 @@
             // lblRegPhoneNum
             // 
             this.lblRegPhoneNum.AutoSize = true;
-            this.lblRegPhoneNum.Location = new System.Drawing.Point(15, 50);
+            this.lblRegPhoneNum.Location = new System.Drawing.Point(17, 50);
             this.lblRegPhoneNum.Name = "lblRegPhoneNum";
             this.lblRegPhoneNum.Size = new System.Drawing.Size(81, 13);
             this.lblRegPhoneNum.TabIndex = 4;

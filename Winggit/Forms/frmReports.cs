@@ -19,6 +19,12 @@ namespace Winggit.Forms
             {
                 Close();
             }
-        } 
+        }
+
+        private void frmReports_Load(object sender, EventArgs e)
+        {
+
+            this.rptViewer.RefreshReport();
+        }
     }
 }
