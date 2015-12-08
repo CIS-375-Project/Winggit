@@ -35,5 +35,10 @@ namespace Winggit.Forms
         {
             new frmComposeMsg().ShowDialog();
         }
+
+        private void frmMessagingClient_Load(object sender, EventArgs e)
+        {
+            // TODO Load messages.
+        }
     }
 }

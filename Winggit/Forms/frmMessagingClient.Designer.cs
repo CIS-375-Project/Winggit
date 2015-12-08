@@ -178,6 +178,7 @@
             this.Name = "frmMessagingClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kaleidoscope Messaging";
+            this.Load += new System.EventHandler(this.frmMessagingClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgdMsgInbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

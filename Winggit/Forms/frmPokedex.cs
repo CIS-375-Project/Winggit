@@ -27,5 +27,15 @@ namespace Winggit.Forms
                 Close();
             }
         }
+
+        private void frmPokedex_Load(object sender, EventArgs e)
+        {
+            //TODO Load rankings
+        }
+
+        private void btnRefreshRankings_Click(object sender, EventArgs e)
+        {
+            //TODO Reload rankings
+        }
     }
 }
