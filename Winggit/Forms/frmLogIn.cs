@@ -22,7 +22,7 @@ namespace Winggit.Forms
         private void btnLogIn_Click(object sender, EventArgs e)
         {
             string sql = "SELECT * FROM Wingers WHERE WingerNum = '" + txtLogInID.Text.Trim() + "'";
-            using (DataSet oDataSet = DBFunctions.GetDataset(sql))
+            using (DataSet oDataSet = DBFunctions.GetDataSet(sql))
             {
                 if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
                 {
