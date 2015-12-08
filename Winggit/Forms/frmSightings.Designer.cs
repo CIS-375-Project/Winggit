@@ -430,6 +430,7 @@
             this.Controls.Add(this.calSightingDate);
             this.Controls.Add(this.btnFinishTagSighting);
             this.Controls.Add(this.btnCancelSightings);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

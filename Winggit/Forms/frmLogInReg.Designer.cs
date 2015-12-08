@@ -88,6 +88,7 @@
             this.Controls.Add(this.btnGoToRegister);
             this.Controls.Add(this.btnGoToLogIn);
             this.Controls.Add(this.lblWelcome);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

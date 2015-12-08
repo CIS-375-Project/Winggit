@@ -165,6 +165,7 @@
             this.Controls.Add(this.btnEasterEgg);
             this.Controls.Add(this.btnOpenReports);
             this.Controls.Add(this.btnOpenMessaging);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

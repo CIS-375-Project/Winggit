@@ -108,6 +108,7 @@
             this.Controls.Add(this.lblMigrationTagID);
             this.Controls.Add(this.txtMigrationTagID);
             this.Controls.Add(this.btnCancelMigration);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

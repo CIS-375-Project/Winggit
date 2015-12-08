@@ -210,6 +210,7 @@
             this.Controls.Add(this.lblRegName);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnCancelReg);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

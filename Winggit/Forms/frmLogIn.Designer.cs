@@ -38,7 +38,7 @@
             // btnCancelLogIn
             // 
             this.btnCancelLogIn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelLogIn.Location = new System.Drawing.Point(127, 61);
+            this.btnCancelLogIn.Location = new System.Drawing.Point(127, 55);
             this.btnCancelLogIn.Name = "btnCancelLogIn";
             this.btnCancelLogIn.Size = new System.Drawing.Size(75, 23);
             this.btnCancelLogIn.TabIndex = 0;
@@ -58,7 +58,7 @@
             // btnLogIn
             // 
             this.btnLogIn.Enabled = false;
-            this.btnLogIn.Location = new System.Drawing.Point(15, 61);
+            this.btnLogIn.Location = new System.Drawing.Point(12, 55);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(75, 23);
             this.btnLogIn.TabIndex = 2;
@@ -71,7 +71,7 @@
             this.txtLogInID.Location = new System.Drawing.Point(76, 18);
             this.txtLogInID.Name = "txtLogInID";
             this.txtLogInID.ShortcutsEnabled = false;
-            this.txtLogInID.Size = new System.Drawing.Size(100, 20);
+            this.txtLogInID.Size = new System.Drawing.Size(126, 20);
             this.txtLogInID.TabIndex = 3;
             this.txtLogInID.TextChanged += new System.EventHandler(this.txtLogInID_TextChanged);
             this.txtLogInID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLogInID_KeyPress);
@@ -87,6 +87,7 @@
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.lblLogInID);
             this.Controls.Add(this.btnCancelLogIn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

@@ -50,6 +50,7 @@
             this.CancelButton = this.btnCancelReports;
             this.ClientSize = new System.Drawing.Size(510, 401);
             this.Controls.Add(this.btnCancelReports);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
