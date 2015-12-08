@@ -32,7 +32,7 @@ namespace Winggit.Forms
                 }
                 Winger.currentWinger = new Winger(oDataSet.Tables[0].Rows[0]);
             }
-            new frmMain().Show();
+            new frmMain().ShowDialog();
             Close();
         }
 

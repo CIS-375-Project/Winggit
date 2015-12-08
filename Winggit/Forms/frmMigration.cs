@@ -23,7 +23,7 @@ namespace Winggit.Forms
 
         private void txtMigrationTagID_TextChanged(object sender, EventArgs e)
         {
-
+            btnSeeMigration.Enabled = txtMigrationTagID.Text.Length > 0;
         }
 
         private void txtMigrationTagID_KeyPress(object sender, KeyPressEventArgs e)
@@ -32,6 +32,13 @@ namespace Winggit.Forms
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnSeeMigration_Click(object sender, EventArgs e)
+        {
+            // TODO Check if Tag ID exists.
+            // TODO If ID exists, load sightings into table.
+            // TODO Else, send rejection message to user.
         }
     }
 }

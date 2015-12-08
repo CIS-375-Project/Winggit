@@ -33,7 +33,7 @@ namespace Winggit.Forms
 
         private void btnCompose_Click(object sender, EventArgs e)
         {
-            new frmComposeMsg().Show();
+            new frmComposeMsg().ShowDialog();
         }
     }
 }

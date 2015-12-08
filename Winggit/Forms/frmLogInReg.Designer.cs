@@ -92,6 +92,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogInReg";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome to Winggit";
             this.ResumeLayout(false);
             this.PerformLayout();

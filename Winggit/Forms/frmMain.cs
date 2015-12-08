@@ -13,7 +13,7 @@ namespace Winggit.Forms
 
         private void btnSearch_Click(object sender, System.EventArgs e)
         {
-            new frmTaggerSearch().Show();
+            new frmTaggerSearch().ShowDialog();
         }
 
         private void btnExit_Click(object sender, System.EventArgs e)
@@ -28,22 +28,27 @@ namespace Winggit.Forms
 
         private void btnOpenMessaging_Click(object sender, EventArgs e)
         {
-            new frmMessagingClient().Show();
+            new frmMessagingClient().ShowDialog();
         }
 
         private void btnOpenReports_Click(object sender, EventArgs e)
         {
-            new frmReports().Show();
+            new frmReports().ShowDialog();
         }
 
         private void btnOpenMigration_Click(object sender, EventArgs e)
         {
-            new frmMigration().Show();
+            new frmMigration().ShowDialog();
         }
 
         private void btnOpenSightings_Click(object sender, EventArgs e)
         {
-            new frmSightings().Show();
+            new frmSightings().ShowDialog();
+        }
+
+        private void btnOpenPokedex_Click(object sender, EventArgs e)
+        {
+            new frmPokedex().ShowDialog();
         }
     }
 }

@@ -60,6 +60,7 @@
             this.grpTempSystem = new System.Windows.Forms.GroupBox();
             this.rdoCelcius = new System.Windows.Forms.RadioButton();
             this.rdoFahrenheit = new System.Windows.Forms.RadioButton();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tbcLocationPicker.SuspendLayout();
             this.tabLatLong.SuspendLayout();
             this.grpEastWest.SuspendLayout();
@@ -433,6 +434,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSightings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Report Sighting";
             this.tbcLocationPicker.ResumeLayout(false);
             this.tabLatLong.ResumeLayout(false);
@@ -486,5 +488,6 @@
         private System.Windows.Forms.TextBox txtSightingCity;
         private System.Windows.Forms.Label lblSightingStateProv;
         private System.Windows.Forms.ComboBox cmbSightingStateProv;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

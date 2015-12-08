@@ -97,6 +97,12 @@
     <Compile Include="Forms\frmMigration.Designer.cs">
       <DependentUpon>frmMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmPokedex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPokedex.Designer.cs">
+      <DependentUpon>frmPokedex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMigration.resx">
       <DependentUpon>frmMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPokedex.resx">
+      <DependentUpon>frmPokedex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>

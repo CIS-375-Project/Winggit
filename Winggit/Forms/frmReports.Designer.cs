@@ -54,6 +54,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmReports";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate Reports";
             this.ResumeLayout(false);
 

@@ -70,6 +70,7 @@
             // 
             this.txtLogInID.Location = new System.Drawing.Point(76, 18);
             this.txtLogInID.Name = "txtLogInID";
+            this.txtLogInID.ShortcutsEnabled = false;
             this.txtLogInID.Size = new System.Drawing.Size(100, 20);
             this.txtLogInID.TabIndex = 3;
             this.txtLogInID.TextChanged += new System.EventHandler(this.txtLogInID_TextChanged);
@@ -90,6 +91,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogIn";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Log In";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -35,23 +35,22 @@
             this.txtRegName = new System.Windows.Forms.TextBox();
             this.lblRegPhoneNum = new System.Windows.Forms.Label();
             this.txtRegPhoneNum = new System.Windows.Forms.TextBox();
-            this.lblRegAddress = new System.Windows.Forms.Label();
-            this.lblRegHouseNumStreet = new System.Windows.Forms.Label();
             this.txtRegHouseNumStreet = new System.Windows.Forms.TextBox();
-            this.lblRegCity = new System.Windows.Forms.Label();
             this.txtRegCity = new System.Windows.Forms.TextBox();
-            this.lblRegStateProv = new System.Windows.Forms.Label();
             this.cmbRegStateProv = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.cmbRegCountry = new System.Windows.Forms.ComboBox();
-            this.pnlRegAddress = new System.Windows.Forms.Panel();
-            this.pnlRegAddress.SuspendLayout();
+            this.lblRegHouseNumStreet = new System.Windows.Forms.Label();
+            this.lblRegCity = new System.Windows.Forms.Label();
+            this.lblRegStateProv = new System.Windows.Forms.Label();
+            this.lblRegCountry = new System.Windows.Forms.Label();
+            this.grpRegAddress = new System.Windows.Forms.GroupBox();
+            this.grpRegAddress.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancelReg
             // 
             this.btnCancelReg.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelReg.Location = new System.Drawing.Point(247, 208);
+            this.btnCancelReg.Location = new System.Drawing.Point(256, 208);
             this.btnCancelReg.Name = "btnCancelReg";
             this.btnCancelReg.Size = new System.Drawing.Size(75, 23);
             this.btnCancelReg.TabIndex = 0;
@@ -73,7 +72,7 @@
             // lblRegName
             // 
             this.lblRegName.AutoSize = true;
-            this.lblRegName.Location = new System.Drawing.Point(12, 24);
+            this.lblRegName.Location = new System.Drawing.Point(15, 24);
             this.lblRegName.Name = "lblRegName";
             this.lblRegName.Size = new System.Drawing.Size(57, 13);
             this.lblRegName.TabIndex = 2;
@@ -90,16 +89,17 @@
             // lblRegPhoneNum
             // 
             this.lblRegPhoneNum.AutoSize = true;
-            this.lblRegPhoneNum.Location = new System.Drawing.Point(12, 49);
+            this.lblRegPhoneNum.Location = new System.Drawing.Point(15, 50);
             this.lblRegPhoneNum.Name = "lblRegPhoneNum";
-            this.lblRegPhoneNum.Size = new System.Drawing.Size(51, 13);
+            this.lblRegPhoneNum.Size = new System.Drawing.Size(81, 13);
             this.lblRegPhoneNum.TabIndex = 4;
-            this.lblRegPhoneNum.Text = "Phone #:";
+            this.lblRegPhoneNum.Text = "Phone Number:";
             // 
             // txtRegPhoneNum
             // 
             this.txtRegPhoneNum.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtRegPhoneNum.Location = new System.Drawing.Point(121, 47);
+            this.txtRegPhoneNum.MaxLength = 10;
             this.txtRegPhoneNum.Name = "txtRegPhoneNum";
             this.txtRegPhoneNum.ShortcutsEnabled = false;
             this.txtRegPhoneNum.Size = new System.Drawing.Size(201, 20);
@@ -107,98 +107,94 @@
             this.txtRegPhoneNum.TextChanged += new System.EventHandler(this.txtRegPhoneNum_TextChanged);
             this.txtRegPhoneNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRegPhoneNum_KeyPress);
             // 
-            // lblRegAddress
-            // 
-            this.lblRegAddress.AutoSize = true;
-            this.lblRegAddress.Location = new System.Drawing.Point(12, 74);
-            this.lblRegAddress.Name = "lblRegAddress";
-            this.lblRegAddress.Size = new System.Drawing.Size(48, 13);
-            this.lblRegAddress.TabIndex = 7;
-            this.lblRegAddress.Text = "Address:";
-            // 
-            // lblRegHouseNumStreet
-            // 
-            this.lblRegHouseNumStreet.AutoSize = true;
-            this.lblRegHouseNumStreet.Location = new System.Drawing.Point(3, 9);
-            this.lblRegHouseNumStreet.Name = "lblRegHouseNumStreet";
-            this.lblRegHouseNumStreet.Size = new System.Drawing.Size(103, 13);
-            this.lblRegHouseNumStreet.TabIndex = 8;
-            this.lblRegHouseNumStreet.Text = "House # and Street:";
-            // 
             // txtRegHouseNumStreet
             // 
-            this.txtRegHouseNumStreet.Location = new System.Drawing.Point(121, 97);
+            this.txtRegHouseNumStreet.Location = new System.Drawing.Point(110, 19);
             this.txtRegHouseNumStreet.Name = "txtRegHouseNumStreet";
             this.txtRegHouseNumStreet.Size = new System.Drawing.Size(201, 20);
             this.txtRegHouseNumStreet.TabIndex = 9;
             this.txtRegHouseNumStreet.TextChanged += new System.EventHandler(this.txtRegHouseNumStreet_TextChanged);
             // 
-            // lblRegCity
-            // 
-            this.lblRegCity.AutoSize = true;
-            this.lblRegCity.Location = new System.Drawing.Point(3, 36);
-            this.lblRegCity.Name = "lblRegCity";
-            this.lblRegCity.Size = new System.Drawing.Size(27, 13);
-            this.lblRegCity.TabIndex = 10;
-            this.lblRegCity.Text = "City:";
-            // 
             // txtRegCity
             // 
-            this.txtRegCity.Location = new System.Drawing.Point(121, 123);
+            this.txtRegCity.Location = new System.Drawing.Point(110, 49);
             this.txtRegCity.Name = "txtRegCity";
             this.txtRegCity.Size = new System.Drawing.Size(201, 20);
             this.txtRegCity.TabIndex = 11;
             this.txtRegCity.TextChanged += new System.EventHandler(this.txtRegCity_TextChanged);
             // 
-            // lblRegStateProv
-            // 
-            this.lblRegStateProv.AutoSize = true;
-            this.lblRegStateProv.Location = new System.Drawing.Point(3, 62);
-            this.lblRegStateProv.Name = "lblRegStateProv";
-            this.lblRegStateProv.Size = new System.Drawing.Size(82, 13);
-            this.lblRegStateProv.TabIndex = 12;
-            this.lblRegStateProv.Text = "State/Province:";
-            // 
             // cmbRegStateProv
             // 
             this.cmbRegStateProv.Enabled = false;
             this.cmbRegStateProv.FormattingEnabled = true;
-            this.cmbRegStateProv.Location = new System.Drawing.Point(121, 149);
+            this.cmbRegStateProv.Location = new System.Drawing.Point(110, 75);
             this.cmbRegStateProv.Name = "cmbRegStateProv";
             this.cmbRegStateProv.Size = new System.Drawing.Size(201, 21);
             this.cmbRegStateProv.TabIndex = 13;
             this.cmbRegStateProv.SelectedIndexChanged += new System.EventHandler(this.cmbRegStateProv_SelectedIndexChanged);
             this.cmbRegStateProv.DataSourceChanged += new System.EventHandler(this.cmbRegStateProv_DataSourceChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Country:";
-            // 
             // cmbRegCountry
             // 
             this.cmbRegCountry.FormattingEnabled = true;
-            this.cmbRegCountry.Location = new System.Drawing.Point(121, 176);
+            this.cmbRegCountry.Location = new System.Drawing.Point(110, 102);
             this.cmbRegCountry.Name = "cmbRegCountry";
             this.cmbRegCountry.Size = new System.Drawing.Size(201, 21);
             this.cmbRegCountry.TabIndex = 15;
             this.cmbRegCountry.SelectedIndexChanged += new System.EventHandler(this.cmbRegCountry_SelectedIndexChanged);
             // 
-            // pnlRegAddress
+            // lblRegHouseNumStreet
             // 
-            this.pnlRegAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlRegAddress.Controls.Add(this.label1);
-            this.pnlRegAddress.Controls.Add(this.lblRegStateProv);
-            this.pnlRegAddress.Controls.Add(this.lblRegCity);
-            this.pnlRegAddress.Controls.Add(this.lblRegHouseNumStreet);
-            this.pnlRegAddress.Location = new System.Drawing.Point(11, 90);
-            this.pnlRegAddress.Name = "pnlRegAddress";
-            this.pnlRegAddress.Size = new System.Drawing.Size(320, 112);
-            this.pnlRegAddress.TabIndex = 16;
+            this.lblRegHouseNumStreet.AutoSize = true;
+            this.lblRegHouseNumStreet.Location = new System.Drawing.Point(6, 22);
+            this.lblRegHouseNumStreet.Name = "lblRegHouseNumStreet";
+            this.lblRegHouseNumStreet.Size = new System.Drawing.Size(103, 13);
+            this.lblRegHouseNumStreet.TabIndex = 8;
+            this.lblRegHouseNumStreet.Text = "House # and Street:";
+            // 
+            // lblRegCity
+            // 
+            this.lblRegCity.AutoSize = true;
+            this.lblRegCity.Location = new System.Drawing.Point(6, 52);
+            this.lblRegCity.Name = "lblRegCity";
+            this.lblRegCity.Size = new System.Drawing.Size(27, 13);
+            this.lblRegCity.TabIndex = 10;
+            this.lblRegCity.Text = "City:";
+            // 
+            // lblRegStateProv
+            // 
+            this.lblRegStateProv.AutoSize = true;
+            this.lblRegStateProv.Location = new System.Drawing.Point(6, 78);
+            this.lblRegStateProv.Name = "lblRegStateProv";
+            this.lblRegStateProv.Size = new System.Drawing.Size(82, 13);
+            this.lblRegStateProv.TabIndex = 12;
+            this.lblRegStateProv.Text = "State/Province:";
+            // 
+            // lblRegCountry
+            // 
+            this.lblRegCountry.AutoSize = true;
+            this.lblRegCountry.Location = new System.Drawing.Point(6, 105);
+            this.lblRegCountry.Name = "lblRegCountry";
+            this.lblRegCountry.Size = new System.Drawing.Size(46, 13);
+            this.lblRegCountry.TabIndex = 14;
+            this.lblRegCountry.Text = "Country:";
+            // 
+            // grpRegAddress
+            // 
+            this.grpRegAddress.Controls.Add(this.cmbRegCountry);
+            this.grpRegAddress.Controls.Add(this.lblRegHouseNumStreet);
+            this.grpRegAddress.Controls.Add(this.lblRegCountry);
+            this.grpRegAddress.Controls.Add(this.cmbRegStateProv);
+            this.grpRegAddress.Controls.Add(this.lblRegCity);
+            this.grpRegAddress.Controls.Add(this.txtRegCity);
+            this.grpRegAddress.Controls.Add(this.lblRegStateProv);
+            this.grpRegAddress.Controls.Add(this.txtRegHouseNumStreet);
+            this.grpRegAddress.Location = new System.Drawing.Point(11, 73);
+            this.grpRegAddress.Name = "grpRegAddress";
+            this.grpRegAddress.Size = new System.Drawing.Size(319, 129);
+            this.grpRegAddress.TabIndex = 16;
+            this.grpRegAddress.TabStop = false;
+            this.grpRegAddress.Text = "Address";
             // 
             // frmRegister
             // 
@@ -207,26 +203,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelReg;
             this.ClientSize = new System.Drawing.Size(343, 243);
-            this.Controls.Add(this.cmbRegCountry);
-            this.Controls.Add(this.cmbRegStateProv);
-            this.Controls.Add(this.txtRegCity);
-            this.Controls.Add(this.txtRegHouseNumStreet);
-            this.Controls.Add(this.lblRegAddress);
+            this.Controls.Add(this.grpRegAddress);
             this.Controls.Add(this.txtRegPhoneNum);
             this.Controls.Add(this.lblRegPhoneNum);
             this.Controls.Add(this.txtRegName);
             this.Controls.Add(this.lblRegName);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnCancelReg);
-            this.Controls.Add(this.pnlRegAddress);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmRegister";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register";
             this.Load += new System.EventHandler(this.frmRegister_Load);
-            this.pnlRegAddress.ResumeLayout(false);
-            this.pnlRegAddress.PerformLayout();
+            this.grpRegAddress.ResumeLayout(false);
+            this.grpRegAddress.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,15 +232,14 @@
         private System.Windows.Forms.TextBox txtRegName;
         private System.Windows.Forms.Label lblRegPhoneNum;
         private System.Windows.Forms.TextBox txtRegPhoneNum;
-        private System.Windows.Forms.Label lblRegAddress;
-        private System.Windows.Forms.Label lblRegHouseNumStreet;
         private System.Windows.Forms.TextBox txtRegHouseNumStreet;
-        private System.Windows.Forms.Label lblRegCity;
         private System.Windows.Forms.TextBox txtRegCity;
-        private System.Windows.Forms.Label lblRegStateProv;
         private System.Windows.Forms.ComboBox cmbRegStateProv;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbRegCountry;
-        private System.Windows.Forms.Panel pnlRegAddress;
+        private System.Windows.Forms.GroupBox grpRegAddress;
+        private System.Windows.Forms.Label lblRegCountry;
+        private System.Windows.Forms.Label lblRegStateProv;
+        private System.Windows.Forms.Label lblRegCity;
+        private System.Windows.Forms.Label lblRegHouseNumStreet;
     }
 }

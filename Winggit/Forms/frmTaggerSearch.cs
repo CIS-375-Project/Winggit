@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Media;
 using System.Windows.Forms;
+using Winggit.Enums;
 
 namespace Winggit.Forms
 {
@@ -18,6 +19,48 @@ namespace Winggit.Forms
                 DialogResult.Yes)
             {
                 Close();
+            }
+        }
+
+        private void txtSearchPhoneNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtSearchTaggerID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            // TODO Search for taggers.
+        }
+
+        private void frmTaggerSearch_Load(object sender, EventArgs e)
+        {
+            cmbSearchCountry.DataSource = Enum.GetValues(typeof (Countries));
+        }
+
+        private void cmbSearchCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSearchCountry.SelectedIndex > -1)
+            {
+                cmbSearchStateProv.Enabled = true;
+                cmbSearchStateProv.DataSource =
+                    Enum.GetValues(cmbSearchCountry.SelectedIndex == 0 ? typeof (States) : typeof (Provinces));
+                btnSearch.Enabled = true;
+            }
+            else
+            {
+                cmbSearchStateProv.Enabled = false;
+                btnSearch.Enabled = false;
             }
         }
     }

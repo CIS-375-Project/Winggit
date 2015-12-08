@@ -119,6 +119,7 @@
             this.btnOpenPokedex.TabIndex = 6;
             this.btnOpenPokedex.Text = "Pokédex";
             this.btnOpenPokedex.UseVisualStyleBackColor = true;
+            this.btnOpenPokedex.Click += new System.EventHandler(this.btnOpenPokedex_Click);
             // 
             // btnOpenSightings
             // 
@@ -168,6 +169,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Menu";
             ((System.ComponentModel.ISupportInitialize)(this.picBee)).EndInit();
             this.ResumeLayout(false);

@@ -132,6 +132,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmComposeMsg";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compose New Message";
             this.ResumeLayout(false);
             this.PerformLayout();

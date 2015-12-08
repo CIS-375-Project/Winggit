@@ -95,12 +95,23 @@ namespace Winggit.Forms
 
         private void cmbSightingStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // TODO Check if city, temperature, and temperature system are entered. (possibly also that tab index is 1).
+            // TODO If true, then enable finish button. Otherwise, disable finish button.
         }
 
         private void btnFinishTagSighting_Click(object sender, EventArgs e)
         {
-
+            if (chkNewTag.Checked)
+            {
+                // TODO Make new tag.
+                MessageBox.Show(@"Registered under Tag ID #[tag]", @"Butterfly tagged!", MessageBoxButtons.OK);
+            }
+            else
+            {
+                // TODO Check if tag ID exists.
+            }
+            // TODO Add sighting.
+            int temperature = (int) updTemperature.Value;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Media;
 using System.Windows.Forms;
+using Winggit.Entities;
 
 namespace Winggit.Forms
 {
@@ -13,12 +14,16 @@ namespace Winggit.Forms
 
         private void btnGoToLogIn_Click(object sender, EventArgs e)
         {
-            new frmLogIn().Show();
+            new frmLogIn().ShowDialog();
+            if (Winger.currentWinger != null)
+            {
+                Close();
+            }
         }
 
         private void btnGoToRegister_Click(object sender, EventArgs e)
         {
-            new frmRegister().Show();
+            new frmRegister().ShowDialog();
         }
 
         private void btnExitLogInReg_Click(object sender, EventArgs e)
