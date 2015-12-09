@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Winggit.Controls
 {
-    static class DBFunctions
+    internal static class DBFunctions
     {
         /// <summary>
         /// Pass in a static SQL Query and get back a DataSet
