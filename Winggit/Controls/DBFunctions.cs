@@ -43,7 +43,7 @@ namespace Winggit.Controls
                 {
                     using (SqlCommand oCommand = new SqlCommand(sql, oConnection))
                     {
-                        foreach(DictionaryEntry element in oParmList)
+                        foreach (DictionaryEntry element in oParmList)
                         {
                             string sKey = element.Key.ToString();
                             oCommand.Parameters.AddWithValue(sKey, element.Value);
