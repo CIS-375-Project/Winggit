@@ -47,6 +47,7 @@
             this.txtSearchName = new System.Windows.Forms.TextBox();
             this.dgdTaggerSearchResults = new System.Windows.Forms.DataGridView();
             this.lblTaggerSearchResults = new System.Windows.Forms.Label();
+            this.btnGoToPokedex = new System.Windows.Forms.Button();
             this.grpSearchByLocation.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgdTaggerSearchResults)).BeginInit();
@@ -225,6 +226,16 @@
             this.lblTaggerSearchResults.TabIndex = 7;
             this.lblTaggerSearchResults.Text = "Taggers:";
             // 
+            // btnGoToPokedex
+            // 
+            this.btnGoToPokedex.Location = new System.Drawing.Point(247, 245);
+            this.btnGoToPokedex.Name = "btnGoToPokedex";
+            this.btnGoToPokedex.Size = new System.Drawing.Size(75, 23);
+            this.btnGoToPokedex.TabIndex = 8;
+            this.btnGoToPokedex.Text = "Pokédex";
+            this.btnGoToPokedex.UseVisualStyleBackColor = true;
+            this.btnGoToPokedex.Click += new System.EventHandler(this.btnGoToPokedex_Click);
+            // 
             // frmTaggerSearch
             // 
             this.AcceptButton = this.btnSearch;
@@ -232,6 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelTaggerSearch;
             this.ClientSize = new System.Drawing.Size(685, 280);
+            this.Controls.Add(this.btnGoToPokedex);
             this.Controls.Add(this.lblTaggerSearchResults);
             this.Controls.Add(this.dgdTaggerSearchResults);
             this.Controls.Add(this.groupBox1);
@@ -275,5 +287,6 @@
         private System.Windows.Forms.Label lblSearchPhoneNum;
         private System.Windows.Forms.DataGridView dgdTaggerSearchResults;
         private System.Windows.Forms.Label lblTaggerSearchResults;
+        private System.Windows.Forms.Button btnGoToPokedex;
     }
 }

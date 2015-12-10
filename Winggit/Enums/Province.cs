@@ -1,6 +1,6 @@
 ﻿namespace Winggit.Enums
 {
-    public enum Provinces
+    public enum Province
     {
         Alberta,
         British_Columbia,

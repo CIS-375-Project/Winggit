@@ -1,6 +1,6 @@
 ﻿namespace Winggit.Enums
 {
-    public enum States
+    public enum State
     {
         Alabama,
         Alaska,

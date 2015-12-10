@@ -63,7 +63,8 @@
   <ItemGroup>
     <Compile Include="Entities\Winger.cs" />
     <Compile Include="Controls\DBFunctions.cs" />
-    <Compile Include="Enums\Countries.cs" />
+    <Compile Include="Enums\Country.cs" />
+    <Compile Include="Enums\ReportType.cs" />
     <Compile Include="Forms\frmComposeMsg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,12 +94,6 @@
     </Compile>
     <Compile Include="Forms\frmMessagingClient.Designer.cs">
       <DependentUpon>frmMessagingClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmMigration.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmMigration.Designer.cs">
-      <DependentUpon>frmMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmPokedex.cs">
       <SubType>Form</SubType>
@@ -132,8 +127,8 @@
     </Compile>
     <Compile Include="Controls\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Enums\Provinces.cs" />
-    <Compile Include="Enums\States.cs" />
+    <Compile Include="Enums\Province.cs" />
+    <Compile Include="Enums\State.cs" />
     <EmbeddedResource Include="Forms\frmComposeMsg.resx">
       <DependentUpon>frmComposeMsg.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,9 +143,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMessagingClient.resx">
       <DependentUpon>frmMessagingClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmMigration.resx">
-      <DependentUpon>frmMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPokedex.resx">
       <DependentUpon>frmPokedex.cs</DependentUpon>

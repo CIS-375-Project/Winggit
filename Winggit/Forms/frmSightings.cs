@@ -1,4 +1,6 @@
 ﻿using System;
+using System.CodeDom;
+using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
@@ -25,7 +27,7 @@ namespace Winggit.Forms
 
         private void txtSightingTagID_TextChanged(object sender, EventArgs e)
         {
-
+            // TODO check if we have enough info to enable finish button. (call method)
         }
 
         private void txtSightingTagID_KeyPress(object sender, KeyPressEventArgs e)
@@ -38,7 +40,8 @@ namespace Winggit.Forms
 
         private void chkNewTag_CheckedChanged(object sender, EventArgs e)
         {
-            txtSightingTagID.Enabled = chkNewTag.Checked;
+            txtSightingTagID.Enabled = !chkNewTag.Checked;
+            txtSightingSpecies.Enabled = chkNewTag.Checked;
         }
 
         private void updLatitude_ValueChanged(object sender, EventArgs e)
@@ -85,7 +88,7 @@ namespace Winggit.Forms
             if (cmbSightingCountry.SelectedIndex > -1)
             {
                 cmbSightingStateProv.Enabled = true;
-                cmbSightingStateProv.DataSource = Enum.GetValues(cmbSightingCountry.SelectedIndex == 0 ? typeof (States) : typeof (Provinces));
+                cmbSightingStateProv.DataSource = Enum.GetValues(cmbSightingCountry.SelectedIndex == 0 ? typeof (State) : typeof (Province));
             }
             else
             {
@@ -112,6 +115,25 @@ namespace Winggit.Forms
             }
             // TODO Add sighting.
             int temperature = (int) updTemperature.Value;
+        }
+
+        private bool hasEnoughInfo()
+        {
+            //TODO Check if any temperature system button is pressed. If not, return false.
+            //TODO If lat/long tab is pressed, check if lat and long are pressed if lat or long are not equal to 0.
+            //TODO If location tab is pressed, check if comboboxes and textboxes have something.
+            //TODO IF anything above is false, return false. Otherwise, return true.
+            return true; // TODO remove when implemented.
+        }
+
+        private void txtSightingCity_TextChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void btnSightingGeocache_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

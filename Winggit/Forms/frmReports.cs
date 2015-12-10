@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Media;
 using System.Windows.Forms;
+using Winggit.Enums;
 
 namespace Winggit.Forms
 {
@@ -23,8 +24,8 @@ namespace Winggit.Forms
 
         private void frmReports_Load(object sender, EventArgs e)
         {
-
-            this.rptViewer.RefreshReport();
+            cmbReportType.DataSource = Enum.GetValues(typeof (ReportType));
+            rptViewer.RefreshReport();
         }
     }
 }

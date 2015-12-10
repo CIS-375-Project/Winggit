@@ -45,7 +45,7 @@ namespace Winggit.Forms
 
         private void frmTaggerSearch_Load(object sender, EventArgs e)
         {
-            cmbSearchCountry.DataSource = Enum.GetValues(typeof (Countries));
+            cmbSearchCountry.DataSource = Enum.GetValues(typeof (Country));
         }
 
         private void cmbSearchCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace Winggit.Forms
             {
                 cmbSearchStateProv.Enabled = true;
                 cmbSearchStateProv.DataSource =
-                    Enum.GetValues(cmbSearchCountry.SelectedIndex == 0 ? typeof (States) : typeof (Provinces));
+                    Enum.GetValues(cmbSearchCountry.SelectedIndex == 0 ? typeof (State) : typeof (Province));
                 btnSearch.Enabled = true;
             }
             else
@@ -62,6 +62,11 @@ namespace Winggit.Forms
                 cmbSearchStateProv.Enabled = false;
                 btnSearch.Enabled = false;
             }
+        }
+
+        private void btnGoToPokedex_Click(object sender, EventArgs e)
+        {
+            new frmPokedex().ShowDialog();
         }
     }
 }

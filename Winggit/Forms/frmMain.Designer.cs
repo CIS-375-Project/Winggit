@@ -36,10 +36,8 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.lblWorkLife = new System.Windows.Forms.Label();
             this.lblSocialLife = new System.Windows.Forms.Label();
-            this.btnOpenPokedex = new System.Windows.Forms.Button();
             this.btnOpenSightings = new System.Windows.Forms.Button();
             this.picBee = new System.Windows.Forms.PictureBox();
-            this.btnOpenMigration = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBee)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +63,7 @@
             // 
             // btnEasterEgg
             // 
-            this.btnEasterEgg.Location = new System.Drawing.Point(12, 141);
+            this.btnEasterEgg.Location = new System.Drawing.Point(12, 79);
             this.btnEasterEgg.Name = "btnEasterEgg";
             this.btnEasterEgg.Size = new System.Drawing.Size(75, 23);
             this.btnEasterEgg.TabIndex = 2;
@@ -85,7 +83,7 @@
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(309, 141);
+            this.btnExit.Location = new System.Drawing.Point(309, 79);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 4;
@@ -111,16 +109,6 @@
             this.lblSocialLife.TabIndex = 5;
             this.lblSocialLife.Text = "Social Life";
             // 
-            // btnOpenPokedex
-            // 
-            this.btnOpenPokedex.Location = new System.Drawing.Point(279, 79);
-            this.btnOpenPokedex.Name = "btnOpenPokedex";
-            this.btnOpenPokedex.Size = new System.Drawing.Size(105, 23);
-            this.btnOpenPokedex.TabIndex = 6;
-            this.btnOpenPokedex.Text = "Pokédex";
-            this.btnOpenPokedex.UseVisualStyleBackColor = true;
-            this.btnOpenPokedex.Click += new System.EventHandler(this.btnOpenPokedex_Click);
-            // 
             // btnOpenSightings
             // 
             this.btnOpenSightings.Location = new System.Drawing.Point(12, 21);
@@ -139,25 +127,13 @@
             this.picBee.TabIndex = 0;
             this.picBee.TabStop = false;
             // 
-            // btnOpenMigration
-            // 
-            this.btnOpenMigration.Location = new System.Drawing.Point(12, 78);
-            this.btnOpenMigration.Name = "btnOpenMigration";
-            this.btnOpenMigration.Size = new System.Drawing.Size(105, 23);
-            this.btnOpenMigration.TabIndex = 8;
-            this.btnOpenMigration.Text = "Migration Tracking";
-            this.btnOpenMigration.UseVisualStyleBackColor = true;
-            this.btnOpenMigration.Click += new System.EventHandler(this.btnOpenMigration_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(396, 176);
-            this.Controls.Add(this.btnOpenMigration);
+            this.ClientSize = new System.Drawing.Size(396, 109);
             this.Controls.Add(this.btnOpenSightings);
-            this.Controls.Add(this.btnOpenPokedex);
             this.Controls.Add(this.lblSocialLife);
             this.Controls.Add(this.lblWorkLife);
             this.Controls.Add(this.btnExit);
@@ -187,9 +163,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label lblWorkLife;
         private System.Windows.Forms.Label lblSocialLife;
-        private System.Windows.Forms.Button btnOpenPokedex;
         private System.Windows.Forms.Button btnOpenSightings;
         private System.Windows.Forms.PictureBox picBee;
-        private System.Windows.Forms.Button btnOpenMigration;
     }
 }

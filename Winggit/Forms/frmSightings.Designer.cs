@@ -61,6 +61,9 @@
             this.rdoCelcius = new System.Windows.Forms.RadioButton();
             this.rdoFahrenheit = new System.Windows.Forms.RadioButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.txtSightingSpecies = new System.Windows.Forms.TextBox();
+            this.lblSightingSpecies = new System.Windows.Forms.Label();
+            this.btnSightingGeocache = new System.Windows.Forms.Button();
             this.tbcLocationPicker.SuspendLayout();
             this.tabLatLong.SuspendLayout();
             this.grpEastWest.SuspendLayout();
@@ -75,7 +78,7 @@
             // btnCancelSightings
             // 
             this.btnCancelSightings.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelSightings.Location = new System.Drawing.Point(467, 237);
+            this.btnCancelSightings.Location = new System.Drawing.Point(504, 237);
             this.btnCancelSightings.Name = "btnCancelSightings";
             this.btnCancelSightings.Size = new System.Drawing.Size(75, 23);
             this.btnCancelSightings.TabIndex = 0;
@@ -96,7 +99,7 @@
             // 
             // calSightingDate
             // 
-            this.calSightingDate.Location = new System.Drawing.Point(309, 31);
+            this.calSightingDate.Location = new System.Drawing.Point(349, 31);
             this.calSightingDate.MaxDate = new System.DateTime(2015, 12, 7, 0, 0, 0, 0);
             this.calSightingDate.MaxSelectionCount = 1;
             this.calSightingDate.Name = "calSightingDate";
@@ -114,7 +117,7 @@
             // lblSightingDate
             // 
             this.lblSightingDate.AutoSize = true;
-            this.lblSightingDate.Location = new System.Drawing.Point(306, 9);
+            this.lblSightingDate.Location = new System.Drawing.Point(346, 9);
             this.lblSightingDate.Name = "lblSightingDate";
             this.lblSightingDate.Size = new System.Drawing.Size(86, 13);
             this.lblSightingDate.TabIndex = 4;
@@ -133,7 +136,7 @@
             // chkNewTag
             // 
             this.chkNewTag.AutoSize = true;
-            this.chkNewTag.Location = new System.Drawing.Point(118, 27);
+            this.chkNewTag.Location = new System.Drawing.Point(228, 27);
             this.chkNewTag.Name = "chkNewTag";
             this.chkNewTag.Size = new System.Drawing.Size(92, 17);
             this.chkNewTag.TabIndex = 6;
@@ -145,7 +148,7 @@
             // 
             this.tbcLocationPicker.Controls.Add(this.tabLatLong);
             this.tbcLocationPicker.Controls.Add(this.tabLoc);
-            this.tbcLocationPicker.Location = new System.Drawing.Point(12, 52);
+            this.tbcLocationPicker.Location = new System.Drawing.Point(12, 64);
             this.tbcLocationPicker.Name = "tbcLocationPicker";
             this.tbcLocationPicker.SelectedIndex = 0;
             this.tbcLocationPicker.Size = new System.Drawing.Size(285, 125);
@@ -362,10 +365,11 @@
             this.txtSightingCity.Name = "txtSightingCity";
             this.txtSightingCity.Size = new System.Drawing.Size(112, 20);
             this.txtSightingCity.TabIndex = 0;
+            this.txtSightingCity.TextChanged += new System.EventHandler(this.txtSightingCity_TextChanged);
             // 
             // updTemperature
             // 
-            this.updTemperature.Location = new System.Drawing.Point(12, 202);
+            this.updTemperature.Location = new System.Drawing.Point(348, 224);
             this.updTemperature.Name = "updTemperature";
             this.updTemperature.Size = new System.Drawing.Size(75, 20);
             this.updTemperature.TabIndex = 8;
@@ -373,7 +377,7 @@
             // lblSightingTemperature
             // 
             this.lblSightingTemperature.AutoSize = true;
-            this.lblSightingTemperature.Location = new System.Drawing.Point(17, 183);
+            this.lblSightingTemperature.Location = new System.Drawing.Point(353, 205);
             this.lblSightingTemperature.Name = "lblSightingTemperature";
             this.lblSightingTemperature.Size = new System.Drawing.Size(70, 13);
             this.lblSightingTemperature.TabIndex = 9;
@@ -383,7 +387,7 @@
             // 
             this.grpTempSystem.Controls.Add(this.rdoCelcius);
             this.grpTempSystem.Controls.Add(this.rdoFahrenheit);
-            this.grpTempSystem.Location = new System.Drawing.Point(93, 183);
+            this.grpTempSystem.Location = new System.Drawing.Point(438, 205);
             this.grpTempSystem.Name = "grpTempSystem";
             this.grpTempSystem.Size = new System.Drawing.Size(60, 65);
             this.grpTempSystem.TabIndex = 10;
@@ -397,13 +401,13 @@
             this.rdoCelcius.Name = "rdoCelcius";
             this.rdoCelcius.Size = new System.Drawing.Size(36, 17);
             this.rdoCelcius.TabIndex = 1;
-            this.rdoCelcius.TabStop = true;
             this.rdoCelcius.Text = "°C";
             this.rdoCelcius.UseVisualStyleBackColor = true;
             // 
             // rdoFahrenheit
             // 
             this.rdoFahrenheit.AutoSize = true;
+            this.rdoFahrenheit.Checked = true;
             this.rdoFahrenheit.Location = new System.Drawing.Point(6, 19);
             this.rdoFahrenheit.Name = "rdoFahrenheit";
             this.rdoFahrenheit.Size = new System.Drawing.Size(35, 17);
@@ -412,13 +416,43 @@
             this.rdoFahrenheit.Text = "°F";
             this.rdoFahrenheit.UseVisualStyleBackColor = true;
             // 
+            // txtSightingSpecies
+            // 
+            this.txtSightingSpecies.Location = new System.Drawing.Point(122, 25);
+            this.txtSightingSpecies.Name = "txtSightingSpecies";
+            this.txtSightingSpecies.Size = new System.Drawing.Size(100, 20);
+            this.txtSightingSpecies.TabIndex = 11;
+            // 
+            // lblSightingSpecies
+            // 
+            this.lblSightingSpecies.AutoSize = true;
+            this.lblSightingSpecies.Location = new System.Drawing.Point(119, 9);
+            this.lblSightingSpecies.Name = "lblSightingSpecies";
+            this.lblSightingSpecies.Size = new System.Drawing.Size(48, 13);
+            this.lblSightingSpecies.TabIndex = 12;
+            this.lblSightingSpecies.Text = "Species:";
+            // 
+            // btnSightingGeocache
+            // 
+            this.btnSightingGeocache.Enabled = false;
+            this.btnSightingGeocache.Location = new System.Drawing.Point(101, 205);
+            this.btnSightingGeocache.Name = "btnSightingGeocache";
+            this.btnSightingGeocache.Size = new System.Drawing.Size(75, 23);
+            this.btnSightingGeocache.TabIndex = 13;
+            this.btnSightingGeocache.Text = "Find on Map";
+            this.btnSightingGeocache.UseVisualStyleBackColor = true;
+            this.btnSightingGeocache.Click += new System.EventHandler(this.btnSightingGeocache_Click);
+            // 
             // frmSightings
             // 
             this.AcceptButton = this.btnFinishTagSighting;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelSightings;
-            this.ClientSize = new System.Drawing.Size(554, 272);
+            this.ClientSize = new System.Drawing.Size(591, 272);
+            this.Controls.Add(this.btnSightingGeocache);
+            this.Controls.Add(this.lblSightingSpecies);
+            this.Controls.Add(this.txtSightingSpecies);
             this.Controls.Add(this.grpTempSystem);
             this.Controls.Add(this.lblSightingTemperature);
             this.Controls.Add(this.updTemperature);
@@ -490,5 +524,8 @@
         private System.Windows.Forms.Label lblSightingStateProv;
         private System.Windows.Forms.ComboBox cmbSightingStateProv;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox txtSightingSpecies;
+        private System.Windows.Forms.Label lblSightingSpecies;
+        private System.Windows.Forms.Button btnSightingGeocache;
     }
 }

@@ -36,11 +36,6 @@ namespace Winggit.Forms
             new frmReports().ShowDialog();
         }
 
-        private void btnOpenMigration_Click(object sender, EventArgs e)
-        {
-            new frmMigration().ShowDialog();
-        }
-
         private void btnOpenSightings_Click(object sender, EventArgs e)
         {
             new frmSightings().ShowDialog();

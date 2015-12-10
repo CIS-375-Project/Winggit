@@ -41,6 +41,7 @@
             this.txtMsgTimestamp = new System.Windows.Forms.TextBox();
             this.btnDeleteMsg = new System.Windows.Forms.Button();
             this.dgdMsgInbox = new System.Windows.Forms.DataGridView();
+            this.btnRefreshInbox = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgdMsgInbox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,6 +153,17 @@
             this.dgdMsgInbox.Name = "dgdMsgInbox";
             this.dgdMsgInbox.Size = new System.Drawing.Size(290, 285);
             this.dgdMsgInbox.TabIndex = 11;
+            this.dgdMsgInbox.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdMsgInbox_CellContentClick);
+            // 
+            // btnRefreshInbox
+            // 
+            this.btnRefreshInbox.Location = new System.Drawing.Point(174, 322);
+            this.btnRefreshInbox.Name = "btnRefreshInbox";
+            this.btnRefreshInbox.Size = new System.Drawing.Size(75, 23);
+            this.btnRefreshInbox.TabIndex = 12;
+            this.btnRefreshInbox.Text = "Refresh";
+            this.btnRefreshInbox.UseVisualStyleBackColor = true;
+            this.btnRefreshInbox.Click += new System.EventHandler(this.btnRefreshInbox_Click);
             // 
             // frmMessagingClient
             // 
@@ -159,6 +171,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelMessaging;
             this.ClientSize = new System.Drawing.Size(613, 357);
+            this.Controls.Add(this.btnRefreshInbox);
             this.Controls.Add(this.dgdMsgInbox);
             this.Controls.Add(this.btnDeleteMsg);
             this.Controls.Add(this.txtMsgTimestamp);
@@ -199,5 +212,6 @@
         private System.Windows.Forms.TextBox txtMsgTimestamp;
         private System.Windows.Forms.Button btnDeleteMsg;
         private System.Windows.Forms.DataGridView dgdMsgInbox;
+        private System.Windows.Forms.Button btnRefreshInbox;
     }
 }

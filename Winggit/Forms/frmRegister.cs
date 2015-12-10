@@ -24,7 +24,7 @@ namespace Winggit.Forms
 
         private void frmRegister_Load(object sender, EventArgs e)
         {
-            cmbRegCountry.DataSource = Enum.GetValues(typeof (Countries));
+            cmbRegCountry.DataSource = Enum.GetValues(typeof (Country));
             btnRegister.Enabled = false;
         }
 
@@ -106,7 +106,7 @@ namespace Winggit.Forms
             if (cmbRegCountry.SelectedIndex > -1)
             {
                 cmbRegStateProv.Enabled = true;
-                cmbRegStateProv.DataSource = Enum.GetValues(cmbRegCountry.SelectedIndex == 0 ? typeof (States) : typeof (Provinces));
+                cmbRegStateProv.DataSource = Enum.GetValues(cmbRegCountry.SelectedIndex == 0 ? typeof (State) : typeof (Province));
             }
             else
             {
@@ -121,7 +121,8 @@ namespace Winggit.Forms
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
+            // TODO Check if user info exists.
+            // TODO try to register a new user with given info.
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Winggit.Enums
 {
-    public enum Countries
+    public enum Country
     {
         United_States,
         Canada

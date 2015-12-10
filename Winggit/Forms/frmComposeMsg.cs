@@ -1,14 +1,36 @@
 ﻿using System;
 using System.Media;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Winggit.Forms
 {
     public partial class frmComposeMsg : Form
     {
-        public frmComposeMsg()
+        // Message string format: [Sender ID] [Subject]
+        public frmComposeMsg(string msgString)
         {
             InitializeComponent();
+            if (msgString == "") // Composing new message.
+                return;
+            string[] splitMsgString = msgString.Split(' ');
+            Text = @"Reply to " + splitMsgString[0];
+            txtNewMsgRecipient.Text = splitMsgString[0];
+            txtNewMsgRecipient.Enabled = false;
+            txtNewMsgSubject.Text = @"Re: " + splitMsgString[1];
+            txtNewMsgSubject.Enabled = false;
+        }
+
+        public sealed override string Text
+        {
+            get
+            {
+                return base.Text;
+            }
+            set
+            {
+                base.Text = value;
+            }
         }
 
         private void btnCancelCompose_Click(object sender, EventArgs e)
@@ -59,8 +81,12 @@ namespace Winggit.Forms
 
         private void btnSendMsg_Click(object sender, EventArgs e)
         {
-            // TODO Verify that recipient exists before sending message.
-
+            if (txtNewMsgRecipient.Enabled) // Sending, so look up recipient.
+            {
+                // TODO check if recipient exists.
+            }
+            // TODO send message to recipient.
+            // TODO give acknowledgement to sender.
         }
 
         private void txtNewMsgRecipient_KeyPress(object sender, KeyPressEventArgs e)
