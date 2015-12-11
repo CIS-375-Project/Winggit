@@ -4,9 +4,8 @@
     {
         Tags,
         Sightings,
-        Migration_Routes,
-        Migration_Peaks,
-        History_Heatmap,
-
+        Routes,
+        Peaks,
+        Heatmap
     }
 }

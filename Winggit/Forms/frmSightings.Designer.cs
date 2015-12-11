@@ -60,7 +60,6 @@
             this.grpTempSystem = new System.Windows.Forms.GroupBox();
             this.rdoCelcius = new System.Windows.Forms.RadioButton();
             this.rdoFahrenheit = new System.Windows.Forms.RadioButton();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.txtSightingSpecies = new System.Windows.Forms.TextBox();
             this.lblSightingSpecies = new System.Windows.Forms.Label();
             this.btnSightingGeocache = new System.Windows.Forms.Button();
@@ -99,8 +98,8 @@
             // 
             // calSightingDate
             // 
-            this.calSightingDate.Location = new System.Drawing.Point(349, 31);
-            this.calSightingDate.MaxDate = new System.DateTime(2015, 12, 8, 0, 0, 0, 0);
+            this.calSightingDate.Location = new System.Drawing.Point(332, 27);
+            this.calSightingDate.MaxDate = new System.DateTime(2015, 12, 11, 0, 0, 0, 0);
             this.calSightingDate.MaxSelectionCount = 1;
             this.calSightingDate.Name = "calSightingDate";
             this.calSightingDate.TabIndex = 2;
@@ -117,7 +116,7 @@
             // lblSightingDate
             // 
             this.lblSightingDate.AutoSize = true;
-            this.lblSightingDate.Location = new System.Drawing.Point(346, 9);
+            this.lblSightingDate.Location = new System.Drawing.Point(329, 9);
             this.lblSightingDate.Name = "lblSightingDate";
             this.lblSightingDate.Size = new System.Drawing.Size(86, 13);
             this.lblSightingDate.TabIndex = 4;
@@ -153,6 +152,7 @@
             this.tbcLocationPicker.SelectedIndex = 0;
             this.tbcLocationPicker.Size = new System.Drawing.Size(285, 125);
             this.tbcLocationPicker.TabIndex = 7;
+            this.tbcLocationPicker.SelectedIndexChanged += new System.EventHandler(this.tbcLocationPicker_SelectedIndexChanged);
             this.tbcLocationPicker.TabIndexChanged += new System.EventHandler(this.tbcLocationPicker_TabIndexChanged);
             // 
             // tabLatLong
@@ -193,6 +193,7 @@
             this.rdoEast.TabStop = true;
             this.rdoEast.Text = "E";
             this.rdoEast.UseVisualStyleBackColor = true;
+            this.rdoEast.CheckedChanged += new System.EventHandler(this.rdoEast_CheckedChanged);
             // 
             // rdoWest
             // 
@@ -205,6 +206,7 @@
             this.rdoWest.TabStop = true;
             this.rdoWest.Text = "W";
             this.rdoWest.UseVisualStyleBackColor = true;
+            this.rdoWest.CheckedChanged += new System.EventHandler(this.rdoWest_CheckedChanged);
             // 
             // grpNorthSouth
             // 
@@ -228,6 +230,7 @@
             this.rdoNorth.TabStop = true;
             this.rdoNorth.Text = "N";
             this.rdoNorth.UseVisualStyleBackColor = true;
+            this.rdoNorth.CheckedChanged += new System.EventHandler(this.rdoNorth_CheckedChanged);
             // 
             // rdoSouth
             // 
@@ -240,6 +243,7 @@
             this.rdoSouth.TabStop = true;
             this.rdoSouth.Text = "S";
             this.rdoSouth.UseVisualStyleBackColor = true;
+            this.rdoSouth.CheckedChanged += new System.EventHandler(this.rdoSouth_CheckedChanged);
             // 
             // lblLongitude
             // 
@@ -403,6 +407,7 @@
             this.rdoCelcius.TabIndex = 1;
             this.rdoCelcius.Text = "°C";
             this.rdoCelcius.UseVisualStyleBackColor = true;
+            this.rdoCelcius.CheckedChanged += new System.EventHandler(this.rdoCelcius_CheckedChanged);
             // 
             // rdoFahrenheit
             // 
@@ -415,6 +420,7 @@
             this.rdoFahrenheit.TabStop = true;
             this.rdoFahrenheit.Text = "°F";
             this.rdoFahrenheit.UseVisualStyleBackColor = true;
+            this.rdoFahrenheit.CheckedChanged += new System.EventHandler(this.rdoFahrenheit_CheckedChanged);
             // 
             // txtSightingSpecies
             // 
@@ -423,6 +429,7 @@
             this.txtSightingSpecies.Name = "txtSightingSpecies";
             this.txtSightingSpecies.Size = new System.Drawing.Size(100, 20);
             this.txtSightingSpecies.TabIndex = 11;
+            this.txtSightingSpecies.TextChanged += new System.EventHandler(this.txtSightingSpecies_TextChanged);
             // 
             // lblSightingSpecies
             // 
@@ -525,7 +532,6 @@
         private System.Windows.Forms.TextBox txtSightingCity;
         private System.Windows.Forms.Label lblSightingStateProv;
         private System.Windows.Forms.ComboBox cmbSightingStateProv;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TextBox txtSightingSpecies;
         private System.Windows.Forms.Label lblSightingSpecies;
         private System.Windows.Forms.Button btnSightingGeocache;
