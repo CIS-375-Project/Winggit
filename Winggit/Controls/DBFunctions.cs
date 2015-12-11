@@ -30,7 +30,7 @@ namespace Winggit.Controls
         }
 
         /// <summary>
-        /// Pass in dynamic SQL Query with Parameter List
+        /// Pass in parameterized SQL Query with Parameter List
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="oParmList"></param>
@@ -59,13 +59,18 @@ namespace Winggit.Controls
             }
         }
 
-        internal static void RunQuery(string sql)
+        internal static void RunQuery(string sql, Hashtable oParmList)
         {
             using (SqlConnection oConnection = new SqlConnection(@"server=winggit.ddns.net\winggit_sql;database=winggit;uid=winggit_app;pwd=C@iro$88"))
             {
                 using (SqlCommand oCommand = new SqlCommand(sql, oConnection))
                 {
                     oConnection.Open();
+                    foreach (DictionaryEntry element in oParmList)
+                    {
+                        string sKey = element.Key.ToString();
+                        oCommand.Parameters.AddWithValue(sKey, element.Value);
+                    }
                     oCommand.ExecuteNonQuery();
                 }
             }

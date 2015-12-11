@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Winggit.Entities;
 using Winggit.Controls;
 using System.Data;
+using System.Collections;
 
 namespace Winggit.Forms
 {
@@ -31,8 +32,10 @@ namespace Winggit.Forms
             SystemSounds.Asterisk.Play();
             if (MessageBox.Show(@"This can't be undone. Are you sure?", @"Delete message?", MessageBoxButtons.YesNo) !=
                 DialogResult.Yes) return;
-            string sql = "DELETE FROM Messages WHERE MessageID = " + dgdMsgInbox.SelectedRows[0].Cells[4].Value;
-            DBFunctions.RunQuery(sql);
+            Hashtable oHash = new Hashtable();
+            oHash.Add("@MessageID", dgdMsgInbox.SelectedRows[0].Cells[4].Value);
+            string sql = "DELETE FROM Messages WHERE MessageID = @MessageID";
+            DBFunctions.RunQuery(sql, oHash);
             LoadMessages();
             btnDeleteMsg.Enabled = false;
             btnCompose.Text = @"Compose";
