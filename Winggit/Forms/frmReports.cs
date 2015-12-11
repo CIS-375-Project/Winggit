@@ -25,7 +25,6 @@ namespace Winggit.Forms
         private void frmReports_Load(object sender, EventArgs e)
         {
             cmbReportType.DataSource = Enum.GetValues(typeof (ReportType));
-            rptViewer.RefreshReport();
         }
     }
 }

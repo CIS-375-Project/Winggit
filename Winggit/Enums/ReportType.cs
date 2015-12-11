@@ -2,7 +2,11 @@
 {
     public enum ReportType
     {
+        Tags,
         Sightings,
-        Migration
+        Migration_Routes,
+        Migration_Peaks,
+        History_Heatmap,
+
     }
 }

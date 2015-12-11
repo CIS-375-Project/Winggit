@@ -30,8 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReports));
             this.btnCancelReports = new System.Windows.Forms.Button();
-            this.rptViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
+            this.dgdReportTable = new System.Windows.Forms.DataGridView();
+            this.lblReportType = new System.Windows.Forms.Label();
+            this.btnGetReport = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdReportTable)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelReports
@@ -45,13 +48,6 @@
             this.btnCancelReports.UseVisualStyleBackColor = true;
             this.btnCancelReports.Click += new System.EventHandler(this.btnCancelReports_Click);
             // 
-            // rptViewer
-            // 
-            this.rptViewer.Location = new System.Drawing.Point(12, 31);
-            this.rptViewer.Name = "rptViewer";
-            this.rptViewer.Size = new System.Drawing.Size(486, 180);
-            this.rptViewer.TabIndex = 1;
-            // 
             // cmbReportType
             // 
             this.cmbReportType.FormattingEnabled = true;
@@ -60,14 +56,42 @@
             this.cmbReportType.Size = new System.Drawing.Size(121, 21);
             this.cmbReportType.TabIndex = 2;
             // 
+            // dgdReportTable
+            // 
+            this.dgdReportTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgdReportTable.Location = new System.Drawing.Point(16, 12);
+            this.dgdReportTable.Name = "dgdReportTable";
+            this.dgdReportTable.Size = new System.Drawing.Size(485, 156);
+            this.dgdReportTable.TabIndex = 3;
+            // 
+            // lblReportType
+            // 
+            this.lblReportType.AutoSize = true;
+            this.lblReportType.Location = new System.Drawing.Point(13, 198);
+            this.lblReportType.Name = "lblReportType";
+            this.lblReportType.Size = new System.Drawing.Size(66, 13);
+            this.lblReportType.TabIndex = 4;
+            this.lblReportType.Text = "Report Type";
+            // 
+            // btnGetReport
+            // 
+            this.btnGetReport.Location = new System.Drawing.Point(12, 366);
+            this.btnGetReport.Name = "btnGetReport";
+            this.btnGetReport.Size = new System.Drawing.Size(75, 23);
+            this.btnGetReport.TabIndex = 5;
+            this.btnGetReport.Text = "Get Report";
+            this.btnGetReport.UseVisualStyleBackColor = true;
+            // 
             // frmReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelReports;
             this.ClientSize = new System.Drawing.Size(510, 401);
+            this.Controls.Add(this.btnGetReport);
+            this.Controls.Add(this.lblReportType);
+            this.Controls.Add(this.dgdReportTable);
             this.Controls.Add(this.cmbReportType);
-            this.Controls.Add(this.rptViewer);
             this.Controls.Add(this.btnCancelReports);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -77,14 +101,18 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate Reports";
             this.Load += new System.EventHandler(this.frmReports_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgdReportTable)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button btnCancelReports;
-        private Microsoft.Reporting.WinForms.ReportViewer rptViewer;
         private System.Windows.Forms.ComboBox cmbReportType;
+        private System.Windows.Forms.DataGridView dgdReportTable;
+        private System.Windows.Forms.Label lblReportType;
+        private System.Windows.Forms.Button btnGetReport;
     }
 }
