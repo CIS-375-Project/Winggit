@@ -4,6 +4,7 @@ using System.Media;
 using System.Windows.Forms;
 using Winggit.Controls;
 using Winggit.Entities;
+using System.Collections;
 
 namespace Winggit.Forms
 {
@@ -21,8 +22,10 @@ namespace Winggit.Forms
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            string sql = "SELECT * FROM Wingers WHERE WingerNum = '" + txtLogInID.Text.Trim() + "'";
-            using (DataSet oDataSet = DBFunctions.GetDataSet(sql))
+            Hashtable oHash = new Hashtable();
+            oHash.Add("@WingerNum", txtLogInID.Text.Trim());
+            string sql = "SELECT * FROM Wingers WHERE WingerNum = @WingerNum";
+            using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
             {
                 if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
                 {

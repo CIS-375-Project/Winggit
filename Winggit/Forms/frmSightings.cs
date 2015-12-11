@@ -4,6 +4,8 @@ using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
+using System.Collections;
+using Winggit.Controls;
 
 namespace Winggit.Forms
 {
@@ -104,9 +106,12 @@ namespace Winggit.Forms
 
         private void btnFinishTagSighting_Click(object sender, EventArgs e)
         {
+            Hashtable oHash = new Hashtable();
+            string sql;
             if (chkNewTag.Checked)
             {
                 // TODO Make new tag.
+                sql = "INSERT INTO Tags VALUES (CURRENT_TIMESTAMP,";
                 MessageBox.Show(@"Registered under Tag ID #[tag]", @"Butterfly tagged!", MessageBoxButtons.OK);
             }
             else
@@ -139,6 +144,7 @@ namespace Winggit.Forms
         private void frmSightings_Load(object sender, EventArgs e)
         {
             calSightingDate.MaxDate = DateTime.Today;
+            cmbSightingCountry.DataSource = Enum.GetValues(typeof(Country));
         }
     }
 }
