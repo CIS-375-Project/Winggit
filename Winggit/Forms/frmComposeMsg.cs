@@ -24,8 +24,10 @@ namespace Winggit.Forms
             Text = @"Reply to " + splitMsgString[0];
             txtNewMsgRecipient.Text = splitMsgString[0];
             txtNewMsgRecipient.Enabled = false;
+            isRecipientFull = true;
             txtNewMsgSubject.Text = @"Re: " + splitMsgString[1];
             txtNewMsgSubject.Enabled = false;
+            isSubjectFull = true;
         }
 
         public sealed override string Text
@@ -52,13 +54,20 @@ namespace Winggit.Forms
 
         private void txtNewMsgBody_TextChanged(object sender, EventArgs e)
         {
+            if (txtNewMsgBody.Text.Trim().Length == 0)
+            {
+                txtNewMsgBody.Text = "";
+            }
             isBodyFull = txtNewMsgBody.Text.Length > 0;
             checkIfSendable();
         }
 
         private void txtNewMsgSubject_TextChanged(object sender, EventArgs e)
         {
-            if (!isSubjectFull && txtNewMsgSubject.Text.Trim().Length == 0) //Just whitespace.
+            if (txtNewMsgSubject.Text.Trim().Length == 0) //Just whitespace.
+            {
+                txtNewMsgSubject.Text = "";
+            }
             isSubjectFull = txtNewMsgSubject.Text.Length > 0;
             checkIfSendable();
         }
