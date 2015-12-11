@@ -26,5 +26,24 @@ namespace Winggit.Forms
         {
             cmbReportType.DataSource = Enum.GetValues(typeof (ReportType));
         }
+
+        private void btnGetReport_Click(object sender, EventArgs e)
+        {
+            switch ((ReportType) cmbReportType.SelectedIndex)
+            {
+                case ReportType.Tags:
+                    break;
+                case ReportType.Sightings:
+                    break;
+                case ReportType.Routes:
+                    break;
+                case ReportType.Peaks:
+                    break;
+                case ReportType.Heatmap:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }

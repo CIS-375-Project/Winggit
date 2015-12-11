@@ -81,6 +81,7 @@
             this.btnGetReport.TabIndex = 5;
             this.btnGetReport.Text = "Get Report";
             this.btnGetReport.UseVisualStyleBackColor = true;
+            this.btnGetReport.Click += new System.EventHandler(this.btnGetReport_Click);
             // 
             // frmReports
             // 
