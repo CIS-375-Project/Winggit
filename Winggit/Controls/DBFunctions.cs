@@ -58,5 +58,17 @@ namespace Winggit.Controls
                 return oDataSet;
             }
         }
+
+        internal static void RunQuery(string sql)
+        {
+            using (SqlConnection oConnection = new SqlConnection(@"server=winggit.ddns.net\winggit_sql;database=winggit;uid=winggit_app;pwd=C@iro$88"))
+            {
+                using (SqlCommand oCommand = new SqlCommand(sql, oConnection))
+                {
+                    oConnection.Open();
+                    oCommand.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

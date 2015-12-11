@@ -17,5 +17,13 @@ namespace Winggit.Entities
             address = oRow["Address"].ToString();
             phoneNum = oRow["PhoneNum"].ToString();
         }
+
+        public int WingerNum
+        {
+            get
+            {
+                return wingerNum;
+            }
+        }
     }
 }
