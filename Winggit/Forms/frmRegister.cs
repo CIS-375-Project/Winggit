@@ -121,6 +121,21 @@ namespace Winggit.Forms
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            string[] splitAddress = txtRegHouseNumStreet.Text.Split(' ');
+            int houseNumber = 0;
+            if (splitAddress.Length < 2)
+            {
+                MessageBox.Show(@"Please enter both your house # and street.", @"Invalid Address", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (!int.TryParse(splitAddress[0], out houseNumber))
+            {
+                MessageBox.Show(@"House # not entered, too long, or appears after street.", @"Invalid Address", MessageBoxButtons.OK);
+                return;
+            }
+
+
             // TODO Check if user info exists.
             // TODO try to register a new user with given info.
         }

@@ -100,7 +100,7 @@
             // calSightingDate
             // 
             this.calSightingDate.Location = new System.Drawing.Point(349, 31);
-            this.calSightingDate.MaxDate = new System.DateTime(2015, 12, 7, 0, 0, 0, 0);
+            this.calSightingDate.MaxDate = new System.DateTime(2015, 12, 8, 0, 0, 0, 0);
             this.calSightingDate.MaxSelectionCount = 1;
             this.calSightingDate.Name = "calSightingDate";
             this.calSightingDate.TabIndex = 2;
@@ -418,6 +418,7 @@
             // 
             // txtSightingSpecies
             // 
+            this.txtSightingSpecies.Enabled = false;
             this.txtSightingSpecies.Location = new System.Drawing.Point(122, 25);
             this.txtSightingSpecies.Name = "txtSightingSpecies";
             this.txtSightingSpecies.Size = new System.Drawing.Size(100, 20);
@@ -471,6 +472,7 @@
             this.Name = "frmSightings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Report Sighting";
+            this.Load += new System.EventHandler(this.frmSightings_Load);
             this.tbcLocationPicker.ResumeLayout(false);
             this.tabLatLong.ResumeLayout(false);
             this.tabLatLong.PerformLayout();

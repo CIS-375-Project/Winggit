@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Media;
-using System.Reflection;
 using System.Windows.Forms;
+using Winggit.Enums;
 
 namespace Winggit.Forms
 {
     public partial class frmComposeMsg : Form
     {
+        private bool isRecipientFull;
+        private bool isSubjectFull;
+        private bool isBodyFull;
+
         // Message string format: [Sender ID] [Subject]
         public frmComposeMsg(string msgString)
         {
+            isRecipientFull = false;
+            isSubjectFull = false;
+            isBodyFull = false;
             InitializeComponent();
             if (msgString == "") // Composing new message.
                 return;
@@ -45,38 +52,25 @@ namespace Winggit.Forms
 
         private void txtNewMsgBody_TextChanged(object sender, EventArgs e)
         {
-            if (txtNewMsgRecipient.Text.Length > 0 && txtNewMsgSubject.Text.Length > 0)
-            {
-                btnSendMsg.Enabled = true;
-            }
-            else
-            {
-                btnSendMsg.Enabled = false;
-            }
+            isBodyFull = txtNewMsgBody.Text.Length > 0;
+            checkIfSendable();
         }
 
         private void txtNewMsgSubject_TextChanged(object sender, EventArgs e)
         {
-            if (txtNewMsgBody.Text.Length > 0 && txtNewMsgRecipient.Text.Length > 0)
+            if (!isSubjectFull && txtNewMsgSubject.Text.Trim().Length == 0) //Just whitespace.
+            isSubjectFull = txtNewMsgSubject.Text.Length > 0;
+            checkIfSendable();
+            State michigan = State.Michigan;
+            switch (michigan)
             {
-                btnSendMsg.Enabled = true;
-            }
-            else
-            {
-                btnSendMsg.Enabled = false;
             }
         }
 
         private void txtNewMsgRecipient_TextChanged(object sender, EventArgs e)
         {
-            if (txtNewMsgBody.Text.Length > 0 && txtNewMsgSubject.Text.Length > 0)
-            {
-                btnSendMsg.Enabled = true;
-            }
-            else
-            {
-                btnSendMsg.Enabled = false;
-            }
+            isRecipientFull = txtNewMsgRecipient.Text.Length > 0;
+            checkIfSendable();
         }
 
         private void btnSendMsg_Click(object sender, EventArgs e)
@@ -95,6 +89,11 @@ namespace Winggit.Forms
             {
                 e.Handled = true;
             }
+        }
+
+        private void checkIfSendable()
+        {
+            btnSendMsg.Enabled = isBodyFull && isRecipientFull && isSubjectFull;
         }
     }
 }

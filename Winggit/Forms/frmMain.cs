@@ -45,5 +45,10 @@ namespace Winggit.Forms
         {
             new frmPokedex().ShowDialog();
         }
+
+        private void btnGoToPokedex_Click(object sender, EventArgs e)
+        {
+            new frmPokedex().ShowDialog();
+        }
     }
 }

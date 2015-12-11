@@ -38,6 +38,7 @@
             this.lblSocialLife = new System.Windows.Forms.Label();
             this.btnOpenSightings = new System.Windows.Forms.Button();
             this.picBee = new System.Windows.Forms.PictureBox();
+            this.btnGoToPokedex = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBee)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             // 
             this.btnEasterEgg.Location = new System.Drawing.Point(12, 79);
             this.btnEasterEgg.Name = "btnEasterEgg";
-            this.btnEasterEgg.Size = new System.Drawing.Size(75, 23);
+            this.btnEasterEgg.Size = new System.Drawing.Size(105, 23);
             this.btnEasterEgg.TabIndex = 2;
             this.btnEasterEgg.Text = "Winggit!";
             this.btnEasterEgg.UseVisualStyleBackColor = true;
@@ -83,7 +84,7 @@
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(309, 79);
+            this.btnExit.Location = new System.Drawing.Point(167, 79);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 4;
@@ -127,12 +128,23 @@
             this.picBee.TabIndex = 0;
             this.picBee.TabStop = false;
             // 
+            // btnGoToPokedex
+            // 
+            this.btnGoToPokedex.Location = new System.Drawing.Point(279, 78);
+            this.btnGoToPokedex.Name = "btnGoToPokedex";
+            this.btnGoToPokedex.Size = new System.Drawing.Size(105, 23);
+            this.btnGoToPokedex.TabIndex = 8;
+            this.btnGoToPokedex.Text = "Pokedex";
+            this.btnGoToPokedex.UseVisualStyleBackColor = true;
+            this.btnGoToPokedex.Click += new System.EventHandler(this.btnGoToPokedex_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(396, 109);
+            this.Controls.Add(this.btnGoToPokedex);
             this.Controls.Add(this.btnOpenSightings);
             this.Controls.Add(this.lblSocialLife);
             this.Controls.Add(this.lblWorkLife);
@@ -165,5 +177,6 @@
         private System.Windows.Forms.Label lblSocialLife;
         private System.Windows.Forms.Button btnOpenSightings;
         private System.Windows.Forms.PictureBox picBee;
+        private System.Windows.Forms.Button btnGoToPokedex;
     }
 }

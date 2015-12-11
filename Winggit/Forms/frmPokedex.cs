@@ -35,6 +35,7 @@ namespace Winggit.Forms
 
         private void btnRefreshRankings_Click(object sender, EventArgs e)
         {
+            dgdTaggerRankings.ClearSelection();
             //TODO Reload rankings
         }
     }

@@ -135,5 +135,10 @@ namespace Winggit.Forms
         {
 
         }
+
+        private void frmSightings_Load(object sender, EventArgs e)
+        {
+            calSightingDate.MaxDate = DateTime.Today;
+        }
     }
 }
