@@ -22,14 +22,6 @@ namespace Winggit.Forms
             }
         }
 
-        private void txtSearchPhoneNum_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void txtSearchTaggerID_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -41,11 +33,6 @@ namespace Winggit.Forms
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // TODO Search for taggers.
-        }
-
-        private void frmTaggerSearch_Load(object sender, EventArgs e)
-        {
-            cmbSearchCountry.DataSource = Enum.GetValues(typeof (Country));
         }
 
         private void cmbSearchCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,9 +51,9 @@ namespace Winggit.Forms
             }
         }
 
-        private void btnGoToPokedex_Click(object sender, EventArgs e)
+        private void frmTaggerSearch_Load(object sender, EventArgs e)
         {
-            new frmPokedex().ShowDialog();
+            cmbSearchCountry.DataSource = Enum.GetValues(typeof (Country));
         }
     }
 }

@@ -61,10 +61,6 @@ namespace Winggit.Forms
             if (!isSubjectFull && txtNewMsgSubject.Text.Trim().Length == 0) //Just whitespace.
             isSubjectFull = txtNewMsgSubject.Text.Length > 0;
             checkIfSendable();
-            State michigan = State.Michigan;
-            switch (michigan)
-            {
-            }
         }
 
         private void txtNewMsgRecipient_TextChanged(object sender, EventArgs e)

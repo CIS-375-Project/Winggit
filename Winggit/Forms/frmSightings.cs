@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections.Generic;
 using System.Linq;
 using System.Media;
 using System.Windows.Forms;
@@ -29,7 +30,7 @@ namespace Winggit.Forms
 
         private void txtSightingTagID_TextChanged(object sender, EventArgs e)
         {
-            // TODO check if we have enough info to enable finish button. (call method)
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
         private void txtSightingTagID_KeyPress(object sender, KeyPressEventArgs e)
@@ -44,6 +45,7 @@ namespace Winggit.Forms
         {
             txtSightingTagID.Enabled = !chkNewTag.Checked;
             txtSightingSpecies.Enabled = chkNewTag.Checked;
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
         private void updLatitude_ValueChanged(object sender, EventArgs e)
@@ -58,6 +60,7 @@ namespace Winggit.Forms
                 rdoNorth.Enabled = true;
                 rdoSouth.Enabled = true;
             }
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
         private void updLongitude_ValueChanged(object sender, EventArgs e)
@@ -72,17 +75,19 @@ namespace Winggit.Forms
                 rdoEast.Enabled = true;
                 rdoWest.Enabled = true;
             }
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
         private void tbcLocationPicker_TabIndexChanged(object sender, EventArgs e)
         {
-            if (tbcLocationPicker.SelectedIndex == 0)
+            if (tbcLocationPicker.SelectedIndex == 0) // Lat/long
             {
             }
-            else
+            else // Location
             {
                 
             }
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
         private void cmbSightingCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,12 +101,13 @@ namespace Winggit.Forms
             {
                 cmbSightingStateProv.Enabled = false;
             }
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
         private void cmbSightingStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
             // TODO Check if city, temperature, and temperature system are entered. (possibly also that tab index is 1).
-            // TODO If true, then enable finish button. Otherwise, disable finish button.
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
         private void btnFinishTagSighting_Click(object sender, EventArgs e)
@@ -124,11 +130,32 @@ namespace Winggit.Forms
 
         private bool hasEnoughInfo()
         {
-            //TODO Check if any temperature system button is pressed. If not, return false.
-            //TODO If lat/long tab is pressed, check if lat and long are pressed if lat or long are not equal to 0.
-            //TODO If location tab is pressed, check if comboboxes and textboxes have something.
-            //TODO IF anything above is false, return false. Otherwise, return true.
-            return true; // TODO remove when implemented.
+            if (chkNewTag.Checked && txtSightingSpecies.Text.Trim().Length == 0)
+                return false;
+            if (txtSightingTagID.Text.Length == 0)
+                return false;
+            if (tbcLocationPicker.SelectedIndex == 0)
+            {
+                if (updLatitude.Value != (decimal) 0.0)
+                {
+                    if (!rdoNorth.Checked && !rdoSouth.Checked)
+                        return false;
+                }
+                if (updLongitude.Value == (decimal) 0.0) // No need to check for e/w button.
+                    return rdoCelcius.Checked || rdoFahrenheit.Checked;
+                if (!rdoEast.Checked && !rdoWest.Checked)
+                    return false;
+            }
+            else
+            {
+                if (txtSightingCity.Text.Trim().Length == 0)
+                    return false;
+                if (cmbSightingCountry.SelectedIndex == -1)
+                    return false;
+                if (cmbSightingStateProv.SelectedIndex == -1)
+                    return false;
+            }
+            return rdoCelcius.Checked || rdoFahrenheit.Checked;
         }
 
         private void txtSightingCity_TextChanged(object sender, EventArgs e)
@@ -144,7 +171,47 @@ namespace Winggit.Forms
         private void frmSightings_Load(object sender, EventArgs e)
         {
             calSightingDate.MaxDate = DateTime.Today;
-            cmbSightingCountry.DataSource = Enum.GetValues(typeof(Country));
+            cmbSightingCountry.DataSource = Enum.GetValues(typeof (Country));
+        }
+
+        private void txtSightingSpecies_TextChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void rdoNorth_CheckedChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void rdoEast_CheckedChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void rdoFahrenheit_CheckedChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void rdoSouth_CheckedChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void rdoWest_CheckedChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void rdoCelcius_CheckedChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void tbcLocationPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
     }
 }

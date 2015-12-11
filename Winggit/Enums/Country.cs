@@ -2,7 +2,7 @@
 {
     public enum Country
     {
-        United_States,
+        US,
         Canada
     }
 }

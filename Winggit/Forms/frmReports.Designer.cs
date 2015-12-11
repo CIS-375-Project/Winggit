@@ -69,9 +69,9 @@
             this.lblReportType.AutoSize = true;
             this.lblReportType.Location = new System.Drawing.Point(13, 198);
             this.lblReportType.Name = "lblReportType";
-            this.lblReportType.Size = new System.Drawing.Size(66, 13);
+            this.lblReportType.Size = new System.Drawing.Size(69, 13);
             this.lblReportType.TabIndex = 4;
-            this.lblReportType.Text = "Report Type";
+            this.lblReportType.Text = "Report Type:";
             // 
             // btnGetReport
             // 
@@ -84,6 +84,7 @@
             // 
             // frmReports
             // 
+            this.AcceptButton = this.btnGetReport;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelReports;
