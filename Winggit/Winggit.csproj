@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Butterfly.cs" />
     <Compile Include="Entities\Winger.cs" />
     <Compile Include="Controls\DBFunctions.cs" />
     <Compile Include="Enums\Country.cs" />
