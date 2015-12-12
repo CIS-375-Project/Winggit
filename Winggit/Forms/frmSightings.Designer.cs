@@ -526,6 +526,7 @@
             this.btnLoadInfo.TabIndex = 17;
             this.btnLoadInfo.Text = "Load Info";
             this.btnLoadInfo.UseVisualStyleBackColor = true;
+            this.btnLoadInfo.Click += new System.EventHandler(this.btnLoadInfo_Click);
             // 
             // frmSightings
             // 

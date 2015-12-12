@@ -152,7 +152,6 @@ namespace Winggit.Forms
             {
                 // TODO Check if tag ID exists.
             }
-            // TODO Add sighting.
             int temperature = (int) updTemperature.Value;
         }
 
@@ -250,6 +249,16 @@ namespace Winggit.Forms
             {
                 e.Cancel = true;
             }
+        }
+
+        private void btnLoadInfo_Click(object sender, EventArgs e)
+        {
+            CheckButterfly();
+        }
+
+        private bool CheckButterfly()
+        {
+            
         }
     }
 }
