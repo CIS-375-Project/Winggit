@@ -62,7 +62,7 @@
             this.rdoFahrenheit = new System.Windows.Forms.RadioButton();
             this.txtSightingSpecies = new System.Windows.Forms.TextBox();
             this.lblSightingSpecies = new System.Windows.Forms.Label();
-            this.btnSightingGeocache = new System.Windows.Forms.Button();
+            this.btnSightingGeocode = new System.Windows.Forms.Button();
             this.grpGender = new System.Windows.Forms.GroupBox();
             this.rdoUnknown = new System.Windows.Forms.RadioButton();
             this.rdoFemale = new System.Windows.Forms.RadioButton();
@@ -448,15 +448,15 @@
             this.lblSightingSpecies.TabIndex = 12;
             this.lblSightingSpecies.Text = "Species:";
             // 
-            // btnSightingGeocache
+            // btnSightingGeocode
             // 
-            this.btnSightingGeocache.Location = new System.Drawing.Point(93, 268);
-            this.btnSightingGeocache.Name = "btnSightingGeocache";
-            this.btnSightingGeocache.Size = new System.Drawing.Size(92, 23);
-            this.btnSightingGeocache.TabIndex = 13;
-            this.btnSightingGeocache.Text = "Autofill Location";
-            this.btnSightingGeocache.UseVisualStyleBackColor = true;
-            this.btnSightingGeocache.Click += new System.EventHandler(this.btnSightingGeocache_Click);
+            this.btnSightingGeocode.Location = new System.Drawing.Point(93, 268);
+            this.btnSightingGeocode.Name = "btnSightingGeocode";
+            this.btnSightingGeocode.Size = new System.Drawing.Size(92, 23);
+            this.btnSightingGeocode.TabIndex = 13;
+            this.btnSightingGeocode.Text = "Autofill Location";
+            this.btnSightingGeocode.UseVisualStyleBackColor = true;
+            this.btnSightingGeocode.Click += new System.EventHandler(this.btnSightingGeocode_Click);
             // 
             // grpGender
             // 
@@ -538,7 +538,7 @@
             this.Controls.Add(this.lblWingspan);
             this.Controls.Add(this.updWingspan);
             this.Controls.Add(this.grpGender);
-            this.Controls.Add(this.btnSightingGeocache);
+            this.Controls.Add(this.btnSightingGeocode);
             this.Controls.Add(this.lblSightingSpecies);
             this.Controls.Add(this.txtSightingSpecies);
             this.Controls.Add(this.grpTempSystem);
@@ -618,7 +618,7 @@
         private System.Windows.Forms.ComboBox cmbSightingStateProv;
         private System.Windows.Forms.TextBox txtSightingSpecies;
         private System.Windows.Forms.Label lblSightingSpecies;
-        private System.Windows.Forms.Button btnSightingGeocache;
+        private System.Windows.Forms.Button btnSightingGeocode;
         private System.Windows.Forms.GroupBox grpGender;
         private System.Windows.Forms.RadioButton rdoUnknown;
         private System.Windows.Forms.RadioButton rdoFemale;
