@@ -11,9 +11,13 @@ namespace Winggit.Forms
 {
     public partial class frmSightings : Form
     {
+        private bool isButterflyLoaded;
+        private int loadedID;
         public frmSightings()
         {
             InitializeComponent();
+            isButterflyLoaded = false;
+            loadedID = 0;
         }
 
         private void btnCancelSightings_Click(object sender, EventArgs e)
@@ -22,6 +26,7 @@ namespace Winggit.Forms
 
         private void txtTagID_TextChanged(object sender, EventArgs e)
         {
+            btnLoadInfo.Enabled = txtTagID.Text.Length > 0;
             btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
@@ -261,10 +266,33 @@ namespace Winggit.Forms
 
         private void btnLoadInfo_Click(object sender, EventArgs e)
         {
-            CheckButterfly();
+            if (!isButterflyLoaded)
+            {
+                if (CheckButterfly(int.Parse(txtTagID.Text)))
+                {
+                    // TODO Load butterfly info
+                    txtSightingSpecies.Enabled = false;
+                    grpGender.Enabled = false;
+                    btnLoadInfo.Text = @"Go Back";
+                    isButterflyLoaded = true;
+                }
+                else
+                {
+                    MessageBox.Show(@"That Tag ID isn't registered, but you can add it as a new one.", @"Tag not found.",
+                        MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                btnLoadInfo.Text = @"Load Info";
+                isButterflyLoaded = false;
+                txtTagID.Text = "";
+                txtSightingSpecies.Text = "";
+
+            }
         }
 
-        private bool CheckButterfly()
+        private bool CheckButterfly(int ID)
         {
             return false;
         }
