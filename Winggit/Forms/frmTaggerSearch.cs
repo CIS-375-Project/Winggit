@@ -67,5 +67,33 @@ namespace Winggit.Forms
         {
             btnSearch.Enabled = cmbSearchStateProv.SelectedIndex > 0;
         }
+
+        private void rdoSearchByLocation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoSearchByLocation.Checked)
+            {
+                grpByLocation.Enabled = true;
+                grpByTaggerInfo.Enabled = false;
+            }
+            else
+            {
+                grpByLocation.Enabled = false;
+                grpByTaggerInfo.Enabled = true;
+            }
+        }
+
+        private void rdoSearchByTaggerInfo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoSearchByTaggerInfo.Checked)
+            {
+                grpByLocation.Enabled = false;
+                grpByTaggerInfo.Enabled = true;
+            }
+            else
+            {
+                grpByLocation.Enabled = true;
+                grpByTaggerInfo.Enabled = false;
+            }
+        }
     }
 }
