@@ -95,6 +95,7 @@
             this.Name = "frmLogInReg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome to Winggit";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogInReg_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

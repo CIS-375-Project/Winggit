@@ -42,16 +42,6 @@ namespace Winggit.Forms
             }
         }
 
-        private void btnCancelCompose_Click(object sender, EventArgs e)
-        {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Your message won't be saved. Proceed?", @"Return to inbox?", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
-            {
-                Close();
-            }
-        }
-
         private void txtNewMsgBody_TextChanged(object sender, EventArgs e)
         {
             if (txtNewMsgBody.Text.Trim().Length == 0)
@@ -99,6 +89,16 @@ namespace Winggit.Forms
         private void checkIfSendable()
         {
             btnSendMsg.Enabled = isBodyFull && isRecipientFull && isSubjectFull;
+        }
+
+        private void frmComposeMsg_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"Your message won't be saved. Proceed?", @"Return to inbox?", MessageBoxButtons.YesNo) ==
+                DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

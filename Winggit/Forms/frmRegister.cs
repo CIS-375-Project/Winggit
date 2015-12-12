@@ -14,12 +14,6 @@ namespace Winggit.Forms
 
         private void btnCancelReg_Click(object sender, EventArgs e)
         {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Any info you entered will be lost. Proceed?", @"Are you sure?",
-                MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Close();
-            }
         }
 
         private void frmRegister_Load(object sender, EventArgs e)
@@ -138,6 +132,16 @@ namespace Winggit.Forms
 
             // TODO Check if user info exists.
             // TODO try to register a new user with given info.
+        }
+
+        private void frmRegister_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"Any info you entered will be lost. Proceed?", @"Are you sure?",
+                MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

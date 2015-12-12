@@ -14,12 +14,6 @@ namespace Winggit.Forms
 
         private void btnCancelSearch_Click(object sender, EventArgs e)
         {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
-            {
-                Close();
-            }
         }
 
         private void txtSearchTaggerID_KeyPress(object sender, KeyPressEventArgs e)
@@ -54,6 +48,16 @@ namespace Winggit.Forms
         private void frmTaggerSearch_Load(object sender, EventArgs e)
         {
             cmbSearchCountry.DataSource = Enum.GetValues(typeof (Country));
+        }
+
+        private void frmTaggerSearch_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
+                DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

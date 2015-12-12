@@ -48,7 +48,6 @@
             this.btnCancelCompose.TabIndex = 0;
             this.btnCancelCompose.Text = "Cancel";
             this.btnCancelCompose.UseVisualStyleBackColor = true;
-            this.btnCancelCompose.Click += new System.EventHandler(this.btnCancelCompose_Click);
             // 
             // btnSendMsg
             // 
@@ -116,6 +115,7 @@
             // 
             // frmComposeMsg
             // 
+            this.AcceptButton = this.btnSendMsg;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelCompose;
@@ -135,6 +135,7 @@
             this.Name = "frmComposeMsg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compose New Message";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmComposeMsg_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

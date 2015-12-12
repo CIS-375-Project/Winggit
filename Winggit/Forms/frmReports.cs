@@ -14,12 +14,6 @@ namespace Winggit.Forms
 
         private void btnCancelReports_Click(object sender, EventArgs e)
         {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
-            {
-                Close();
-            }
         }
 
         private void frmReports_Load(object sender, EventArgs e)
@@ -43,6 +37,16 @@ namespace Winggit.Forms
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void frmReports_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
+                DialogResult.Yes)
+            {
+                e.Cancel = true;
             }
         }
     }

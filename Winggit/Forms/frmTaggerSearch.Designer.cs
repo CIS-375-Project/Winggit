@@ -222,6 +222,7 @@
             this.Name = "frmTaggerSearch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search for Local Taggers";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTaggerSearch_FormClosing);
             this.Load += new System.EventHandler(this.frmTaggerSearch_Load);
             this.grpSearchByLocation.ResumeLayout(false);
             this.grpSearchByLocation.PerformLayout();

@@ -478,6 +478,7 @@
             this.Name = "frmSightings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Report Sighting";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSightings_FormClosing);
             this.Load += new System.EventHandler(this.frmSightings_Load);
             this.tbcLocationPicker.ResumeLayout(false);
             this.tabLatLong.ResumeLayout(false);

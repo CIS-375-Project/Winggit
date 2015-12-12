@@ -217,6 +217,7 @@
             this.Name = "frmRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRegister_FormClosing);
             this.Load += new System.EventHandler(this.frmRegister_Load);
             this.grpRegAddress.ResumeLayout(false);
             this.grpRegAddress.PerformLayout();

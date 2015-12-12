@@ -16,12 +16,6 @@ namespace Winggit.Forms
 
         private void btnCancelSightings_Click(object sender, EventArgs e)
         {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
-            {
-                Close();
-            }
         }
 
         private void txtSightingTagID_TextChanged(object sender, EventArgs e)
@@ -196,6 +190,16 @@ namespace Winggit.Forms
         private void tbcLocationPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnFinishTagSighting.Enabled = hasEnoughInfo();
+        }
+
+        private void frmSightings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
+                DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

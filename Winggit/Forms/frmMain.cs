@@ -18,12 +18,7 @@ namespace Winggit.Forms
 
         private void btnExit_Click(object sender, System.EventArgs e)
         {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Are you sure you want to exit Winggit?", @"Leave Winggit?", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
-            {
-                Close();
-            }
+            Application.Exit();
         }
 
         private void btnOpenMessaging_Click(object sender, EventArgs e)
@@ -41,11 +36,6 @@ namespace Winggit.Forms
             new frmSightings().ShowDialog();
         }
 
-        private void btnOpenPokedex_Click(object sender, EventArgs e)
-        {
-            new frmPokedex().ShowDialog();
-        }
-
         private void btnGoToPokedex_Click(object sender, EventArgs e)
         {
             new frmPokedex().ShowDialog();
@@ -54,6 +44,23 @@ namespace Winggit.Forms
         private void btnEasterEgg_Click(object sender, EventArgs e)
         {
             new frmEasterEgg().ShowDialog();
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.ApplicationExitCall)
+            {
+                SystemSounds.Asterisk.Play();
+                if (MessageBox.Show(@"Are you sure you want to exit Winggit?", @"Leave Winggit?",
+                    MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

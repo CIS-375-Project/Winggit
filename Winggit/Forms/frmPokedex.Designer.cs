@@ -91,6 +91,7 @@
             this.Name = "frmPokedex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pokédex";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPokedex_FormClosing);
             this.Load += new System.EventHandler(this.frmPokedex_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgdTaggerRankings)).EndInit();
             this.ResumeLayout(false);

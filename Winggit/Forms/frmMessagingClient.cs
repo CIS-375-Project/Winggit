@@ -19,12 +19,6 @@ namespace Winggit.Forms
 
         private void btnCancelMessaging_Click(object sender, EventArgs e)
         {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"About to return to main menu. Proceed?", @"Leave messaging?", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
-            {
-                Close();
-            }
         }
 
         private void btnDeleteMsg_Click(object sender, EventArgs e)
@@ -105,6 +99,16 @@ namespace Winggit.Forms
             txtMsgTimestamp.Text = dgdMsgInbox.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtMsgContents.Text = dgdMsgInbox.Rows[e.RowIndex].Cells[3].Value.ToString();
             msgString = dgdMsgInbox.Rows[e.RowIndex].Cells[5].Value + " " + dgdMsgInbox.Rows[e.RowIndex].Cells[1].Value;
+        }
+
+        private void frmMessagingClient_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"About to return to main menu. Proceed?", @"Leave messaging?", MessageBoxButtons.YesNo) ==
+                DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
