@@ -301,8 +301,19 @@ namespace Winggit.Forms
             {
                 if (!CheckButterfly(int.Parse(txtTagID.Text)))
                     return;
+                txtSightingSpecies.Text = Butterfly.currentButterfly.Species;
                 txtSightingSpecies.Enabled = false;
-                grpGender.Enabled = false;
+                if (Butterfly.currentButterfly.Gender == "Male")
+                {
+                    rdoMale.Checked = true;
+                    grpGender.Enabled = false;
+                }
+                else if (Butterfly.currentButterfly.Gender == "Female")
+                {
+                    rdoFemale.Checked = true;
+                    grpGender.Enabled = false;
+                }
+                updWingspan.Value = Butterfly.currentButterfly.Wingspan;
                 btnLoadInfo.Text = @"Go Back";
                 isButterflyLoaded = true;
                 chkNewTag.Enabled = false;
@@ -310,6 +321,8 @@ namespace Winggit.Forms
             else
             {
                 grpGender.Enabled = true;
+                rdoUnknown.Checked = true;
+                updWingspan.Value = 0;
                 btnLoadInfo.Text = @"Load Info";
                 isButterflyLoaded = false;
                 txtTagID.Text = "";
