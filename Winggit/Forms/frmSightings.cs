@@ -72,14 +72,15 @@ namespace Winggit.Forms
 
         private void cmbSightingCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbSightingCountry.SelectedIndex > -1)
+            if (cmbSightingCountry.SelectedIndex > 0)
             {
                 cmbSightingStateProv.Enabled = true;
-                cmbSightingStateProv.DataSource = Enum.GetValues(cmbSightingCountry.SelectedIndex == 0 ? typeof (State) : typeof (Province));
+                cmbSightingStateProv.DataSource = Enum.GetValues(cmbSightingCountry.SelectedIndex == 1 ? typeof (State) : typeof (Province));
             }
             else
             {
                 cmbSightingStateProv.Enabled = false;
+                cmbSightingStateProv.SelectedIndex = -1;
             }
             btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
@@ -177,9 +178,9 @@ namespace Winggit.Forms
             {
                 if (txtSightingCity.Text.Trim().Length == 0)
                     return false;
-                if (cmbSightingCountry.SelectedIndex == -1)
+                if (cmbSightingCountry.SelectedIndex <= 0)
                     return false;
-                if (cmbSightingStateProv.SelectedIndex == -1)
+                if (cmbSightingStateProv.SelectedIndex <= 0)
                     return false;
             }
             return rdoCelcius.Checked || rdoFahrenheit.Checked;
