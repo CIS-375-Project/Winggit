@@ -185,6 +185,7 @@
             this.txtSearchName.Name = "txtSearchName";
             this.txtSearchName.Size = new System.Drawing.Size(201, 20);
             this.txtSearchName.TabIndex = 0;
+            this.txtSearchName.TextChanged += new System.EventHandler(this.txtSearchName_TextChanged);
             // 
             // dgdTaggerSearchResults
             // 
