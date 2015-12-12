@@ -39,6 +39,9 @@ namespace Winggit.Forms
         private void btnCompose_Click(object sender, EventArgs e)
         {
             new frmComposeMsg(msgString).ShowDialog();
+
+           
+
         }
 
         private void frmMessagingClient_Load(object sender, EventArgs e)
