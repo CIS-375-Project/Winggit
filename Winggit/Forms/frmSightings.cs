@@ -156,7 +156,7 @@ namespace Winggit.Forms
             }
             else
             {
-                if (CheckButterfly())
+                if (CheckButterfly(int.Parse(txtTagID.Text)))
                 {
                     oHash = new Hashtable();
                     sql = "INSERT INTO Tags VALUES (@Date,@City,@State,@Country,@Temp,@WingerNum,0,@Long,@Lat,@ID)";
@@ -299,22 +299,16 @@ namespace Winggit.Forms
         {
             if (!isButterflyLoaded)
             {
-                if (CheckButterfly(int.Parse(txtTagID.Text)))
-                {
-                    // TODO Load butterfly info
-                    txtSightingSpecies.Enabled = false;
-                    grpGender.Enabled = false;
-                    btnLoadInfo.Text = @"Go Back";
-                    isButterflyLoaded = true;
-                }
-                else
-                {
-                    MessageBox.Show(@"That Tag ID isn't registered, but you can add it as a new one.", @"Tag not found.",
-                        MessageBoxButtons.OK);
-                }
+                if (!CheckButterfly(int.Parse(txtTagID.Text)))
+                    return;
+                txtSightingSpecies.Enabled = false;
+                grpGender.Enabled = false;
+                btnLoadInfo.Text = @"Go Back";
+                isButterflyLoaded = true;
             }
             else
             {
+                grpGender.Enabled = true;
                 btnLoadInfo.Text = @"Load Info";
                 isButterflyLoaded = false;
                 txtTagID.Text = "";
@@ -323,27 +317,23 @@ namespace Winggit.Forms
             }
         }
 
-        private bool CheckButterfly(int ID)
+        private bool CheckButterfly(int id)
         {
             Hashtable oHash = new Hashtable();
-            oHash.Add("@TagNum", txtTagID.Text);
-            string sql = "SELECT * FROM Butterflies WHERE Tagger_Num = @TagNum";
+            oHash.Add("@TagNum", id);
+            string sql = "SELECT * FROM Butterflies WHERE Tracker_Num = @TagNum";
             using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
             {
                 if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
                 {
-                    MessageBox.Show(@"No Butterflies found with that Tag ID #. If the number is correct please add as a new tagging.", @"Butterfly Not Found");
+                    MessageBox.Show(@"No Butterflies found with that Tag ID #. But you can add it as a new one.",
+                        @"Butterfly Not Found");
                     Butterfly.currentButterfly = null;
-            return false;
-        }
+                    return false;
+                }
                 Butterfly.currentButterfly = new Butterfly(oDataSet.Tables[0].Rows[0]);
                 return true;
             }
-        }
-        
-        private void SetFields()
-        {
-            
         }
     }
 }
