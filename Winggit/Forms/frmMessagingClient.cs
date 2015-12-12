@@ -50,7 +50,8 @@ namespace Winggit.Forms
         private void LoadMessages()
         {
             Hashtable oHash = new Hashtable();
-            string sql = "SELECT W.Name as 'Sender', M.Subject, M.TimeStamp, M.Body, M.MessageID, M.Source FROM Messages as M JOIN Wingers as W ON WingerNum = Source WHERE Destination = " + Winger.currentWinger.WingerNum;
+            oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+            string sql = "SELECT W.Name as 'Sender', M.Subject, M.TimeStamp, M.Body, M.MessageID, M.Source FROM Messages as M JOIN Wingers as W ON WingerNum = Source WHERE Destination = @WingerNum";
             using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
             {
                 if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
