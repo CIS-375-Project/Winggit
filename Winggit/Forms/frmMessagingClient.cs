@@ -83,13 +83,10 @@ namespace Winggit.Forms
 
         private void btnRefreshInbox_Click(object sender, EventArgs e)
         {
-            dgdMsgInbox.ClearSelection();
+            LoadMessages();
             btnDeleteMsg.Enabled = false;
             btnCompose.Text = @"Compose";
             msgString = "";
-            LoadMessages();
-            btnCompose.Text = @"Compose";
-            btnDeleteMsg.Enabled = false;
         }
 
         private void dgdMsgInbox_SelectionChanged(object sender, EventArgs e)
