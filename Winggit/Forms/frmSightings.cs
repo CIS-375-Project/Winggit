@@ -265,7 +265,7 @@ namespace Winggit.Forms
 
         private bool CheckButterfly()
         {
-            
+            return false;
         }
     }
 }

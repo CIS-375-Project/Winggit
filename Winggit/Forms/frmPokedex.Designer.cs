@@ -45,7 +45,7 @@
             this.btnCancelPokedex.TabIndex = 0;
             this.btnCancelPokedex.Text = "Cancel";
             this.btnCancelPokedex.UseVisualStyleBackColor = true;
-            this.btnCancelPokedex.Click += new System.EventHandler(this.btnCancelPokedex_Click);
+           
             // 
             // dgdTaggerRankings
             // 

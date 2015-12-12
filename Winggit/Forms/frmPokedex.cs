@@ -8,6 +8,8 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Winggit.Controls;
+using Winggit.Entities;
 
 namespace Winggit.Forms
 {
@@ -18,13 +20,14 @@ namespace Winggit.Forms
             InitializeComponent();
         }
 
-        private void btnCancelPokedex_Click(object sender, EventArgs e)
-        {
-        }
+        
 
         private void frmPokedex_Load(object sender, EventArgs e)
         {
             //TODO Load rankings
+            
+
+
         }
 
         private void btnRefreshRankings_Click(object sender, EventArgs e)
