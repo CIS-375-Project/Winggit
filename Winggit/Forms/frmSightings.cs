@@ -132,9 +132,9 @@ namespace Winggit.Forms
                     }
                     else
                     {
-                        oHash.Add("@City", string.Empty);
-                        oHash.Add("@State", string.Empty);
-                        oHash.Add("@Country", string.Empty);
+                        oHash.Add("@City", null);
+                        oHash.Add("@State", null);
+                        oHash.Add("@Country", null);
                     }
                     oHash.Add("@Temp", updTemperature.Value);
                     oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
@@ -145,8 +145,8 @@ namespace Winggit.Forms
                     }
                     else
                     {
-                        oHash.Add("@Long", 0);
-                        oHash.Add("@Lat", 0);
+                        oHash.Add("@Long", null);
+                        oHash.Add("@Lat", null);
                     }
                     oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
                     DBFunctions.RunQuery(sql, oHash);
@@ -156,9 +156,40 @@ namespace Winggit.Forms
             }
             else
             {
-                // TODO Check if tag ID exists.
+                if (CheckButterfly())
+                {
+                    oHash = new Hashtable();
+                    sql = "INSERT INTO Tags VALUES (@Date,@City,@State,@Country,@Temp,@WingerNum,0,@Long,@Lat,@ID)";
+                    oHash.Add("@Date", calSightingDate.SelectionStart);
+                    if (!string.IsNullOrEmpty(txtSightingCity.Text))
+                    {
+                        oHash.Add("@City", txtSightingCity.Text.Trim());
+                        oHash.Add("@State", cmbSightingStateProv.SelectedText);
+                        oHash.Add("@Country", cmbSightingCountry.SelectedText);
+                    }
+                    else
+                    {
+                        oHash.Add("@City", null);
+                        oHash.Add("@State", null);
+                        oHash.Add("@Country", null);
+                    }
+                    oHash.Add("@Temp", updTemperature.Value);
+                    oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+                    if (updLatitude.Value > 0 || updLongitude.Value > 0)
+                    {
+                        oHash.Add("@Long", updLongitude.Value);
+                        oHash.Add("@Lat", updLatitude.Value);
             }
-            int temperature = (int) updTemperature.Value;
+            else
+            {
+                        oHash.Add("@Long", null);
+                        oHash.Add("@Lat", null);
+                    }
+                    oHash.Add("@ID", Butterfly.currentButterfly.ButterflyID);
+                    DBFunctions.RunQuery(sql, oHash);
+                    MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
+                }
+            }
         }
 
         private bool hasEnoughInfo()
@@ -294,7 +325,25 @@ namespace Winggit.Forms
 
         private bool CheckButterfly(int ID)
         {
+            Hashtable oHash = new Hashtable();
+            oHash.Add("@TagNum", txtTagID.Text);
+            string sql = "SELECT * FROM Butterflies WHERE Tagger_Num = @TagNum";
+            using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+            {
+                if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show(@"No Butterflies found with that Tag ID #. If the number is correct please add as a new tagging.", @"Butterfly Not Found");
+                    Butterfly.currentButterfly = null;
             return false;
+        }
+                Butterfly.currentButterfly = new Butterfly(oDataSet.Tables[0].Rows[0]);
+                return true;
+            }
+        }
+        
+        private void SetFields()
+        {
+            
         }
     }
 }
