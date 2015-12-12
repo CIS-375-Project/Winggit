@@ -153,7 +153,6 @@
             this.tbcLocationPicker.Size = new System.Drawing.Size(285, 125);
             this.tbcLocationPicker.TabIndex = 7;
             this.tbcLocationPicker.SelectedIndexChanged += new System.EventHandler(this.tbcLocationPicker_SelectedIndexChanged);
-            this.tbcLocationPicker.TabIndexChanged += new System.EventHandler(this.tbcLocationPicker_TabIndexChanged);
             // 
             // tabLatLong
             // 

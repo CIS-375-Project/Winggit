@@ -50,5 +50,10 @@ namespace Winggit.Forms
         {
             new frmPokedex().ShowDialog();
         }
+
+        private void btnEasterEgg_Click(object sender, EventArgs e)
+        {
+            new frmEasterEgg().ShowDialog();
+        }
     }
 }

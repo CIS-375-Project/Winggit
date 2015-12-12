@@ -71,6 +71,12 @@
     <Compile Include="Forms\frmComposeMsg.Designer.cs">
       <DependentUpon>frmComposeMsg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmEasterEgg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEasterEgg.Designer.cs">
+      <DependentUpon>frmEasterEgg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmLogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     <EmbeddedResource Include="Forms\frmComposeMsg.resx">
       <DependentUpon>frmComposeMsg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEasterEgg.resx">
+      <DependentUpon>frmEasterEgg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLogIn.resx">
       <DependentUpon>frmLogIn.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Media\Bench.ico" />
+    <Content Include="Media\PCFire.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

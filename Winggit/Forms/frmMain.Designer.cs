@@ -70,6 +70,7 @@
             this.btnEasterEgg.TabIndex = 2;
             this.btnEasterEgg.Text = "Winggit!";
             this.btnEasterEgg.UseVisualStyleBackColor = true;
+            this.btnEasterEgg.Click += new System.EventHandler(this.btnEasterEgg_Click);
             // 
             // btnOpenSearch
             // 

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
@@ -15,7 +12,6 @@ namespace Winggit.Forms
         public frmSightings()
         {
             InitializeComponent();
-            
         }
 
         private void btnCancelSightings_Click(object sender, EventArgs e)
@@ -78,18 +74,6 @@ namespace Winggit.Forms
             btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
-        private void tbcLocationPicker_TabIndexChanged(object sender, EventArgs e)
-        {
-            if (tbcLocationPicker.SelectedIndex == 0) // Lat/long
-            {
-            }
-            else // Location
-            {
-                
-            }
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
-        }
-
         private void cmbSightingCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbSightingCountry.SelectedIndex > -1)
@@ -141,7 +125,7 @@ namespace Winggit.Forms
                     if (!rdoNorth.Checked && !rdoSouth.Checked)
                         return false;
                 }
-                if (updLongitude.Value == (decimal) 0.0) // No need to check for e/w button.
+                if (updLongitude.Value == (decimal) 0.0) // No need to check for E/W button.
                     return rdoCelcius.Checked || rdoFahrenheit.Checked;
                 if (!rdoEast.Checked && !rdoWest.Checked)
                     return false;
