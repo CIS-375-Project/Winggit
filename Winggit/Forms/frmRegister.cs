@@ -25,7 +25,7 @@ namespace Winggit.Forms
         private void txtRegPhoneNum_TextChanged(object sender, EventArgs e)
         {
             if (txtRegCity.Text.Length > 0 && txtRegPhoneNum.Text.Length == 10 && txtRegHouseNumStreet.Text.Length > 0
-                && cmbRegCountry.SelectedIndex > -1 && cmbRegStateProv.SelectedIndex > -1)
+                && cmbRegCountry.SelectedIndex > 0 && cmbRegStateProv.SelectedIndex > 0)
             {
                 btnRegister.Enabled = true;
             }
@@ -46,7 +46,7 @@ namespace Winggit.Forms
         private void txtRegName_TextChanged(object sender, EventArgs e)
         {
             if (txtRegCity.Text.Length > 0 && txtRegPhoneNum.Text.Length == 10 && txtRegHouseNumStreet.Text.Length > 0
-                && cmbRegCountry.SelectedIndex > -1 && cmbRegStateProv.SelectedIndex > -1)
+                && cmbRegCountry.SelectedIndex > 0 && cmbRegStateProv.SelectedIndex > 0)
             {
                 btnRegister.Enabled = true;
             }
@@ -59,7 +59,7 @@ namespace Winggit.Forms
         private void txtRegHouseNumStreet_TextChanged(object sender, EventArgs e)
         {
             if (txtRegCity.Text.Length > 0 && txtRegPhoneNum.Text.Length == 10 && txtRegName.Text.Length > 0
-                && cmbRegCountry.SelectedIndex > -1 && cmbRegStateProv.SelectedIndex > -1)
+                && cmbRegCountry.SelectedIndex > 0 && cmbRegStateProv.SelectedIndex > 0)
             {
                 btnRegister.Enabled = true;
             }
@@ -72,7 +72,7 @@ namespace Winggit.Forms
         private void txtRegCity_TextChanged(object sender, EventArgs e)
         {
             if (txtRegHouseNumStreet.Text.Length > 0 && txtRegPhoneNum.Text.Length == 10 && txtRegName.Text.Length > 0
-                && cmbRegCountry.SelectedIndex > -1 && cmbRegStateProv.SelectedIndex > -1)
+                && cmbRegCountry.SelectedIndex > 0 && cmbRegStateProv.SelectedIndex > 0)
             {
                 btnRegister.Enabled = true;
             }
@@ -84,7 +84,7 @@ namespace Winggit.Forms
 
         private void cmbRegStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbRegStateProv.SelectedIndex > -1 && txtRegHouseNumStreet.Text.Length > 0
+            if (cmbRegStateProv.SelectedIndex > 0 && txtRegHouseNumStreet.Text.Length > 0
                 && txtRegPhoneNum.Text.Length == 10 && txtRegName.Text.Length > 0)
             {
                 btnRegister.Enabled = true;
@@ -97,14 +97,15 @@ namespace Winggit.Forms
 
         private void cmbRegCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbRegCountry.SelectedIndex > -1)
+            if (cmbRegCountry.SelectedIndex > 0)
             {
                 cmbRegStateProv.Enabled = true;
-                cmbRegStateProv.DataSource = Enum.GetValues(cmbRegCountry.SelectedIndex == 0 ? typeof (State) : typeof (Province));
+                cmbRegStateProv.DataSource = Enum.GetValues(cmbRegCountry.SelectedIndex == 1 ? typeof (State) : typeof (Province));
             }
             else
             {
                 cmbRegStateProv.Enabled = false;
+                cmbRegStateProv.SelectedIndex = -1;
             }
         }
 

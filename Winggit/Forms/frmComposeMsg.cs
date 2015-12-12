@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Media;
 using System.Windows.Forms;
+using Microsoft.ReportingServices.Diagnostics.Internal;
+using Winggit.Controls;
+using Winggit.Entities;
 using Winggit.Enums;
 
 namespace Winggit.Forms
@@ -10,6 +14,7 @@ namespace Winggit.Forms
         private bool isRecipientFull;
         private bool isSubjectFull;
         private bool isBodyFull;
+        private bool isSending;
 
         // Message string format: [Sender ID] [Subject]
         public frmComposeMsg(string msgString)
@@ -17,6 +22,7 @@ namespace Winggit.Forms
             isRecipientFull = false;
             isSubjectFull = false;
             isBodyFull = false;
+            isSending = false;
             InitializeComponent();
             if (msgString == "") // Composing new message.
                 return;
@@ -76,6 +82,24 @@ namespace Winggit.Forms
             }
             // TODO send message to recipient.
             // TODO give acknowledgement to sender.
+
+            Hashtable oHash = new Hashtable();
+            string sql;
+            
+            oHash.Add("@Destination", txtNewMsgRecipient.Text.Trim());
+            oHash.Add("@Subject", txtNewMsgSubject.Text.Trim());
+            oHash.Add("@Body", txtNewMsgBody.Text.Trim());
+            oHash.Add("@Source", Winger.currentWinger.WingerNum);
+
+
+            sql = "INSERT INTO Messages VALUES (CURRENT_TIMESTAMP, @Body, @Subject, @Source, @Destination)";
+
+            DBFunctions.RunQuery(sql, oHash);
+
+            MessageBox.Show("Your message has been sent!", "Message Sent", MessageBoxButtons.OK);
+            isSending = true;
+            Close();
+
         }
 
         private void txtNewMsgRecipient_KeyPress(object sender, KeyPressEventArgs e)
@@ -94,11 +118,20 @@ namespace Winggit.Forms
         private void frmComposeMsg_FormClosing(object sender, FormClosingEventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Your message won't be saved. Proceed?", @"Return to inbox?", MessageBoxButtons.YesNo) ==
-                DialogResult.No)
-            {
-                e.Cancel = true;
+            if (!isSending)
+            {               
+                    if (MessageBox.Show(@"Your message won't be saved. Proceed?", @"Return to inbox?",
+                            MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                    }
             }
+            
+        }
+
+        private void btnCancelCompose_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -34,17 +34,17 @@ namespace Winggit.Forms
 
         private void cmbSearchCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbSearchCountry.SelectedIndex > -1)
+            if (cmbSearchCountry.SelectedIndex > 0)
             {
                 cmbSearchStateProv.Enabled = true;
                 cmbSearchStateProv.DataSource =
-                    Enum.GetValues(cmbSearchCountry.SelectedIndex == 0 ? typeof (State) : typeof (Province));
-                btnSearch.Enabled = true;
+                    Enum.GetValues(cmbSearchCountry.SelectedIndex == 1 ? typeof (State) : typeof (Province));
             }
             else
             {
                 cmbSearchStateProv.Enabled = false;
                 btnSearch.Enabled = false;
+                cmbSearchStateProv.SelectedIndex = -1;
             }
         }
 
@@ -61,6 +61,11 @@ namespace Winggit.Forms
             {
                 e.Cancel = true;
             }
+        }
+
+        private void cmbSearchStateProv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnSearch.Enabled = cmbSearchStateProv.SelectedIndex > 0;
         }
     }
 }

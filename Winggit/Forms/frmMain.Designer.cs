@@ -48,6 +48,7 @@
             this.btnOpenMessaging.Name = "btnOpenMessaging";
             this.btnOpenMessaging.Size = new System.Drawing.Size(105, 23);
             this.btnOpenMessaging.TabIndex = 0;
+            this.btnOpenMessaging.TabStop = false;
             this.btnOpenMessaging.Text = "Messaging Client";
             this.btnOpenMessaging.UseVisualStyleBackColor = true;
             this.btnOpenMessaging.Click += new System.EventHandler(this.btnOpenMessaging_Click);
@@ -58,6 +59,7 @@
             this.btnOpenReports.Name = "btnOpenReports";
             this.btnOpenReports.Size = new System.Drawing.Size(105, 23);
             this.btnOpenReports.TabIndex = 1;
+            this.btnOpenReports.TabStop = false;
             this.btnOpenReports.Text = "Reports";
             this.btnOpenReports.UseVisualStyleBackColor = true;
             this.btnOpenReports.Click += new System.EventHandler(this.btnOpenReports_Click);
@@ -68,6 +70,7 @@
             this.btnEasterEgg.Name = "btnEasterEgg";
             this.btnEasterEgg.Size = new System.Drawing.Size(105, 23);
             this.btnEasterEgg.TabIndex = 2;
+            this.btnEasterEgg.TabStop = false;
             this.btnEasterEgg.Text = "Winggit!";
             this.btnEasterEgg.UseVisualStyleBackColor = true;
             this.btnEasterEgg.Click += new System.EventHandler(this.btnEasterEgg_Click);
@@ -78,6 +81,7 @@
             this.btnOpenSearch.Name = "btnOpenSearch";
             this.btnOpenSearch.Size = new System.Drawing.Size(105, 23);
             this.btnOpenSearch.TabIndex = 3;
+            this.btnOpenSearch.TabStop = false;
             this.btnOpenSearch.Text = "Tagger Seach";
             this.btnOpenSearch.UseVisualStyleBackColor = true;
             this.btnOpenSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -117,6 +121,7 @@
             this.btnOpenSightings.Name = "btnOpenSightings";
             this.btnOpenSightings.Size = new System.Drawing.Size(105, 23);
             this.btnOpenSightings.TabIndex = 7;
+            this.btnOpenSightings.TabStop = false;
             this.btnOpenSightings.Text = "Tags/Sightings";
             this.btnOpenSightings.UseVisualStyleBackColor = true;
             this.btnOpenSightings.Click += new System.EventHandler(this.btnOpenSightings_Click);

@@ -120,6 +120,7 @@
             this.cmbSearchStateProv.Name = "cmbSearchStateProv";
             this.cmbSearchStateProv.Size = new System.Drawing.Size(201, 21);
             this.cmbSearchStateProv.TabIndex = 19;
+            this.cmbSearchStateProv.SelectedIndexChanged += new System.EventHandler(this.cmbSearchStateProv_SelectedIndexChanged);
             // 
             // txtSearchCity
             // 

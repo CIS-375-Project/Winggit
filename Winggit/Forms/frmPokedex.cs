@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,7 +26,20 @@ namespace Winggit.Forms
         private void frmPokedex_Load(object sender, EventArgs e)
         {
             //TODO Load rankings
-            
+            Hashtable oHash = new Hashtable();
+            string sql = "SELECT W.Name, COUNT(DISTINCT T.TagID) AS 'Number of Tags' FROM Wingers AS W JOIN Tags AS T ON W.WingerNum = T.WingerNum GROUP BY W.Name";
+            using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+            {
+                if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
+
+                dgdTaggerRankings.DataSource = oDataSet.Tables[0];
+                dgdTaggerRankings.AllowUserToAddRows = false;
+                dgdTaggerRankings.ReadOnly = true;
+
+            }
 
 
         }

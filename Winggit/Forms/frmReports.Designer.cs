@@ -55,6 +55,7 @@
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(121, 21);
             this.cmbReportType.TabIndex = 2;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.cmbReportType_SelectedIndexChanged);
             // 
             // dgdReportTable
             // 
@@ -75,6 +76,7 @@
             // 
             // btnGetReport
             // 
+            this.btnGetReport.Enabled = false;
             this.btnGetReport.Location = new System.Drawing.Point(12, 366);
             this.btnGetReport.Name = "btnGetReport";
             this.btnGetReport.Size = new System.Drawing.Size(75, 23);

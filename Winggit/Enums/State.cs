@@ -2,6 +2,7 @@
 {
     public enum State
     {
+        Select,
         AK,
         AL,
         AR,
