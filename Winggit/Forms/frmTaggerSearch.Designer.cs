@@ -194,15 +194,15 @@
             // dgdTaggerSearchResults
             // 
             this.dgdTaggerSearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgdTaggerSearchResults.Location = new System.Drawing.Point(388, 26);
+            this.dgdTaggerSearchResults.Location = new System.Drawing.Point(331, 26);
             this.dgdTaggerSearchResults.Name = "dgdTaggerSearchResults";
-            this.dgdTaggerSearchResults.Size = new System.Drawing.Size(345, 213);
+            this.dgdTaggerSearchResults.Size = new System.Drawing.Size(402, 213);
             this.dgdTaggerSearchResults.TabIndex = 6;
             // 
             // lblTaggerSearchResults
             // 
             this.lblTaggerSearchResults.AutoSize = true;
-            this.lblTaggerSearchResults.Location = new System.Drawing.Point(385, 9);
+            this.lblTaggerSearchResults.Location = new System.Drawing.Point(331, 9);
             this.lblTaggerSearchResults.Name = "lblTaggerSearchResults";
             this.lblTaggerSearchResults.Size = new System.Drawing.Size(49, 13);
             this.lblTaggerSearchResults.TabIndex = 7;
@@ -249,7 +249,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelTaggerSearch;
-            this.ClientSize = new System.Drawing.Size(745, 330);
+            this.ClientSize = new System.Drawing.Size(745, 304);
             this.Controls.Add(this.grpSearchBy);
             this.Controls.Add(this.lblTaggerSearchResults);
             this.Controls.Add(this.dgdTaggerSearchResults);
