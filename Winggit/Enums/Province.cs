@@ -2,6 +2,7 @@
 {
     public enum Province
     {
+        Select,
         AB,
         BC,
         MB,

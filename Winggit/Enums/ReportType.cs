@@ -2,6 +2,7 @@
 {
     public enum ReportType
     {
+        Select,
         Tags,
         Sightings,
         Routes,

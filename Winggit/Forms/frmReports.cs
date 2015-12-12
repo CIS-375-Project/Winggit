@@ -19,6 +19,7 @@ namespace Winggit.Forms
         private void frmReports_Load(object sender, EventArgs e)
         {
             cmbReportType.DataSource = Enum.GetValues(typeof (ReportType));
+            
         }
 
         private void btnGetReport_Click(object sender, EventArgs e)
@@ -48,6 +49,11 @@ namespace Winggit.Forms
             {
                 e.Cancel = true;
             }
+        }
+
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnGetReport.Enabled = cmbReportType.SelectedIndex > 0;
         }
     }
 }
