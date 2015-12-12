@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
@@ -27,6 +28,8 @@ namespace Winggit.Forms
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // TODO Search for taggers.
+            Hashtable oHash = new Hashtable();
+            
         }
 
         private void cmbSearchCountry_SelectedIndexChanged(object sender, EventArgs e)
