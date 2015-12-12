@@ -97,13 +97,27 @@ namespace Winggit.Forms
             if (chkNewTag.Checked)
             {
                 oHash = new Hashtable();
+                oHash.Add("@WingSpan", updWingspan.Value);
                 oHash.Add("@Species", txtSightingSpecies.Text.Trim());
-                oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
-                sql = "INSERT INTO Butterflies OUTPUT inserted.* VALUES(0,@Species,'Neutral',0,@WingerNum)";
+                if(rdoMale.Checked)
+                {
+                    oHash.Add("@Gender", "Male");
+                }
+                else if (rdoFemale.Checked)
+                {
+                    oHash.Add("@Gender", "Female");
+                }
+                else
+                {
+                    oHash.Add("@Gender", "Unknown");
+                }
+                oHash.Add("@TagNum", txtTagID.Text);
+                sql = "INSERT INTO Butterflies OUTPUT inserted.* VALUES(@WingSpan,@Species,@Gender,0,@TagNum)";
                 using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
                 {
                     oHash = new Hashtable();
-                    sql = "INSERT INTO Tags OUTPUT Inserted.* VALUES (CURRENT_TIMESTAMP,@City,@State,@Country,@Temp,@WingerNum,1,@Long,@Lat,@ID)";
+                    sql = "INSERT INTO Tags VALUES (@Date,@City,@State,@Country,@Temp,@WingerNum,1,@Long,@Lat,@ID)";
+                    oHash.Add("@Date", calSightingDate.SelectionStart);
                     if(!string.IsNullOrEmpty(txtSightingCity.Text))
                     {
                         oHash.Add("@City", txtSightingCity.Text.Trim());
@@ -117,7 +131,7 @@ namespace Winggit.Forms
                         oHash.Add("@Country", string.Empty);
                     }
                     oHash.Add("@Temp", updTemperature.Value);
-                    oHash.Add("@WingerNum", Winger.currentWinger);
+                    oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
                     if (updLatitude.Value > 0 || updLongitude.Value > 0)
                     {
                         oHash.Add("@Long", updLongitude.Value);
@@ -129,10 +143,9 @@ namespace Winggit.Forms
                         oHash.Add("@Lat", 0);
                     }
                     oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
-                    using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
-                    {
-                        MessageBox.Show(@"Registered under Tag ID #" + oDataSet2.Tables[0].Rows[0]["TagID"], @"Butterfly tagged!", MessageBoxButtons.OK);
-                    }
+                    DBFunctions.RunQuery(sql, oHash);
+                    MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
+                    return;
                 }
             }
             else
