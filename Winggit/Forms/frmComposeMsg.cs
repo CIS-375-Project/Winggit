@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Data;
 using System.Collections;
 using System.Media;
 using System.Windows.Forms;
-using Microsoft.ReportingServices.Diagnostics.Internal;
+//using Microsoft.ReportingServices.Diagnostics.Internal;
 using Winggit.Controls;
 using Winggit.Entities;
 using Winggit.Enums;
+
 
 namespace Winggit.Forms
 {
@@ -76,15 +78,28 @@ namespace Winggit.Forms
 
         private void btnSendMsg_Click(object sender, EventArgs e)
         {
-            if (txtNewMsgRecipient.Enabled) // Sending, so look up recipient.
-            {
-                // TODO check if recipient exists.
-            }
-            // TODO send message to recipient.
-            // TODO give acknowledgement to sender.
-
             Hashtable oHash = new Hashtable();
             string sql;
+            if (txtNewMsgRecipient.Enabled) // Sending, so look up recipient.
+            {
+                
+                oHash.Add("@WingerNum", txtNewMsgRecipient.Text);
+                sql = "SELECT Name FROM Wingers WHERE WingerNum = @WingerNum";
+
+                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                {
+                    if(oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                    {
+                        MessageBox.Show("Not a registered user!", "Error!", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
+
+            }
+           
+
+            oHash = new Hashtable();
+            
             
             oHash.Add("@Destination", txtNewMsgRecipient.Text.Trim());
             oHash.Add("@Subject", txtNewMsgSubject.Text.Trim());
