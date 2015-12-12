@@ -20,7 +20,7 @@ namespace Winggit.Forms
         {
         }
 
-        private void txtSightingTagID_TextChanged(object sender, EventArgs e)
+        private void txtTagID_TextChanged(object sender, EventArgs e)
         {
             btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
@@ -35,7 +35,7 @@ namespace Winggit.Forms
 
         private void chkNewTag_CheckedChanged(object sender, EventArgs e)
         {
-            txtSightingTagID.Enabled = !chkNewTag.Checked;
+            txtTagID.Enabled = !chkNewTag.Checked;
             txtSightingSpecies.Enabled = chkNewTag.Checked;
             btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
@@ -147,7 +147,7 @@ namespace Winggit.Forms
         {
             if (chkNewTag.Checked && txtSightingSpecies.Text.Trim().Length == 0)
                 return false;
-            if (txtSightingTagID.Text.Length == 0)
+            if (txtTagID.Text.Length == 0)
                 return false;
             if (tbcLocationPicker.SelectedIndex == 0)
             {
