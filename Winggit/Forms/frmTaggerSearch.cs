@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.Media;
 using System.Windows.Forms;
+using Winggit.Controls;
 using Winggit.Enums;
 
 namespace Winggit.Forms
@@ -28,8 +30,37 @@ namespace Winggit.Forms
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // TODO Search for taggers.
+            int count = 0;
             Hashtable oHash = new Hashtable();
-            
+            string sql = "SELECT * From Wingers WHERE";
+            if (txtSearchCity.Text.Length > 0)
+            {
+                oHash.Add("@City", txtSearchCity.Text);
+                sql += " City = @City";
+                count++;
+            }
+            if (cmbSearchCountry.SelectedIndex > 0)
+            {
+                if (count > 0)
+                {
+                    sql += " AND";
+                }
+                oHash.Add("@Country", cmbSearchCountry.SelectedItem.ToString());
+                sql += " Country = @Country";
+                if (cmbSearchStateProv.SelectedIndex > 0)
+                {
+                    oHash.Add("@State", cmbSearchStateProv.SelectedItem.ToString());
+                    sql += " AND State = @State";
+                }
+            }
+            using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+            {
+                if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
+                dgdTaggerSearchResults.DataSource = oDataSet.Tables[0];
+            }
         }
 
         private void cmbSearchCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -39,6 +70,7 @@ namespace Winggit.Forms
                 cmbSearchStateProv.Enabled = true;
                 cmbSearchStateProv.DataSource =
                     Enum.GetValues(cmbSearchCountry.SelectedIndex == 1 ? typeof (State) : typeof (Province));
+                btnSearch.Enabled = true;
             }
             else
             {
@@ -66,6 +98,34 @@ namespace Winggit.Forms
         private void cmbSearchStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnSearch.Enabled = cmbSearchStateProv.SelectedIndex > 0;
+        }
+
+        private void rdoSearchByLocation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoSearchByLocation.Checked)
+            {
+                grpByLocation.Enabled = true;
+                grpByTaggerInfo.Enabled = false;
+            }
+            else
+            {
+                grpByLocation.Enabled = false;
+                grpByTaggerInfo.Enabled = true;
+            }
+        }
+
+        private void rdoSearchByTaggerInfo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoSearchByTaggerInfo.Checked)
+            {
+                grpByLocation.Enabled = false;
+                grpByTaggerInfo.Enabled = true;
+            }
+            else
+            {
+                grpByLocation.Enabled = true;
+                grpByTaggerInfo.Enabled = false;
+            }
         }
     }
 }
