@@ -47,7 +47,7 @@
             // 
             // btnCancelMessaging
             // 
-            this.btnCancelMessaging.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelMessaging.DialogResult = System.Windows.Forms.DialogResult.Ignore;
             this.btnCancelMessaging.Location = new System.Drawing.Point(526, 322);
             this.btnCancelMessaging.Name = "btnCancelMessaging";
             this.btnCancelMessaging.Size = new System.Drawing.Size(75, 23);
@@ -153,7 +153,7 @@
             this.dgdMsgInbox.Name = "dgdMsgInbox";
             this.dgdMsgInbox.Size = new System.Drawing.Size(290, 285);
             this.dgdMsgInbox.TabIndex = 11;
-            this.dgdMsgInbox.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdMsgInbox_CellContentClick);
+            this.dgdMsgInbox.SelectionChanged += new System.EventHandler(this.dgdMsgInbox_SelectionChanged);
             // 
             // btnRefreshInbox
             // 

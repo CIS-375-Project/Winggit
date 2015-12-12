@@ -90,15 +90,18 @@ namespace Winggit.Forms
             LoadMessages();
         }
 
-        private void dgdMsgInbox_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgdMsgInbox_SelectionChanged(object sender, EventArgs e)
         {
-            btnDeleteMsg.Enabled = true;
-            btnCompose.Text = @"Reply";
-            txtMsgSender.Text = dgdMsgInbox.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txtMsgSubject.Text = dgdMsgInbox.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtMsgTimestamp.Text = dgdMsgInbox.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtMsgContents.Text = dgdMsgInbox.Rows[e.RowIndex].Cells[3].Value.ToString();
-            msgString = dgdMsgInbox.Rows[e.RowIndex].Cells[5].Value + " " + dgdMsgInbox.Rows[e.RowIndex].Cells[1].Value;
+            if (dgdMsgInbox.SelectedRows.Count > 0)
+            {
+                btnDeleteMsg.Enabled = true;
+                btnCompose.Text = @"Reply";
+                txtMsgSender.Text = dgdMsgInbox.SelectedRows[0].Cells[0].Value.ToString();
+                txtMsgSubject.Text = dgdMsgInbox.SelectedRows[0].Cells[1].Value.ToString();
+                txtMsgTimestamp.Text = dgdMsgInbox.SelectedRows[0].Cells[2].Value.ToString();
+                txtMsgContents.Text = dgdMsgInbox.SelectedRows[0].Cells[3].Value.ToString();
+                msgString = dgdMsgInbox.SelectedRows[0].Cells[5].Value + " " + dgdMsgInbox.SelectedRows[0].Cells[1].Value;
+            }
         }
 
         private void frmMessagingClient_FormClosing(object sender, FormClosingEventArgs e)

@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using Winggit.Enums;
 using System.Collections;
 using Winggit.Controls;
+using Winggit.Entities;
+using System.Data;
 
 namespace Winggit.Forms
 {
@@ -90,13 +92,48 @@ namespace Winggit.Forms
 
         private void btnFinishTagSighting_Click(object sender, EventArgs e)
         {
-            Hashtable oHash = new Hashtable();
+            Hashtable oHash;
             string sql;
             if (chkNewTag.Checked)
             {
-                // TODO Make new tag.
-                sql = "INSERT INTO Tags VALUES (CURRENT_TIMESTAMP,";
-                MessageBox.Show(@"Registered under Tag ID #[tag]", @"Butterfly tagged!", MessageBoxButtons.OK);
+                oHash = new Hashtable();
+                oHash.Add("@Species", txtSightingSpecies.Text.Trim());
+                oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+                sql = "INSERT INTO Butterflies OUTPUT inserted.* VALUES(0,@Species,'Neutral',0,@WingerNum)";
+                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                {
+                    oHash = new Hashtable();
+                    sql = "INSERT INTO Tags OUTPUT Inserted.* VALUES (CURRENT_TIMESTAMP,@City,@State,@Country,@Temp,@WingerNum,1,@Long,@Lat,@ID)";
+                    if(!string.IsNullOrEmpty(txtSightingCity.Text))
+                    {
+                        oHash.Add("@City", txtSightingCity.Text.Trim());
+                        oHash.Add("@State", cmbSightingStateProv.SelectedText);
+                        oHash.Add("@Country", cmbSightingCountry.SelectedText);
+                    }
+                    else
+                    {
+                        oHash.Add("@City", string.Empty);
+                        oHash.Add("@State", string.Empty);
+                        oHash.Add("@Country", string.Empty);
+                    }
+                    oHash.Add("@Temp", updTemperature.Value);
+                    oHash.Add("@WingerNum", Winger.currentWinger);
+                    if (updLatitude.Value > 0 || updLongitude.Value > 0)
+                    {
+                        oHash.Add("@Long", updLongitude.Value);
+                        oHash.Add("@Lat", updLatitude.Value);
+                    }
+                    else
+                    {
+                        oHash.Add("@Long", 0);
+                        oHash.Add("@Lat", 0);
+                    }
+                    oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
+                    using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
+                    {
+                        MessageBox.Show(@"Registered under Tag ID #" + oDataSet2.Tables[0].Rows[0]["TagID"], @"Butterfly tagged!", MessageBoxButtons.OK);
+                    }
+                }
             }
             else
             {
