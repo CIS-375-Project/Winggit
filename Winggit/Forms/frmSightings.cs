@@ -317,6 +317,7 @@ namespace Winggit.Forms
                 btnLoadInfo.Text = @"Go Back";
                 isButterflyLoaded = true;
                 chkNewTag.Enabled = false;
+                txtTagID.Enabled = false;
             }
             else
             {
@@ -328,6 +329,7 @@ namespace Winggit.Forms
                 txtTagID.Text = "";
                 txtSightingSpecies.Text = "";
                 chkNewTag.Enabled = true;
+                txtTagID.Enabled = true;
             }
         }
 
