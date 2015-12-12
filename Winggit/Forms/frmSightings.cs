@@ -35,7 +35,7 @@ namespace Winggit.Forms
 
         private void chkNewTag_CheckedChanged(object sender, EventArgs e)
         {
-            txtTagID.Enabled = !chkNewTag.Checked;
+            btnLoadInfo.Enabled = !chkNewTag.Checked;
             txtSightingSpecies.Enabled = chkNewTag.Checked;
             btnFinishTagSighting.Enabled = hasEnoughInfo();
         }

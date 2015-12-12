@@ -64,11 +64,12 @@
             this.lblSightingSpecies = new System.Windows.Forms.Label();
             this.btnSightingGeocache = new System.Windows.Forms.Button();
             this.grpGender = new System.Windows.Forms.GroupBox();
-            this.rdoMale = new System.Windows.Forms.RadioButton();
-            this.rdoFemale = new System.Windows.Forms.RadioButton();
             this.rdoUnknown = new System.Windows.Forms.RadioButton();
+            this.rdoFemale = new System.Windows.Forms.RadioButton();
+            this.rdoMale = new System.Windows.Forms.RadioButton();
             this.updWingspan = new System.Windows.Forms.NumericUpDown();
             this.lblWingspan = new System.Windows.Forms.Label();
+            this.btnLoadInfo = new System.Windows.Forms.Button();
             this.tbcLocationPicker.SuspendLayout();
             this.tabLatLong.SuspendLayout();
             this.grpEastWest.SuspendLayout();
@@ -449,7 +450,6 @@
             // 
             // btnSightingGeocache
             // 
-            this.btnSightingGeocache.Enabled = false;
             this.btnSightingGeocache.Location = new System.Drawing.Point(93, 268);
             this.btnSightingGeocache.Name = "btnSightingGeocache";
             this.btnSightingGeocache.Size = new System.Drawing.Size(92, 23);
@@ -470,26 +470,6 @@
             this.grpGender.TabStop = false;
             this.grpGender.Text = "Gender:";
             // 
-            // rdoMale
-            // 
-            this.rdoMale.AutoSize = true;
-            this.rdoMale.Location = new System.Drawing.Point(10, 20);
-            this.rdoMale.Name = "rdoMale";
-            this.rdoMale.Size = new System.Drawing.Size(48, 17);
-            this.rdoMale.TabIndex = 0;
-            this.rdoMale.Text = "Male";
-            this.rdoMale.UseVisualStyleBackColor = true;
-            // 
-            // rdoFemale
-            // 
-            this.rdoFemale.AutoSize = true;
-            this.rdoFemale.Location = new System.Drawing.Point(64, 20);
-            this.rdoFemale.Name = "rdoFemale";
-            this.rdoFemale.Size = new System.Drawing.Size(59, 17);
-            this.rdoFemale.TabIndex = 1;
-            this.rdoFemale.Text = "Female";
-            this.rdoFemale.UseVisualStyleBackColor = true;
-            // 
             // rdoUnknown
             // 
             this.rdoUnknown.AutoSize = true;
@@ -501,6 +481,26 @@
             this.rdoUnknown.TabStop = true;
             this.rdoUnknown.Text = "Unknown";
             this.rdoUnknown.UseVisualStyleBackColor = true;
+            // 
+            // rdoFemale
+            // 
+            this.rdoFemale.AutoSize = true;
+            this.rdoFemale.Location = new System.Drawing.Point(64, 20);
+            this.rdoFemale.Name = "rdoFemale";
+            this.rdoFemale.Size = new System.Drawing.Size(59, 17);
+            this.rdoFemale.TabIndex = 1;
+            this.rdoFemale.Text = "Female";
+            this.rdoFemale.UseVisualStyleBackColor = true;
+            // 
+            // rdoMale
+            // 
+            this.rdoMale.AutoSize = true;
+            this.rdoMale.Location = new System.Drawing.Point(10, 20);
+            this.rdoMale.Name = "rdoMale";
+            this.rdoMale.Size = new System.Drawing.Size(48, 17);
+            this.rdoMale.TabIndex = 0;
+            this.rdoMale.Text = "Male";
+            this.rdoMale.UseVisualStyleBackColor = true;
             // 
             // updWingspan
             // 
@@ -514,9 +514,18 @@
             this.lblWingspan.AutoSize = true;
             this.lblWingspan.Location = new System.Drawing.Point(228, 179);
             this.lblWingspan.Name = "lblWingspan";
-            this.lblWingspan.Size = new System.Drawing.Size(80, 13);
+            this.lblWingspan.Size = new System.Drawing.Size(83, 13);
             this.lblWingspan.TabIndex = 16;
-            this.lblWingspan.Text = "Wingspan (mm)";
+            this.lblWingspan.Text = "Wingspan (mm):";
+            // 
+            // btnLoadInfo
+            // 
+            this.btnLoadInfo.Location = new System.Drawing.Point(191, 268);
+            this.btnLoadInfo.Name = "btnLoadInfo";
+            this.btnLoadInfo.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadInfo.TabIndex = 17;
+            this.btnLoadInfo.Text = "Load Info";
+            this.btnLoadInfo.UseVisualStyleBackColor = true;
             // 
             // frmSightings
             // 
@@ -525,6 +534,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelSightings;
             this.ClientSize = new System.Drawing.Size(591, 303);
+            this.Controls.Add(this.btnLoadInfo);
             this.Controls.Add(this.lblWingspan);
             this.Controls.Add(this.updWingspan);
             this.Controls.Add(this.grpGender);
@@ -615,5 +625,6 @@
         private System.Windows.Forms.RadioButton rdoMale;
         private System.Windows.Forms.NumericUpDown updWingspan;
         private System.Windows.Forms.Label lblWingspan;
+        private System.Windows.Forms.Button btnLoadInfo;
     }
 }
