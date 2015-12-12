@@ -190,9 +190,16 @@ namespace Winggit.Forms
             btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
-        private void btnSightingGeocache_Click(object sender, EventArgs e)
+        private void btnSightingGeocode_Click(object sender, EventArgs e)
         {
-
+            if (tbcLocationPicker.SelectedIndex == 0)
+            {
+                // TODO try to load city/state/country
+            }
+            else
+            {
+                // TODO try to load lat/long
+            }
         }
 
         private void frmSightings_Load(object sender, EventArgs e)
