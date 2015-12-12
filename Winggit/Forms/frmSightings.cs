@@ -27,7 +27,7 @@ namespace Winggit.Forms
         private void txtTagID_TextChanged(object sender, EventArgs e)
         {
             btnLoadInfo.Enabled = txtTagID.Text.Length > 0;
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = btnLoadInfo.Text == @"Go Back" && hasEnoughInfo();
         }
 
         private void txtSightingTagID_KeyPress(object sender, KeyPressEventArgs e)
@@ -42,7 +42,7 @@ namespace Winggit.Forms
         {
             btnLoadInfo.Enabled = !chkNewTag.Checked;
             txtSightingSpecies.Enabled = chkNewTag.Checked;
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = btnLoadInfo.Text == @"Go Back" && hasEnoughInfo();
         }
 
         private void updLatitude_ValueChanged(object sender, EventArgs e)
@@ -305,6 +305,7 @@ namespace Winggit.Forms
                 grpGender.Enabled = false;
                 btnLoadInfo.Text = @"Go Back";
                 isButterflyLoaded = true;
+                chkNewTag.Enabled = false;
             }
             else
             {
@@ -313,7 +314,7 @@ namespace Winggit.Forms
                 isButterflyLoaded = false;
                 txtTagID.Text = "";
                 txtSightingSpecies.Text = "";
-
+                chkNewTag.Enabled = true;
             }
         }
 
