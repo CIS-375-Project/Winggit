@@ -88,6 +88,8 @@ namespace Winggit.Forms
             btnCompose.Text = @"Compose";
             msgString = "";
             LoadMessages();
+            btnCompose.Text = @"Compose";
+            btnDeleteMsg.Enabled = false;
         }
 
         private void dgdMsgInbox_SelectionChanged(object sender, EventArgs e)
