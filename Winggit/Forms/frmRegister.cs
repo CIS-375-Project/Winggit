@@ -2,6 +2,10 @@
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
+using Winggit.Controls;
+using System.Data;
+using System.Collections;
+using Winggit.Entities;
 
 namespace Winggit.Forms
 {
