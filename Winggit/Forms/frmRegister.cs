@@ -11,9 +11,22 @@ namespace Winggit.Forms
 {
     public partial class frmRegister : Form
     {
-        public frmRegister()
+        private readonly bool isEditing;
+        public frmRegister(bool isEd)
         {
+            isEditing = isEd;
             InitializeComponent();
+            if (isEditing)
+            {
+                Text = @"Edit Your Info";
+                btnRegister.Text = @"Finish";
+            }
+        }
+
+        public sealed override string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         private void btnCancelReg_Click(object sender, EventArgs e)
@@ -134,7 +147,14 @@ namespace Winggit.Forms
                 return;
             }
 
-
+            if (isEditing)
+            {
+                // TODO load user info
+                // TODO Set user info to values in text fields
+                // TODO Send updated user info to database.
+            }
+            else
+            {
             // TODO Check if user info exists.
             Hashtable oHash = new Hashtable();
             oHash.Add("@Name", txtRegName.Text.Trim());
@@ -162,6 +182,8 @@ namespace Winggit.Forms
                 }
             }
             // TODO try to register a new user with given info.
+        }
+
         }
 
         private void frmRegister_FormClosing(object sender, FormClosingEventArgs e)

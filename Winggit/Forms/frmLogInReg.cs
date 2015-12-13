@@ -24,7 +24,7 @@ namespace Winggit.Forms
 
         private void btnGoToRegister_Click(object sender, EventArgs e)
         {
-            new frmRegister().ShowDialog();
+            new frmRegister(false).ShowDialog();
             if (Winger.currentWinger == null)
                 return;
             Hide();
