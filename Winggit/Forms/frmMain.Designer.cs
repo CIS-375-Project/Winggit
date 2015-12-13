@@ -39,6 +39,7 @@
             this.btnOpenSightings = new System.Windows.Forms.Button();
             this.picBee = new System.Windows.Forms.PictureBox();
             this.btnGoToPokedex = new System.Windows.Forms.Button();
+            this.btnEditYourInfo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBee)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,12 +145,23 @@
             this.btnGoToPokedex.UseVisualStyleBackColor = true;
             this.btnGoToPokedex.Click += new System.EventHandler(this.btnGoToPokedex_Click);
             // 
+            // btnEditYourInfo
+            // 
+            this.btnEditYourInfo.Location = new System.Drawing.Point(167, 21);
+            this.btnEditYourInfo.Name = "btnEditYourInfo";
+            this.btnEditYourInfo.Size = new System.Drawing.Size(75, 34);
+            this.btnEditYourInfo.TabIndex = 9;
+            this.btnEditYourInfo.Text = "Edit Your Info";
+            this.btnEditYourInfo.UseVisualStyleBackColor = true;
+            this.btnEditYourInfo.Click += new System.EventHandler(this.btnEditYourInfo_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(396, 109);
+            this.Controls.Add(this.btnEditYourInfo);
             this.Controls.Add(this.btnGoToPokedex);
             this.Controls.Add(this.btnOpenSightings);
             this.Controls.Add(this.lblSocialLife);
@@ -185,5 +197,6 @@
         private System.Windows.Forms.Button btnOpenSightings;
         private System.Windows.Forms.PictureBox picBee;
         private System.Windows.Forms.Button btnGoToPokedex;
+        private System.Windows.Forms.Button btnEditYourInfo;
     }
 }
