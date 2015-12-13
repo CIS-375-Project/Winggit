@@ -20,6 +20,13 @@ namespace Winggit.Forms
             {
                 Text = @"Edit Your Info";
                 btnRegister.Text = @"Finish";
+                txtRegName.Text = Winger.currentWinger.Name;
+                txtRegPhoneNum.Text = Winger.currentWinger.PhoneNum;
+                txtRegHouseNumStreet.Text = Winger.currentWinger.Address;
+                txtRegCity.Text = Winger.currentWinger.City;
+                //cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
+                //int i = cmbRegCountry.Items.IndexOf(Winger.currentWinger.Country);
+                cmbRegStateProv.SelectedText = Winger.currentWinger.State;
             }
         }
 
@@ -33,6 +40,15 @@ namespace Winggit.Forms
         {
             cmbRegCountry.DataSource = Enum.GetValues(typeof (Country));
             btnRegister.Enabled = false;
+            if (isEditing)
+            {
+                cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
+                foreach (Country c in Enum.GetValues(typeof(Country)))
+                {
+                    if (c.)
+                }
+                int i = cmbRegCountry.Items.IndexOf(Winger.currentWinger.Country);
+            }
         }
 
         private void txtRegPhoneNum_TextChanged(object sender, EventArgs e)
@@ -164,8 +180,8 @@ namespace Winggit.Forms
                         oHash.Add("@Name", txtRegName.Text.Trim());
                         oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
                         oHash.Add("@City", txtRegCity.Text.Trim());
-                        oHash.Add("@State", cmbRegStateProv.SelectedText);
-                        oHash.Add("@Country", cmbRegCountry.SelectedText);
+                        oHash.Add("@State", cmbRegStateProv.SelectedItem);
+                        oHash.Add("@Country", cmbRegCountry.SelectedItem);
                         oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
                         sql = @"INSERT INTO Wingers OUTPUT Inserted.* VALUES(@Name, @Address, @City, @State, @Country, @Phone, NULL)";
                         using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
