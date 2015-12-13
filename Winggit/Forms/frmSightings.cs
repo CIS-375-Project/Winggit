@@ -166,9 +166,9 @@ namespace Winggit.Forms
                     }
                     else
                     {
-                        oHash.Add("@City", null);
-                        oHash.Add("@State", null);
-                        oHash.Add("@Country", null);
+                        oHash.Add("@City", string.Empty);
+                        oHash.Add("@State", string.Empty);
+                        oHash.Add("@Country", string.Empty);
                     }
                     oHash.Add("@Temp", updTemperature.Value);
                     oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
@@ -176,9 +176,9 @@ namespace Winggit.Forms
                     {
                         oHash.Add("@Long", updLongitude.Value);
                         oHash.Add("@Lat", updLatitude.Value);
-            }
-            else
-            {
+                    }
+                    else
+                    {
                         oHash.Add("@Long", null);
                         oHash.Add("@Lat", null);
                     }                  
