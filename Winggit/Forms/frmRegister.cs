@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Data;
-using System.Media;
 using System.Windows.Forms;
 using Winggit.Controls;
 using Winggit.Entities;
 using Winggit.Enums;
-using Winggit.Controls;
-using System.Data;
-using System.Collections;
-using Winggit.Entities;
 
 namespace Winggit.Forms
 {
