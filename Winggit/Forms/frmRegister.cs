@@ -28,8 +28,7 @@ namespace Winggit.Forms
                 txtRegPhoneNum.Text = Winger.currentWinger.PhoneNum;
                 txtRegHouseNumStreet.Text = Winger.currentWinger.Address;
                 txtRegCity.Text = Winger.currentWinger.City;
-                //cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
-                //int i = cmbRegCountry.Items.IndexOf(Winger.currentWinger.Country);
+                cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
                 cmbRegStateProv.SelectedText = Winger.currentWinger.State;
             }
         }
@@ -44,15 +43,6 @@ namespace Winggit.Forms
         {
             cmbRegCountry.DataSource = Enum.GetValues(typeof (Country));
             btnRegister.Enabled = false;
-            if (isEditing)
-            {
-                cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
-                foreach (Country c in Enum.GetValues(typeof(Country)))
-                {
-                    if (c.)
-                }
-                int i = cmbRegCountry.Items.IndexOf(Winger.currentWinger.Country);
-            }
         }
 
         private void txtRegPhoneNum_TextChanged(object sender, EventArgs e)
