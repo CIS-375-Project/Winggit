@@ -147,9 +147,9 @@
             // 
             // btnEditYourInfo
             // 
-            this.btnEditYourInfo.Location = new System.Drawing.Point(167, 21);
+            this.btnEditYourInfo.Location = new System.Drawing.Point(163, 21);
             this.btnEditYourInfo.Name = "btnEditYourInfo";
-            this.btnEditYourInfo.Size = new System.Drawing.Size(75, 34);
+            this.btnEditYourInfo.Size = new System.Drawing.Size(83, 23);
             this.btnEditYourInfo.TabIndex = 9;
             this.btnEditYourInfo.Text = "Edit Your Info";
             this.btnEditYourInfo.UseVisualStyleBackColor = true;
