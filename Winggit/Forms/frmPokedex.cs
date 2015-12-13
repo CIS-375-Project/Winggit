@@ -25,9 +25,9 @@ namespace Winggit.Forms
 
         private void frmPokedex_Load(object sender, EventArgs e)
         {
-            //TODO Load rankings
+            
             Hashtable oHash = new Hashtable();
-            string sql = "SELECT W.Name, COUNT(DISTINCT T.TagID) AS 'Number of Tags' FROM Wingers AS W JOIN Tags AS T ON W.WingerNum = T.WingerNum GROUP BY W.Name";
+            string sql = "SELECT W.Name, COUNT(DISTINCT T.TagID) AS 'Number of Tags', W.Percent_Complete AS 'Completion Percent' FROM Wingers AS W JOIN Tags AS T ON W.WingerNum = T.WingerNum GROUP BY W.Name, W.Percent_Complete";
             using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
             {
                 if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
@@ -47,7 +47,22 @@ namespace Winggit.Forms
         private void btnRefreshRankings_Click(object sender, EventArgs e)
         {
             dgdTaggerRankings.ClearSelection();
-            //TODO Reload rankings
+
+
+            Hashtable oHash = new Hashtable();
+            string sql = "SELECT W.Name, COUNT(DISTINCT T.TagID) AS 'Number of Tags' FROM Wingers AS W JOIN Tags AS T ON W.WingerNum = T.WingerNum GROUP BY W.Name";
+            using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+            {
+                if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
+
+                dgdTaggerRankings.DataSource = oDataSet.Tables[0];
+                dgdTaggerRankings.AllowUserToAddRows = false;
+                dgdTaggerRankings.ReadOnly = true;
+
+            }
         }
 
         private void frmPokedex_FormClosing(object sender, FormClosingEventArgs e)
