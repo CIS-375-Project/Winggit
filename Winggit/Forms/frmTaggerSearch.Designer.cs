@@ -132,6 +132,7 @@
             this.txtSearchCity.Name = "txtSearchCity";
             this.txtSearchCity.Size = new System.Drawing.Size(201, 20);
             this.txtSearchCity.TabIndex = 17;
+            this.txtSearchCity.TextChanged += new System.EventHandler(this.txtSearchCity_TextChanged);
             // 
             // btnSearch
             // 
@@ -173,6 +174,7 @@
             this.txtSearchTaggerID.ShortcutsEnabled = false;
             this.txtSearchTaggerID.Size = new System.Drawing.Size(201, 20);
             this.txtSearchTaggerID.TabIndex = 2;
+            this.txtSearchTaggerID.TextChanged += new System.EventHandler(this.txtSearchTaggerID_TextChanged);
             this.txtSearchTaggerID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchTaggerID_KeyPress);
             // 
             // lblSearchName
@@ -190,6 +192,7 @@
             this.txtSearchName.Name = "txtSearchName";
             this.txtSearchName.Size = new System.Drawing.Size(201, 20);
             this.txtSearchName.TabIndex = 0;
+            this.txtSearchName.TextChanged += new System.EventHandler(this.txtSearchName_TextChanged);
             // 
             // dgdTaggerSearchResults
             // 

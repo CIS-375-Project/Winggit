@@ -75,7 +75,7 @@ namespace Winggit.Forms
             else
             {
                 cmbSearchStateProv.Enabled = false;
-                btnSearch.Enabled = false;
+                btnSearch.Enabled = txtSearchCity.Text.Trim().Length > 0;
                 cmbSearchStateProv.SelectedIndex = -1;
             }
         }
@@ -97,7 +97,7 @@ namespace Winggit.Forms
 
         private void cmbSearchStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnSearch.Enabled = cmbSearchStateProv.SelectedIndex > 0;
+            btnSearch.Enabled = cmbSearchStateProv.SelectedIndex > 0 || txtSearchCity.Text.Trim().Length > 0;
         }
 
         private void rdoSearchByLocation_CheckedChanged(object sender, EventArgs e)
@@ -106,6 +106,7 @@ namespace Winggit.Forms
             {
                 grpByLocation.Enabled = true;
                 grpByTaggerInfo.Enabled = false;
+                btnSearch.Enabled = txtSearchCity.Text.Trim().Length > 0 || cmbSearchCountry.SelectedIndex > 0;
             }
             else
             {
@@ -120,12 +121,28 @@ namespace Winggit.Forms
             {
                 grpByLocation.Enabled = false;
                 grpByTaggerInfo.Enabled = true;
+                btnSearch.Enabled = txtSearchName.Text.Trim().Length > 0 || txtSearchTaggerID.Text.Length > 0;
             }
             else
             {
                 grpByLocation.Enabled = true;
                 grpByTaggerInfo.Enabled = false;
             }
+        }
+
+        private void txtSearchName_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch.Enabled = txtSearchName.Text.Trim().Length + txtSearchTaggerID.Text.Length > 0;
+        }
+
+        private void txtSearchTaggerID_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch.Enabled = txtSearchTaggerID.Text.Length + txtSearchName.Text.Trim().Length > 0;
+        }
+
+        private void txtSearchCity_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch.Enabled = txtSearchCity.Text.Trim().Length > 0 || cmbSearchCountry.SelectedIndex > 0;
         }
     }
 }
