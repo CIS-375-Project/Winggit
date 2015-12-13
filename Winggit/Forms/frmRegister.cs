@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Data;
 using System.Media;
 using System.Windows.Forms;
+using Winggit.Controls;
+using Winggit.Entities;
 using Winggit.Enums;
 
 namespace Winggit.Forms
@@ -167,7 +171,7 @@ namespace Winggit.Forms
                         using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
                         {
                             Winger.currentWinger = new Winger(oDataSet2.Tables[0].Rows[0]);
-                            MessageBox.Show("Congradulations! You are registered with Tagger Number #" + oDataSet2.Tables[0].Rows[0]["WingerNum"], "Congradulations!");
+                            MessageBox.Show(@"Congratulations! You are registered with Tagger Number #" + oDataSet2.Tables[0].Rows[0]["WingerNum"], @"Congratulations!", MessageBoxButtons.OK);
                             Close();
                         }
                     }
