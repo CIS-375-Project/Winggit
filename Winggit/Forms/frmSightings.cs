@@ -132,9 +132,9 @@ namespace Winggit.Forms
                     }
                     else
                     {
-                        oHash.Add("@City", null);
-                        oHash.Add("@State", null);
-                        oHash.Add("@Country", null);
+                        oHash.Add("@City", string.Empty);
+                        oHash.Add("@State", string.Empty);
+                        oHash.Add("@Country", string.Empty);
                     }
                     oHash.Add("@Temp", updTemperature.Value);
                     oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
@@ -150,6 +150,7 @@ namespace Winggit.Forms
                     }
                     oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
                     DBFunctions.RunQuery(sql, oHash);
+                    SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
                     return;
                 }
@@ -184,9 +185,10 @@ namespace Winggit.Forms
             {
                         oHash.Add("@Long", null);
                         oHash.Add("@Lat", null);
-                    }
+                    }                  
                     oHash.Add("@ID", Butterfly.currentButterfly.ButterflyID);
                     DBFunctions.RunQuery(sql, oHash);
+                    SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
                 }
             }
@@ -350,6 +352,40 @@ namespace Winggit.Forms
                 Butterfly.currentButterfly = new Butterfly(oDataSet.Tables[0].Rows[0]);
                 return true;
             }
+        }
+
+        private void SetCompletionRate()
+        {
+            float completionPercentage; 
+            Hashtable oHash = new Hashtable();
+            oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+            string sql =
+                "SELECT COUNT(*) AS 'NumSightings', ButterflyID FROM Tags WHERE WingerNum = @WingerNum GROUP BY ButterflyID";
+
+            using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+            {
+                sql = "SELECT COUNT(*) AS 'NumButterflies' FROM Butterflies";
+                oHash = new Hashtable();
+
+                using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
+                {
+                    int rows1, rows2;
+                    rows1 = oDataSet.Tables[0].Rows.Count;
+                    rows2 = (int) oDataSet2.Tables[0].Rows[0]["NumButterflies"];
+
+                    //completionPercentage = (oDataSet.Tables[0].Rows.Count/
+                                                  //(int)oDataSet2.Tables[0].Rows[0]["NumButterflies"])*100;
+
+                    completionPercentage = ((float)rows1/(float)rows2)*100;
+                }
+            }
+
+            oHash = new Hashtable();
+            oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+            oHash.Add("@Percent_Complete", completionPercentage);
+            sql = "UPDATE Wingers SET Percent_Complete = @Percent_Complete WHERE WingerNum = @WingerNum";
+
+            DBFunctions.RunQuery(sql, oHash);
         }
     }
 }
