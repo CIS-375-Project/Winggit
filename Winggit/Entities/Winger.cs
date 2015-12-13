@@ -7,6 +7,9 @@ namespace Winggit.Entities
         private int wingerNum;
         private string name;
         private string address;
+        private string city;
+        private string state;
+        private string country;
         private string phoneNum;
         public static Winger currentWinger;
 
@@ -15,6 +18,9 @@ namespace Winggit.Entities
             wingerNum = int.Parse(oRow["WingerNum"].ToString());
             name = oRow["Name"].ToString();
             address = oRow["Address"].ToString();
+            city = oRow["City"].ToString();
+            state = oRow["State"].ToString();
+            country = oRow["Country"].ToString();
             phoneNum = oRow["PhoneNum"].ToString();
         }
 
@@ -23,6 +29,54 @@ namespace Winggit.Entities
             get
             {
                 return wingerNum;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+        }
+
+        public string Address
+        {
+            get
+            {
+                return address;
+            }
+        }
+
+        public string City
+        {
+            get
+            {
+                return city;
+            }
+        }
+
+        public string State
+        {
+            get
+            {
+                return state;
+            }
+        }
+
+        public string Country
+        {
+            get
+            {
+                return country;
+            }
+        }
+
+        public string PhoneNum
+        {
+            get
+            {
+                return phoneNum;
             }
         }
     }

@@ -141,20 +141,43 @@ namespace Winggit.Forms
 
             if (isEditing)
             {
-                // TODO load user info
+                
                 // TODO Set user info to values in text fields
                 // TODO Send updated user info to database.
             }
             else
             {
-                // TODO Check if user info exists.
-                // TODO try to register a new user with given info.
-            }
+                Hashtable oHash = new Hashtable();
+                oHash.Add("@Name", txtRegName.Text.Trim());
+                oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
+                oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
+                string sql = "SELECT * FROM Wingers WHERE Name = @Name AND Address = @Address AND PhoneNum = @Phone";
+                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                {
+                    if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                    {
+                        oHash = new Hashtable();
+                        oHash.Add("@Name", txtRegName.Text.Trim());
+                        oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
+                        oHash.Add("@City", txtRegCity.Text.Trim());
+                        oHash.Add("@State", cmbRegStateProv.SelectedText);
+                        oHash.Add("@Country", cmbRegCountry.SelectedText);
+                        oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
+                        sql = @"INSERT INTO Wingers OUTPUT Inserted.* VALUES(@Name, @Address, @City, @State, @Country, @Phone, NULL)";
+                        using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
+                        {
+                            Winger.currentWinger = new Winger(oDataSet2.Tables[0].Rows[0]);
+                            MessageBox.Show("Congradulations! You are registered with Tagger Number #" + oDataSet2.Tables[0].Rows[0]["WingerNum"], "Congradulations!");
+                            Close();
+                        }
+                    }
+                }
+        }
             Close();
         }
 
         private void btnCancelReg_Click(object sender, EventArgs e)
-        {
+            {
             Close();
         }
     }
