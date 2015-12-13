@@ -2,10 +2,6 @@
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
-using Winggit.Entities;
-using System.Data;
-using System.Collections;
-using Winggit.Controls;
 
 namespace Winggit.Forms
 {
@@ -27,10 +23,6 @@ namespace Winggit.Forms
         {
             get { return base.Text; }
             set { base.Text = value; }
-        }
-
-        private void btnCancelReg_Click(object sender, EventArgs e)
-        {
         }
 
         private void frmRegister_Load(object sender, EventArgs e)
@@ -181,17 +173,12 @@ namespace Winggit.Forms
                     }
                 }
         }
-
+            Close();
         }
 
-        private void frmRegister_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Any info you entered will be lost. Proceed?", @"Are you sure?",
-                MessageBoxButtons.YesNo) == DialogResult.No)
+        private void btnCancelReg_Click(object sender, EventArgs e)
             {
-                e.Cancel = true;
-            }
+            Close();
         }
     }
 }
