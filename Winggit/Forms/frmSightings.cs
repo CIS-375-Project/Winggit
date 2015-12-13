@@ -20,10 +20,6 @@ namespace Winggit.Forms
             loadedID = 0;
         }
 
-        private void btnCancelSightings_Click(object sender, EventArgs e)
-        {
-        }
-
         private void txtTagID_TextChanged(object sender, EventArgs e)
         {
             btnLoadInfo.Enabled = txtTagID.Text.Length > 0;

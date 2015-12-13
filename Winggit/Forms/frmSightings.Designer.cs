@@ -92,7 +92,6 @@
             this.btnCancelSightings.TabIndex = 0;
             this.btnCancelSightings.Text = "Cancel";
             this.btnCancelSightings.UseVisualStyleBackColor = true;
-            this.btnCancelSightings.Click += new System.EventHandler(this.btnCancelSightings_Click);
             // 
             // btnFinishTagSighting
             // 

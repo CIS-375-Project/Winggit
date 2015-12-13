@@ -2,10 +2,6 @@
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
-using Winggit.Entities;
-using System.Data;
-using System.Collections;
-using Winggit.Controls;
 
 namespace Winggit.Forms
 {
@@ -27,10 +23,6 @@ namespace Winggit.Forms
         {
             get { return base.Text; }
             set { base.Text = value; }
-        }
-
-        private void btnCancelReg_Click(object sender, EventArgs e)
-        {
         }
 
         private void frmRegister_Load(object sender, EventArgs e)
@@ -155,45 +147,15 @@ namespace Winggit.Forms
             }
             else
             {
-            // TODO Check if user info exists.
-            Hashtable oHash = new Hashtable();
-            oHash.Add("@Name", txtRegName.Text.Trim());
-            oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
-            oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
-            string sql = "SELECT * FROM Wingers WHERE Name = @Name AND Address = @Address AND PhoneNum = @Phone";
-            using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
-            {
-                if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
-                {
-                    oHash = new Hashtable();
-                    oHash.Add("@Name", txtRegName.Text.Trim());
-                    oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
-                    oHash.Add("@City", txtRegCity.Text.Trim());
-                    oHash.Add("@State", cmbRegStateProv.SelectedText);
-                    oHash.Add("@Country", cmbRegCountry.SelectedText);
-                    oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
-                    sql = @"INSERT INTO Wingers OUTPUT Inserted.* VALUES(@Name, @Address, @City, @State, @Country, @Phone, NULL)";
-                    using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
-                    {
-                        Winger.currentWinger = new Winger(oDataSet2.Tables[0].Rows[0]);
-                        MessageBox.Show("Congradulations! You are registered with Tagger Number #" + oDataSet2.Tables[0].Rows[0]["WingerNum"], "Congradulations!");
-                        Close();
-                    }
-                }
+                // TODO Check if user info exists.
+                // TODO try to register a new user with given info.
             }
-            // TODO try to register a new user with given info.
+            Close();
         }
 
-        }
-
-        private void frmRegister_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnCancelReg_Click(object sender, EventArgs e)
         {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Any info you entered will be lost. Proceed?", @"Are you sure?",
-                MessageBoxButtons.YesNo) == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
+            Close();
         }
     }
 }
