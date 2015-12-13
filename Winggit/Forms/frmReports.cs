@@ -45,7 +45,7 @@ namespace Winggit.Forms
         {
             SystemSounds.Asterisk.Play();
             if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
+                DialogResult.No)
             {
                 e.Cancel = true;
             }
