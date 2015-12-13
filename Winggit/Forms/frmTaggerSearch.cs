@@ -33,24 +33,45 @@ namespace Winggit.Forms
             int count = 0;
             Hashtable oHash = new Hashtable();
             string sql = "SELECT * From Wingers WHERE";
-            if (txtSearchCity.Text.Length > 0)
+            if (rdoSearchByLocation.Checked)
             {
-                oHash.Add("@City", txtSearchCity.Text);
-                sql += " City = @City";
-                count++;
-            }
-            if (cmbSearchCountry.SelectedIndex > 0)
-            {
-                if (count > 0)
+                if (txtSearchCity.Text.Length > 0)
                 {
-                    sql += " AND";
+                    oHash.Add("@City", txtSearchCity.Text);
+                    sql += " City like '%' + @City + '%'";
+                    count++;
                 }
-                oHash.Add("@Country", cmbSearchCountry.SelectedItem.ToString());
-                sql += " Country = @Country";
-                if (cmbSearchStateProv.SelectedIndex > 0)
+                if (cmbSearchCountry.SelectedIndex > 0)
                 {
-                    oHash.Add("@State", cmbSearchStateProv.SelectedItem.ToString());
-                    sql += " AND State = @State";
+                    if (count > 0)
+                    {
+                        sql += " AND";
+                    }
+                    oHash.Add("@Country", cmbSearchCountry.SelectedItem.ToString());
+                    sql += " Country like '%' + @Country + '%'";
+                    if (cmbSearchStateProv.SelectedIndex > 0)
+                    {
+                        oHash.Add("@State", cmbSearchStateProv.SelectedItem.ToString());
+                        sql += " AND State like '%' + @State + '%'";
+                    }
+                }
+            }
+            else
+            {
+                if (txtSearchName.Text.Length > 0)
+                {
+                    oHash.Add("@Name", txtSearchName.Text.Trim());
+                    sql += " Name like '%' + @Name + '%'";
+                    count++;
+                }
+                if (txtSearchTaggerID.Text.Length > 0)
+                {
+                    if (count > 0)
+                    {
+                        sql += " AND";
+                    }
+                    oHash.Add("@TaggerID", txtSearchTaggerID.Text.Trim());
+                    sql += " WingerNum like '%' + @TaggerID + '%'";
                 }
             }
             using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
@@ -60,6 +81,12 @@ namespace Winggit.Forms
                     return;
                 }
                 dgdTaggerSearchResults.DataSource = oDataSet.Tables[0];
+                dgdTaggerSearchResults.ClearSelection();
+                dgdTaggerSearchResults.AllowUserToAddRows = false;
+                dgdTaggerSearchResults.ReadOnly = true;
+                dgdTaggerSearchResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgdTaggerSearchResults.MultiSelect = false;
+                dgdTaggerSearchResults.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
             }
         }
 
@@ -75,7 +102,7 @@ namespace Winggit.Forms
             else
             {
                 cmbSearchStateProv.Enabled = false;
-                btnSearch.Enabled = false;
+                btnSearch.Enabled = txtSearchCity.Text.Trim().Length > 0;
                 cmbSearchStateProv.SelectedIndex = -1;
             }
         }
@@ -97,7 +124,7 @@ namespace Winggit.Forms
 
         private void cmbSearchStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnSearch.Enabled = cmbSearchStateProv.SelectedIndex > 0;
+            btnSearch.Enabled = cmbSearchStateProv.SelectedIndex > 0 || txtSearchCity.Text.Trim().Length > 0;
         }
 
         private void rdoSearchByLocation_CheckedChanged(object sender, EventArgs e)
@@ -106,6 +133,7 @@ namespace Winggit.Forms
             {
                 grpByLocation.Enabled = true;
                 grpByTaggerInfo.Enabled = false;
+                btnSearch.Enabled = txtSearchCity.Text.Trim().Length > 0 || cmbSearchCountry.SelectedIndex > 0;
             }
             else
             {
@@ -120,12 +148,28 @@ namespace Winggit.Forms
             {
                 grpByLocation.Enabled = false;
                 grpByTaggerInfo.Enabled = true;
+                btnSearch.Enabled = txtSearchName.Text.Trim().Length > 0 || txtSearchTaggerID.Text.Length > 0;
             }
             else
             {
                 grpByLocation.Enabled = true;
                 grpByTaggerInfo.Enabled = false;
             }
+        }
+
+        private void txtSearchName_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch.Enabled = txtSearchName.Text.Trim().Length + txtSearchTaggerID.Text.Length > 0;
+        }
+
+        private void txtSearchTaggerID_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch.Enabled = txtSearchTaggerID.Text.Length + txtSearchName.Text.Trim().Length > 0;
+        }
+
+        private void txtSearchCity_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch.Enabled = txtSearchCity.Text.Trim().Length > 0 || cmbSearchCountry.SelectedIndex > 0;
         }
     }
 }

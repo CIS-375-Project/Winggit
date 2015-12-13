@@ -90,7 +90,7 @@ namespace Winggit.Forms
                 {
                     if(oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
                     {
-                        MessageBox.Show("Not a registered user!", "Error!", MessageBoxButtons.OK);
+                        MessageBox.Show(@"Not a registered user!", @"Error!", MessageBoxButtons.OK);
                         return;
                     }
                 }
@@ -111,7 +111,7 @@ namespace Winggit.Forms
 
             DBFunctions.RunQuery(sql, oHash);
 
-            MessageBox.Show("Your message has been sent!", "Message Sent", MessageBoxButtons.OK);
+            MessageBox.Show(@"Your message has been sent!", @"Message Sent", MessageBoxButtons.OK);
             isSending = true;
             Close();
 
@@ -133,20 +133,12 @@ namespace Winggit.Forms
         private void frmComposeMsg_FormClosing(object sender, FormClosingEventArgs e)
         {
             SystemSounds.Asterisk.Play();
-            if (!isSending)
-            {               
-                    if (MessageBox.Show(@"Your message won't be saved. Proceed?", @"Return to inbox?",
-                            MessageBoxButtons.YesNo) == DialogResult.No)
-                    {
-                        e.Cancel = true;
-                    }
+            if (isSending) return;
+            if (MessageBox.Show(@"Your message won't be saved. Proceed?", @"Return to inbox?",
+                MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
             }
-            
-        }
-
-        private void btnCancelCompose_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }

@@ -62,5 +62,10 @@ namespace Winggit.Forms
                 e.Cancel = true;
             }
         }
+
+        private void btnEditYourInfo_Click(object sender, EventArgs e)
+        {
+            new frmRegister(true).ShowDialog();
+        }
     }
 }

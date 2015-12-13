@@ -2,18 +2,31 @@
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
+using Winggit.Controls;
+using System.Data;
+using System.Collections;
+using Winggit.Entities;
 
 namespace Winggit.Forms
 {
     public partial class frmRegister : Form
     {
-        public frmRegister()
+        private readonly bool isEditing;
+        public frmRegister(bool isEd)
         {
+            isEditing = isEd;
             InitializeComponent();
+            if (isEditing)
+            {
+                Text = @"Edit Your Info";
+                btnRegister.Text = @"Finish";
+            }
         }
 
-        private void btnCancelReg_Click(object sender, EventArgs e)
+        public sealed override string Text
         {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         private void frmRegister_Load(object sender, EventArgs e)
@@ -130,19 +143,46 @@ namespace Winggit.Forms
                 return;
             }
 
-
-            // TODO Check if user info exists.
-            // TODO try to register a new user with given info.
+            if (isEditing)
+            {
+                
+                // TODO Set user info to values in text fields
+                // TODO Send updated user info to database.
+            }
+            else
+            {
+                Hashtable oHash = new Hashtable();
+                oHash.Add("@Name", txtRegName.Text.Trim());
+                oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
+                oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
+                string sql = "SELECT * FROM Wingers WHERE Name = @Name AND Address = @Address AND PhoneNum = @Phone";
+                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                {
+                    if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                    {
+                        oHash = new Hashtable();
+                        oHash.Add("@Name", txtRegName.Text.Trim());
+                        oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
+                        oHash.Add("@City", txtRegCity.Text.Trim());
+                        oHash.Add("@State", cmbRegStateProv.SelectedText);
+                        oHash.Add("@Country", cmbRegCountry.SelectedText);
+                        oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
+                        sql = @"INSERT INTO Wingers OUTPUT Inserted.* VALUES(@Name, @Address, @City, @State, @Country, @Phone, NULL)";
+                        using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
+                        {
+                            Winger.currentWinger = new Winger(oDataSet2.Tables[0].Rows[0]);
+                            MessageBox.Show("Congradulations! You are registered with Tagger Number #" + oDataSet2.Tables[0].Rows[0]["WingerNum"], "Congradulations!", MessageBoxButtons.OK);
+                            Close();
+                        }
+                    }
+                }
+        }
+            Close();
         }
 
-        private void frmRegister_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Any info you entered will be lost. Proceed?", @"Are you sure?",
-                MessageBoxButtons.YesNo) == DialogResult.No)
+        private void btnCancelReg_Click(object sender, EventArgs e)
             {
-                e.Cancel = true;
-            }
+            Close();
         }
     }
 }

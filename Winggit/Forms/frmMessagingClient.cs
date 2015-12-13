@@ -57,10 +57,6 @@ namespace Winggit.Forms
             string sql = "SELECT W.Name as 'Sender', M.Subject, M.TimeStamp, M.Body, M.MessageID, M.Source FROM Messages as M JOIN Wingers as W ON WingerNum = Source WHERE Destination = @WingerNum";
             using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
             {
-                if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
-                {
-                    return;
-                }
                 dgdMsgInbox.DataSource = oDataSet.Tables[0];
                 dgdMsgInbox.ClearSelection();
                 dgdMsgInbox.Columns[4].Visible = false;
