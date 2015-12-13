@@ -175,7 +175,7 @@ namespace Winggit.Forms
                         using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
                         {
                             Winger.currentWinger = new Winger(oDataSet2.Tables[0].Rows[0]);
-                            MessageBox.Show("Congradulations! You are registered with Tagger Number #" + oDataSet2.Tables[0].Rows[0]["WingerNum"], "Congradulations!");
+                            MessageBox.Show("Congradulations! You are registered with Tagger Number #" + oDataSet2.Tables[0].Rows[0]["WingerNum"], "Congradulations!", MessageBoxButtons.OK);
                             Close();
                         }
                     }
