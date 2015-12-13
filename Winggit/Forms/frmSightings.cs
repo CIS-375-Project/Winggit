@@ -88,7 +88,6 @@ namespace Winggit.Forms
 
         private void cmbSightingStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // TODO Check if city, temperature, and temperature system are entered. (possibly also that tab index is 1).
             btnFinishTagSighting.Enabled = hasEnoughInfo();
         }
 
@@ -148,7 +147,6 @@ namespace Winggit.Forms
                     DBFunctions.RunQuery(sql, oHash);
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
-                    return;
                 }
             }
             else

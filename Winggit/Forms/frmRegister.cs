@@ -19,6 +19,12 @@ namespace Winggit.Forms
             {
                 Text = @"Edit Your Info";
                 btnRegister.Text = @"Finish";
+                txtRegName.Text = Winger.currentWinger.Name;
+                txtRegPhoneNum.Text = Winger.currentWinger.PhoneNum;
+                txtRegHouseNumStreet.Text = Winger.currentWinger.Address;
+                txtRegCity.Text = Winger.currentWinger.City;
+                cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
+                cmbRegStateProv.SelectedText = Winger.currentWinger.State;
             }
         }
 
@@ -163,8 +169,8 @@ namespace Winggit.Forms
                         oHash.Add("@Name", txtRegName.Text.Trim());
                         oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
                         oHash.Add("@City", txtRegCity.Text.Trim());
-                        oHash.Add("@State", cmbRegStateProv.SelectedText);
-                        oHash.Add("@Country", cmbRegCountry.SelectedText);
+                        oHash.Add("@State", cmbRegStateProv.SelectedItem);
+                        oHash.Add("@Country", cmbRegCountry.SelectedItem);
                         oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
                         sql = @"INSERT INTO Wingers OUTPUT Inserted.* VALUES(@Name, @Address, @City, @State, @Country, @Phone, NULL)";
                         using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
