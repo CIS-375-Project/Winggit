@@ -7,8 +7,10 @@ namespace Winggit.Forms
 {
     public partial class frmReports : Form
     {
+        private bool hasDateChanged;
         public frmReports()
         {
+            hasDateChanged = false;
             InitializeComponent();
         }
 
@@ -34,10 +36,20 @@ namespace Winggit.Forms
             {
                 case ReportType.Tags:
                     // TODO If Date selected, find tags only on that date.
+                    if (hasDateChanged)
+                    {
+                        
+                    }
                     // TODO if location info provided, find tags at given location.
+
                     break;
                 case ReportType.Sightings:
                     // TODO If Date selected, find sightings only on that date.
+
+                    if (hasDateChanged)
+                    {
+                        
+                    }
                     // TODO if location info provided, find sightings at given location.
                     break;
                 case ReportType.Routes:
@@ -144,6 +156,7 @@ namespace Winggit.Forms
 
         private void tbcReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            hasDateChanged = false;
             switch ((ReportType) tbcReportType.SelectedIndex)
             {
                 case ReportType.Tags:
@@ -167,11 +180,17 @@ namespace Winggit.Forms
 
         private void calTagsRptDate_DateSelected(object sender, DateRangeEventArgs e)
         {
+            hasDateChanged = true; 
         }
 
         private void btnOutput_Click(object sender, EventArgs e)
         {
             // TODO Determine if we can output to file. If not, display messagebox.
+        }
+
+        private void calSightingsRptDate_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            hasDateChanged = true;
         }
     }
 }
