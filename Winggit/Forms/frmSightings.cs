@@ -169,6 +169,7 @@ namespace Winggit.Forms
                     DBFunctions.RunQuery(sql, oHash);
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
+                    Close();
                 }
             }
         }
@@ -258,11 +259,14 @@ namespace Winggit.Forms
 
         private void frmSightings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SystemSounds.Asterisk.Play();
-            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
-                DialogResult.No)
+            if (e.CloseReason == CloseReason.UserClosing)
             {
-                e.Cancel = true;
+                SystemSounds.Asterisk.Play();
+                if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
+                    DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 

@@ -57,7 +57,7 @@ namespace Winggit.Forms
                 txtNewMsgBody.Text = "";
             }
             isBodyFull = txtNewMsgBody.Text.Length > 0;
-            checkIfSendable();
+            CheckIfSendable();
         }
 
         private void txtNewMsgSubject_TextChanged(object sender, EventArgs e)
@@ -67,13 +67,13 @@ namespace Winggit.Forms
                 txtNewMsgSubject.Text = "";
             }
             isSubjectFull = txtNewMsgSubject.Text.Length > 0;
-            checkIfSendable();
+            CheckIfSendable();
         }
 
         private void txtNewMsgRecipient_TextChanged(object sender, EventArgs e)
         {
             isRecipientFull = txtNewMsgRecipient.Text.Length > 0;
-            checkIfSendable();
+            CheckIfSendable();
         }
 
         private void btnSendMsg_Click(object sender, EventArgs e)
@@ -125,7 +125,7 @@ namespace Winggit.Forms
             }
         }
 
-        private void checkIfSendable()
+        private void CheckIfSendable()
         {
             btnSendMsg.Enabled = isBodyFull && isRecipientFull && isSubjectFull;
         }
