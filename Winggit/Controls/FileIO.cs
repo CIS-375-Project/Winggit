@@ -24,16 +24,16 @@ namespace Winggit.Controls
             };
             if (ofd.ShowDialog() != DialogResult.OK) return;
             FileStream sightingsStream = File.OpenRead(ofd.FileName);
-            processFile(sightingsStream);
+            ProcessFile(sightingsStream);
         }
 
-        private void processFile(FileStream fileStream)
+        private void ProcessFile(FileStream fileStream)
         {
             
             
         }
 
-        private void outputFile()
+        private void OutputFile()
         {
             
 
@@ -56,7 +56,7 @@ namespace Winggit.Controls
             {
                 string[] lines = {"", ""};
 
-                System.IO.File.WriteAllLines(@"C:\Users\Public\Test Folder\output.txt", lines);
+                File.WriteAllLines(@"C:\Users\Public\Test Folder\output.txt", lines);
             }
         }
     }

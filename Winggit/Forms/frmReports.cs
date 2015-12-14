@@ -100,7 +100,7 @@ namespace Winggit.Forms
                 cmbTagRptStateProv.Enabled = false;
                 cmbTagRptStateProv.SelectedIndex = -1;
             }
-            btnGetReport.Enabled = cmbTagsRptCountry.SelectedIndex > 0 || txtTagRptCity.Text.Trim().Length > 0;
+            btnGetReport.Enabled = hasDateChanged || cmbTagsRptCountry.SelectedIndex > 0 || txtTagRptCity.Text.Trim().Length > 0;
         }
 
         private void txtTagRptCity_TextChanged(object sender, EventArgs e)
@@ -109,7 +109,7 @@ namespace Winggit.Forms
             {
                 txtTagRptCity.Text = "";
             }
-            btnGetReport.Enabled = txtTagRptCity.Text.Length > 0 || cmbTagsRptCountry.SelectedIndex > 0;
+            btnGetReport.Enabled = hasDateChanged || txtTagRptCity.Text.Length > 0 || cmbTagsRptCountry.SelectedIndex > 0;
         }
 
         private void txtSightRptCity_TextChanged(object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace Winggit.Forms
             {
                 txtSightRptCity.Text = "";
             }
-            btnGetReport.Enabled = txtSightRptCity.Text.Length > 0 || cmbSightRptCountry.SelectedIndex > 0;
+            btnGetReport.Enabled = hasDateChanged || txtSightRptCity.Text.Length > 0 || cmbSightRptCountry.SelectedIndex > 0;
         }
 
         private void cmbSightRptCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,7 +133,7 @@ namespace Winggit.Forms
                 cmbSightRptStateProv.Enabled = false;
                 cmbSightRptStateProv.SelectedIndex = -1;
             }
-            btnGetReport.Enabled = cmbSightRptCountry.SelectedIndex > 0 || txtSightRptCity.Text.Trim().Length > 0;
+            btnGetReport.Enabled = hasDateChanged || cmbSightRptCountry.SelectedIndex > 0 || txtSightRptCity.Text.Trim().Length > 0;
         }
 
         private void txtPeaksID_KeyPress(object sender, KeyPressEventArgs e)
@@ -146,12 +146,12 @@ namespace Winggit.Forms
 
         private void txtPeaksID_TextChanged(object sender, EventArgs e)
         {
-            btnGetReport.Enabled = txtPeaksID.Text.Length > 0;
+            btnGetReport.Enabled = hasDateChanged || txtPeaksID.Text.Length > 0;
         }
 
         private void txtReportRouteID_TextChanged(object sender, EventArgs e)
         {
-            btnGetReport.Enabled = txtReportRouteID.Text.Length > 0;
+            btnGetReport.Enabled = hasDateChanged || txtReportRouteID.Text.Length > 0;
         }
 
         private void tbcReportType_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,7 +180,8 @@ namespace Winggit.Forms
 
         private void calTagsRptDate_DateSelected(object sender, DateRangeEventArgs e)
         {
-            hasDateChanged = true; 
+            hasDateChanged = true;
+            btnGetReport.Enabled = true;
         }
 
         private void btnOutput_Click(object sender, EventArgs e)
@@ -191,6 +192,7 @@ namespace Winggit.Forms
         private void calSightingsRptDate_DateSelected(object sender, DateRangeEventArgs e)
         {
             hasDateChanged = true;
+            btnGetReport.Enabled = true;
         }
     }
 }
