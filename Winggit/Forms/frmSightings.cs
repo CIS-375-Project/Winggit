@@ -249,13 +249,13 @@ namespace Winggit.Forms
                                 return;
                             }
                             string[] location = oDataSet.Tables[1].Rows[1][1].ToString().Split(',');
-                            for (int i = 0; i < 3; i++)
+                            for (int i = 0; i < location.Length; i++)
                             {
                                 location[i] = location[i].Trim();
                             }
-                            txtSightingCity.Text = location[0];
-                            cmbSightingCountry.SelectedIndex = cmbSightingCountry.FindString(location[2]);
-                            cmbSightingStateProv.SelectedIndex = cmbSightingStateProv.FindString(location[1]);
+                            txtSightingCity.Text = location[location.Length-3];
+                            cmbSightingCountry.SelectedIndex = cmbSightingCountry.FindString(location[location.Length-1]);
+                            cmbSightingStateProv.SelectedIndex = cmbSightingStateProv.FindString(location[location.Length-2]);
                         }
                     }
                 }
