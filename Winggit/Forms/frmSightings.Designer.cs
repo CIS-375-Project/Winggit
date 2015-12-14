@@ -38,12 +38,6 @@
             this.chkNewTag = new System.Windows.Forms.CheckBox();
             this.tbcLocationPicker = new System.Windows.Forms.TabControl();
             this.tabLatLong = new System.Windows.Forms.TabPage();
-            this.grpEastWest = new System.Windows.Forms.GroupBox();
-            this.rdoEast = new System.Windows.Forms.RadioButton();
-            this.rdoWest = new System.Windows.Forms.RadioButton();
-            this.grpNorthSouth = new System.Windows.Forms.GroupBox();
-            this.rdoNorth = new System.Windows.Forms.RadioButton();
-            this.rdoSouth = new System.Windows.Forms.RadioButton();
             this.lblLongitude = new System.Windows.Forms.Label();
             this.updLongitude = new System.Windows.Forms.NumericUpDown();
             this.lblLatitude = new System.Windows.Forms.Label();
@@ -72,8 +66,6 @@
             this.btnLoadInfo = new System.Windows.Forms.Button();
             this.tbcLocationPicker.SuspendLayout();
             this.tabLatLong.SuspendLayout();
-            this.grpEastWest.SuspendLayout();
-            this.grpNorthSouth.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.updLongitude)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updLatitude)).BeginInit();
             this.tabLoc.SuspendLayout();
@@ -164,8 +156,6 @@
             // 
             // tabLatLong
             // 
-            this.tabLatLong.Controls.Add(this.grpEastWest);
-            this.tabLatLong.Controls.Add(this.grpNorthSouth);
             this.tabLatLong.Controls.Add(this.lblLongitude);
             this.tabLatLong.Controls.Add(this.updLongitude);
             this.tabLatLong.Controls.Add(this.lblLatitude);
@@ -178,80 +168,6 @@
             this.tabLatLong.Text = "Latitude/Longitude";
             this.tabLatLong.UseVisualStyleBackColor = true;
             // 
-            // grpEastWest
-            // 
-            this.grpEastWest.Controls.Add(this.rdoEast);
-            this.grpEastWest.Controls.Add(this.rdoWest);
-            this.grpEastWest.Location = new System.Drawing.Point(121, 50);
-            this.grpEastWest.Name = "grpEastWest";
-            this.grpEastWest.Size = new System.Drawing.Size(85, 40);
-            this.grpEastWest.TabIndex = 8;
-            this.grpEastWest.TabStop = false;
-            this.grpEastWest.Text = "East/West:";
-            // 
-            // rdoEast
-            // 
-            this.rdoEast.AutoSize = true;
-            this.rdoEast.Enabled = false;
-            this.rdoEast.Location = new System.Drawing.Point(6, 17);
-            this.rdoEast.Name = "rdoEast";
-            this.rdoEast.Size = new System.Drawing.Size(32, 17);
-            this.rdoEast.TabIndex = 1;
-            this.rdoEast.TabStop = true;
-            this.rdoEast.Text = "E";
-            this.rdoEast.UseVisualStyleBackColor = true;
-            this.rdoEast.CheckedChanged += new System.EventHandler(this.rdoEast_CheckedChanged);
-            // 
-            // rdoWest
-            // 
-            this.rdoWest.AutoSize = true;
-            this.rdoWest.Enabled = false;
-            this.rdoWest.Location = new System.Drawing.Point(44, 17);
-            this.rdoWest.Name = "rdoWest";
-            this.rdoWest.Size = new System.Drawing.Size(36, 17);
-            this.rdoWest.TabIndex = 1;
-            this.rdoWest.TabStop = true;
-            this.rdoWest.Text = "W";
-            this.rdoWest.UseVisualStyleBackColor = true;
-            this.rdoWest.CheckedChanged += new System.EventHandler(this.rdoWest_CheckedChanged);
-            // 
-            // grpNorthSouth
-            // 
-            this.grpNorthSouth.Controls.Add(this.rdoNorth);
-            this.grpNorthSouth.Controls.Add(this.rdoSouth);
-            this.grpNorthSouth.Location = new System.Drawing.Point(121, 6);
-            this.grpNorthSouth.Name = "grpNorthSouth";
-            this.grpNorthSouth.Size = new System.Drawing.Size(85, 38);
-            this.grpNorthSouth.TabIndex = 8;
-            this.grpNorthSouth.TabStop = false;
-            this.grpNorthSouth.Text = "North/South:";
-            // 
-            // rdoNorth
-            // 
-            this.rdoNorth.AutoSize = true;
-            this.rdoNorth.Enabled = false;
-            this.rdoNorth.Location = new System.Drawing.Point(6, 15);
-            this.rdoNorth.Name = "rdoNorth";
-            this.rdoNorth.Size = new System.Drawing.Size(33, 17);
-            this.rdoNorth.TabIndex = 0;
-            this.rdoNorth.TabStop = true;
-            this.rdoNorth.Text = "N";
-            this.rdoNorth.UseVisualStyleBackColor = true;
-            this.rdoNorth.CheckedChanged += new System.EventHandler(this.rdoNorth_CheckedChanged);
-            // 
-            // rdoSouth
-            // 
-            this.rdoSouth.AutoSize = true;
-            this.rdoSouth.Enabled = false;
-            this.rdoSouth.Location = new System.Drawing.Point(44, 15);
-            this.rdoSouth.Name = "rdoSouth";
-            this.rdoSouth.Size = new System.Drawing.Size(32, 17);
-            this.rdoSouth.TabIndex = 0;
-            this.rdoSouth.TabStop = true;
-            this.rdoSouth.Text = "S";
-            this.rdoSouth.UseVisualStyleBackColor = true;
-            this.rdoSouth.CheckedChanged += new System.EventHandler(this.rdoSouth_CheckedChanged);
-            // 
             // lblLongitude
             // 
             this.lblLongitude.AutoSize = true;
@@ -263,7 +179,7 @@
             // 
             // updLongitude
             // 
-            this.updLongitude.DecimalPlaces = 1;
+            this.updLongitude.DecimalPlaces = 7;
             this.updLongitude.Increment = new decimal(new int[] {
             1,
             0,
@@ -275,8 +191,13 @@
             0,
             0,
             0});
+            this.updLongitude.Minimum = new decimal(new int[] {
+            1799999999,
+            0,
+            0,
+            -2147024896});
             this.updLongitude.Name = "updLongitude";
-            this.updLongitude.Size = new System.Drawing.Size(49, 20);
+            this.updLongitude.Size = new System.Drawing.Size(85, 20);
             this.updLongitude.TabIndex = 4;
             this.updLongitude.ValueChanged += new System.EventHandler(this.updLongitude_ValueChanged);
             // 
@@ -291,7 +212,7 @@
             // 
             // updLatitude
             // 
-            this.updLatitude.DecimalPlaces = 1;
+            this.updLatitude.DecimalPlaces = 7;
             this.updLatitude.Increment = new decimal(new int[] {
             1,
             0,
@@ -303,8 +224,13 @@
             0,
             0,
             0});
+            this.updLatitude.Minimum = new decimal(new int[] {
+            899999999,
+            0,
+            0,
+            -2147024896});
             this.updLatitude.Name = "updLatitude";
-            this.updLatitude.Size = new System.Drawing.Size(49, 20);
+            this.updLatitude.Size = new System.Drawing.Size(85, 20);
             this.updLatitude.TabIndex = 2;
             this.updLatitude.ValueChanged += new System.EventHandler(this.updLatitude_ValueChanged);
             // 
@@ -564,10 +490,6 @@
             this.tbcLocationPicker.ResumeLayout(false);
             this.tabLatLong.ResumeLayout(false);
             this.tabLatLong.PerformLayout();
-            this.grpEastWest.ResumeLayout(false);
-            this.grpEastWest.PerformLayout();
-            this.grpNorthSouth.ResumeLayout(false);
-            this.grpNorthSouth.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.updLongitude)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updLatitude)).EndInit();
             this.tabLoc.ResumeLayout(false);
@@ -595,16 +517,10 @@
         private System.Windows.Forms.TabControl tbcLocationPicker;
         private System.Windows.Forms.TabPage tabLatLong;
         private System.Windows.Forms.NumericUpDown updLatitude;
-        private System.Windows.Forms.RadioButton rdoWest;
-        private System.Windows.Forms.RadioButton rdoEast;
-        private System.Windows.Forms.RadioButton rdoSouth;
-        private System.Windows.Forms.RadioButton rdoNorth;
         private System.Windows.Forms.TabPage tabLoc;
         private System.Windows.Forms.NumericUpDown updLongitude;
         private System.Windows.Forms.Label lblLatitude;
         private System.Windows.Forms.Label lblLongitude;
-        private System.Windows.Forms.GroupBox grpEastWest;
-        private System.Windows.Forms.GroupBox grpNorthSouth;
         private System.Windows.Forms.NumericUpDown updTemperature;
         private System.Windows.Forms.Label lblSightingTemperature;
         private System.Windows.Forms.GroupBox grpTempSystem;
