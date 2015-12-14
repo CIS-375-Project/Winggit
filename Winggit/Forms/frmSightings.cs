@@ -43,6 +43,11 @@ namespace Winggit.Forms
         {
             btnLoadInfo.Enabled = !chkNewTag.Checked;
             txtSightingSpecies.Enabled = chkNewTag.Checked;
+            tbcLocationPicker.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            grpTempSystem.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            grpGender.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            updTemperature.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            updWingspan.Enabled = isButterflyLoaded || chkNewTag.Checked;
             btnFinishTagSighting.Enabled = btnLoadInfo.Text == @"Go Back" && HasEnoughInfo();
         }
 
@@ -357,6 +362,11 @@ namespace Winggit.Forms
                 chkNewTag.Enabled = true;
                 txtTagID.Enabled = true;
             }
+            tbcLocationPicker.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            grpTempSystem.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            grpGender.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            updTemperature.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            updWingspan.Enabled = isButterflyLoaded || chkNewTag.Checked;
         }
 
         private bool CheckButterfly(int id)

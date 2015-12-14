@@ -147,6 +147,7 @@
             // 
             this.tbcLocationPicker.Controls.Add(this.tabLatLong);
             this.tbcLocationPicker.Controls.Add(this.tabLoc);
+            this.tbcLocationPicker.Enabled = false;
             this.tbcLocationPicker.Location = new System.Drawing.Point(12, 51);
             this.tbcLocationPicker.Name = "tbcLocationPicker";
             this.tbcLocationPicker.SelectedIndex = 0;
@@ -306,6 +307,7 @@
             // 
             // updTemperature
             // 
+            this.updTemperature.Enabled = false;
             this.updTemperature.Location = new System.Drawing.Point(348, 224);
             this.updTemperature.Name = "updTemperature";
             this.updTemperature.Size = new System.Drawing.Size(75, 20);
@@ -324,6 +326,7 @@
             // 
             this.grpTempSystem.Controls.Add(this.rdoCelcius);
             this.grpTempSystem.Controls.Add(this.rdoFahrenheit);
+            this.grpTempSystem.Enabled = false;
             this.grpTempSystem.Location = new System.Drawing.Point(438, 205);
             this.grpTempSystem.Name = "grpTempSystem";
             this.grpTempSystem.Size = new System.Drawing.Size(60, 65);
@@ -388,6 +391,7 @@
             this.grpGender.Controls.Add(this.rdoUnknown);
             this.grpGender.Controls.Add(this.rdoFemale);
             this.grpGender.Controls.Add(this.rdoMale);
+            this.grpGender.Enabled = false;
             this.grpGender.Location = new System.Drawing.Point(15, 183);
             this.grpGender.Name = "grpGender";
             this.grpGender.Size = new System.Drawing.Size(207, 48);
@@ -429,6 +433,7 @@
             // 
             // updWingspan
             // 
+            this.updWingspan.Enabled = false;
             this.updWingspan.Location = new System.Drawing.Point(228, 203);
             this.updWingspan.Name = "updWingspan";
             this.updWingspan.Size = new System.Drawing.Size(91, 20);
