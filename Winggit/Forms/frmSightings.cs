@@ -6,6 +6,9 @@ using System.Collections;
 using Winggit.Controls;
 using Winggit.Entities;
 using System.Data;
+using System.Net;
+using System.IO;
+using System.Text;
 
 namespace Winggit.Forms
 {
@@ -117,33 +120,34 @@ namespace Winggit.Forms
                 using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
                 {
                     oHash = new Hashtable();
-                    sql = "INSERT INTO Tags VALUES (@Date,@City,@State,@Country,@Temp,@WingerNum,1,@Long,@Lat,@ID)";
+                    sql = "INSERT INTO Tags VALUES (@Date,";
                     oHash.Add("@Date", calSightingDate.SelectionStart);
                     if(!string.IsNullOrEmpty(txtSightingCity.Text))
                     {
                         oHash.Add("@City", txtSightingCity.Text.Trim());
                         oHash.Add("@State", cmbSightingStateProv.SelectedItem.ToString());
                         oHash.Add("@Country", cmbSightingCountry.SelectedItem.ToString());
+                        sql += "@City,@State,Country,";
                     }
                     else
                     {
-                        oHash.Add("@City", string.Empty);
-                        oHash.Add("@State", string.Empty);
-                        oHash.Add("@Country", string.Empty);
+                        sql += "NULL,NULL,NULL,";
                     }
                     oHash.Add("@Temp", updTemperature.Value);
                     oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+                    sql += "@Temp,@WingerNum,1,";
                     if (updLatitude.Value > 0 || updLongitude.Value > 0)
                     {
                         oHash.Add("@Long", updLongitude.Value);
                         oHash.Add("@Lat", updLatitude.Value);
+                        sql += "@Long,@Lat,";
                     }
                     else
                     {
-                        oHash.Add("@Long", null);
-                        oHash.Add("@Lat", null);
+                        sql += "NULL,NULL,";
                     }
                     oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
+                    sql += "@ID)";
                     DBFunctions.RunQuery(sql, oHash);
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
@@ -154,33 +158,34 @@ namespace Winggit.Forms
                 if (CheckButterfly(int.Parse(txtTagID.Text)))
                 {
                     oHash = new Hashtable();
-                    sql = "INSERT INTO Tags VALUES (@Date,@City,@State,@Country,@Temp,@WingerNum,0,@Long,@Lat,@ID)";
+                    sql = "INSERT INTO Tags VALUES (@Date,";
                     oHash.Add("@Date", calSightingDate.SelectionStart);
                     if (!string.IsNullOrEmpty(txtSightingCity.Text))
                     {
                         oHash.Add("@City", txtSightingCity.Text.Trim());
                         oHash.Add("@State", cmbSightingStateProv.SelectedItem.ToString());
                         oHash.Add("@Country", cmbSightingCountry.SelectedItem.ToString());
+                        sql += "@City,@State,@Country,";
                     }
                     else
                     {
-                        oHash.Add("@City", string.Empty);
-                        oHash.Add("@State", string.Empty);
-                        oHash.Add("@Country", string.Empty);
+                        sql += "NULL,NULL,NULL,";
                     }
                     oHash.Add("@Temp", updTemperature.Value);
                     oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+                    sql += "@Temp,@WingerNum,0,";
                     if (updLatitude.Value > 0 || updLongitude.Value > 0)
                     {
                         oHash.Add("@Long", updLongitude.Value);
                         oHash.Add("@Lat", updLatitude.Value);
+                        sql += "@Long,@Lat,";
                     }
                     else
                     {
-                        oHash.Add("@Long", null);
-                        oHash.Add("@Lat", null);
+                        sql += "NULL,NULL";
                     }                  
                     oHash.Add("@ID", Butterfly.currentButterfly.ButterflyID);
+                    sql += "@ID)";
                     DBFunctions.RunQuery(sql, oHash);
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
@@ -225,6 +230,22 @@ namespace Winggit.Forms
 
         private void btnSightingGeocode_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtSightingCity.Text))
+            {
+                string url = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=42.4853,-83.3769&key=AIzaSyDXWy0DPLRt8eYBRMZTMB3l_d4RjvSz7N8";
+                WebRequest request = WebRequest.Create(url);
+                using (WebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+                    {
+                        using (DataSet oDataSet = new DataSet())
+                        {
+                            oDataSet.ReadXml(reader);
+                            string[] location = oDataSet.Tables[1].Rows[1][1].ToString().Split(',');
+                        }
+                    }
+                }
+            }
             if (tbcLocationPicker.SelectedIndex == 0)
             {
                 // TODO try to load city/state/country
