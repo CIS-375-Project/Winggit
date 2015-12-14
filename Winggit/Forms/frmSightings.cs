@@ -26,7 +26,7 @@ namespace Winggit.Forms
         private void txtTagID_TextChanged(object sender, EventArgs e)
         {
             btnLoadInfo.Enabled = txtTagID.Text.Length > 0;
-            btnFinishTagSighting.Enabled = btnLoadInfo.Text == @"Go Back" && hasEnoughInfo();
+            btnFinishTagSighting.Enabled = btnLoadInfo.Text == @"Go Back" && HasEnoughInfo();
         }
 
         private void txtSightingTagID_KeyPress(object sender, KeyPressEventArgs e)
@@ -41,37 +41,17 @@ namespace Winggit.Forms
         {
             btnLoadInfo.Enabled = !chkNewTag.Checked;
             txtSightingSpecies.Enabled = chkNewTag.Checked;
-            btnFinishTagSighting.Enabled = btnLoadInfo.Text == @"Go Back" && hasEnoughInfo();
+            btnFinishTagSighting.Enabled = btnLoadInfo.Text == @"Go Back" && HasEnoughInfo();
         }
 
         private void updLatitude_ValueChanged(object sender, EventArgs e)
         {
-            if (updLatitude.Value == 0)
-            {
-                rdoNorth.Enabled = false;
-                rdoSouth.Enabled = false;
-            }
-            else
-            {
-                rdoNorth.Enabled = true;
-                rdoSouth.Enabled = true;
-            }
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void updLongitude_ValueChanged(object sender, EventArgs e)
         {
-            if (updLongitude.Value == 0)
-            {
-                rdoEast.Enabled = false;
-                rdoWest.Enabled = false;
-            }
-            else
-            {
-                rdoEast.Enabled = true;
-                rdoWest.Enabled = true;
-            }
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void cmbSightingCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,12 +66,12 @@ namespace Winggit.Forms
                 cmbSightingStateProv.Enabled = false;
                 cmbSightingStateProv.SelectedIndex = -1;
             }
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void cmbSightingStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void btnFinishTagSighting_Click(object sender, EventArgs e)
@@ -193,46 +173,33 @@ namespace Winggit.Forms
             }
         }
 
-        private bool hasEnoughInfo()
+        private bool HasEnoughInfo()
         {
             if (chkNewTag.Checked && txtSightingSpecies.Text.Trim().Length == 0)
                 return false;
             if (txtTagID.Text.Length == 0)
                 return false;
-            if (tbcLocationPicker.SelectedIndex == 0)
-            {
-                if (updLatitude.Value != (decimal) 0.0)
-                {
-                    if (!rdoNorth.Checked && !rdoSouth.Checked)
-                        return false;
-                }
-                if (updLongitude.Value == (decimal) 0.0) // No need to check for E/W button.
-                    return rdoCelcius.Checked || rdoFahrenheit.Checked;
-                if (!rdoEast.Checked && !rdoWest.Checked)
-                    return false;
-            }
-            else
-            {
-                if (txtSightingCity.Text.Trim().Length == 0)
-                    return false;
-                if (cmbSightingCountry.SelectedIndex <= 0)
-                    return false;
-                if (cmbSightingStateProv.SelectedIndex <= 0)
-                    return false;
-            }
+            if (tbcLocationPicker.SelectedIndex != 1)
+                return rdoCelcius.Checked || rdoFahrenheit.Checked;
+            if (txtSightingCity.Text.Trim().Length == 0)
+                return false;
+            if (cmbSightingCountry.SelectedIndex <= 0)
+                return false;
+            if (cmbSightingStateProv.SelectedIndex <= 0)
+                return false;
             return rdoCelcius.Checked || rdoFahrenheit.Checked;
         }
 
         private void txtSightingCity_TextChanged(object sender, EventArgs e)
         {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void btnSightingGeocode_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtSightingCity.Text))
             {
-                string url = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=42.4853,-83.3769&key=AIzaSyDXWy0DPLRt8eYBRMZTMB3l_d4RjvSz7N8";
+                string url = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=" + updLatitude.Value + "," + updLongitude.Value + "&key=AIzaSyDXWy0DPLRt8eYBRMZTMB3l_d4RjvSz7N8";
                 WebRequest request = WebRequest.Create(url);
                 using (WebResponse response = (HttpWebResponse)request.GetResponse())
                 {
@@ -241,7 +208,14 @@ namespace Winggit.Forms
                         using (DataSet oDataSet = new DataSet())
                         {
                             oDataSet.ReadXml(reader);
+                            if (oDataSet.Tables[0].Rows[0][0].ToString() != "ZERO_RESULTS")
+                            {
+                                
+                            }
                             string[] location = oDataSet.Tables[1].Rows[1][1].ToString().Split(',');
+                            txtSightingCity.Text = location[0];
+                            cmbSightingCountry.SelectedIndex = cmbSightingCountry.FindString(location[1]);
+                            cmbSightingStateProv.SelectedIndex = cmbSightingStateProv.FindString(location[2]);
                         }
                     }
                 }
@@ -264,42 +238,22 @@ namespace Winggit.Forms
 
         private void txtSightingSpecies_TextChanged(object sender, EventArgs e)
         {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
-        }
-
-        private void rdoNorth_CheckedChanged(object sender, EventArgs e)
-        {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
-        }
-
-        private void rdoEast_CheckedChanged(object sender, EventArgs e)
-        {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void rdoFahrenheit_CheckedChanged(object sender, EventArgs e)
         {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
-        }
-
-        private void rdoSouth_CheckedChanged(object sender, EventArgs e)
-        {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
-        }
-
-        private void rdoWest_CheckedChanged(object sender, EventArgs e)
-        {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void rdoCelcius_CheckedChanged(object sender, EventArgs e)
         {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void tbcLocationPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnFinishTagSighting.Enabled = hasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void frmSightings_FormClosing(object sender, FormClosingEventArgs e)

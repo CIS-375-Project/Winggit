@@ -3,7 +3,7 @@
     public enum Country
     {
         Select,
-        US,
+        USA,
         Canada
     }
 }
