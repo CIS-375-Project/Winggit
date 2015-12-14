@@ -202,6 +202,7 @@ namespace Winggit.Forms
                     oHash.Add("@ID", Butterfly.currentButterfly.ButterflyID);
                     sql += "@ID)";
                     DBFunctions.RunQuery(sql, oHash);
+                    // TODO update butterfly info
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
                     Close();
