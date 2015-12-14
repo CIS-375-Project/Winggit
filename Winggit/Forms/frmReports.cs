@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
@@ -38,6 +39,8 @@ namespace Winggit.Forms
                     // TODO If Date selected, find tags only on that date.
                     if (hasDateChanged)
                     {
+                        Hashtable oHash = new Hashtable();
+                        oHash.Add("@Date", calTagsRptDate);
                         
                     }
                     // TODO if location info provided, find tags at given location.
@@ -48,7 +51,8 @@ namespace Winggit.Forms
 
                     if (hasDateChanged)
                     {
-                        
+                        Hashtable oHash = new Hashtable();
+                        oHash.Add("@Date", calSightingsRptDate);
                     }
                     // TODO if location info provided, find sightings at given location.
                     break;
