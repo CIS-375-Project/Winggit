@@ -122,8 +122,8 @@ namespace Winggit.Forms
                     if(!string.IsNullOrEmpty(txtSightingCity.Text))
                     {
                         oHash.Add("@City", txtSightingCity.Text.Trim());
-                        oHash.Add("@State", cmbSightingStateProv.SelectedText);
-                        oHash.Add("@Country", cmbSightingCountry.SelectedText);
+                        oHash.Add("@State", cmbSightingStateProv.SelectedItem.ToString());
+                        oHash.Add("@Country", cmbSightingCountry.SelectedItem.ToString());
                     }
                     else
                     {
@@ -159,8 +159,8 @@ namespace Winggit.Forms
                     if (!string.IsNullOrEmpty(txtSightingCity.Text))
                     {
                         oHash.Add("@City", txtSightingCity.Text.Trim());
-                        oHash.Add("@State", cmbSightingStateProv.SelectedText);
-                        oHash.Add("@Country", cmbSightingCountry.SelectedText);
+                        oHash.Add("@State", cmbSightingStateProv.SelectedItem.ToString());
+                        oHash.Add("@Country", cmbSightingCountry.SelectedItem.ToString());
                     }
                     else
                     {

@@ -23,7 +23,7 @@ namespace Winggit.Forms
                 txtRegPhoneNum.Text = Winger.currentWinger.PhoneNum;
                 txtRegHouseNumStreet.Text = Winger.currentWinger.Address;
                 txtRegCity.Text = Winger.currentWinger.City;
-                cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
+                //cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
                 cmbRegStateProv.SelectedText = Winger.currentWinger.State;
             }
         }
@@ -38,6 +38,11 @@ namespace Winggit.Forms
         {
             cmbRegCountry.DataSource = Enum.GetValues(typeof (Country));
             btnRegister.Enabled = false;
+            if (isEditing)
+            {
+                cmbRegCountry.SelectedIndex = cmbRegCountry.FindString(Winger.currentWinger.Country);
+                cmbRegStateProv.SelectedIndex = cmbRegStateProv.FindString(Winger.currentWinger.State);
+            }
         }
 
         private void txtRegPhoneNum_TextChanged(object sender, EventArgs e)
@@ -150,9 +155,76 @@ namespace Winggit.Forms
 
             if (isEditing)
             {
-                
-                // TODO Set user info to values in text fields
-                // TODO Send updated user info to database.
+                Hashtable oHash = new Hashtable();
+                int count = 0;
+                string sql = @"UPDATE Wingers SET";
+                if(txtRegName.Text != Winger.currentWinger.Name)
+                {
+                    oHash.Add("@Name", txtRegName.Text);
+                    sql += " Name = @Name";
+                    count++;
+                }
+                if (txtRegPhoneNum.Text != Winger.currentWinger.PhoneNum)
+                {
+                    if (count > 0)
+                    {
+                        sql += ",";
+                    }
+                    oHash.Add("@Phone", txtRegPhoneNum.Text);
+                    sql += " PhoneNum = @Phone";
+                    count++;
+                }
+                if (txtRegHouseNumStreet.Text != Winger.currentWinger.Address)
+                {
+                    if (count > 0)
+                    {
+                        sql += ",";
+                    }
+                    oHash.Add("@Address", txtRegHouseNumStreet.Text);
+                    sql += " Address = @Address";
+                    count++;
+                }
+                if (txtRegCity.Text != Winger.currentWinger.City)
+                {
+                    if (count > 0)
+                    {
+                        sql += ",";
+                    }
+                    oHash.Add("@City", txtRegCity.Text);
+                    sql += " City = @City";
+                    count++;
+                }
+                if (cmbRegCountry.SelectedItem.ToString() != Winger.currentWinger.Country)
+                {
+                    if (count > 0)
+                    {
+                        sql += ",";
+                    }
+                    oHash.Add("@Country", cmbRegCountry.SelectedItem.ToString());
+                    sql += " Country = @Country";
+                    count++;
+                }
+                if (cmbRegStateProv.SelectedItem.ToString() != Winger.currentWinger.State)
+                {
+                    if (count > 0)
+                    {
+                        sql += ",";
+                    }
+                    oHash.Add("@State", cmbRegStateProv.SelectedItem.ToString());
+                    sql += " State = @State";
+                }
+                oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+                sql += " WHERE WingerNum = @WingerNum";
+                DBFunctions.RunQuery(sql, oHash);
+                oHash = new Hashtable();
+                oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+                sql = "SELECT * FROM Wingers WHERE WingerNum = @WingerNum";
+                using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
+                {
+                    Winger.currentWinger = new Winger(oDataSet2.Tables[0].Rows[0]);
+                    MessageBox.Show(@"Congratulations! You have updated the information for Tagger Number #" + oDataSet2.Tables[0].Rows[0]["WingerNum"], @"Congratulations!", MessageBoxButtons.OK);
+                    Close();
+                }
             }
             else
             {
@@ -169,8 +241,8 @@ namespace Winggit.Forms
                         oHash.Add("@Name", txtRegName.Text.Trim());
                         oHash.Add("@Address", txtRegHouseNumStreet.Text.Trim());
                         oHash.Add("@City", txtRegCity.Text.Trim());
-                        oHash.Add("@State", cmbRegStateProv.SelectedItem);
-                        oHash.Add("@Country", cmbRegCountry.SelectedItem);
+                        oHash.Add("@State", cmbRegStateProv.SelectedItem.ToString());
+                        oHash.Add("@Country", cmbRegCountry.SelectedItem.ToString());
                         oHash.Add("@Phone", txtRegPhoneNum.Text.Trim());
                         sql = @"INSERT INTO Wingers OUTPUT Inserted.* VALUES(@Name, @Address, @City, @State, @Country, @Phone, NULL)";
                         using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
