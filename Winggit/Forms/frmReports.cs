@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Media;
 using System.Windows.Forms;
 using Winggit.Enums;
@@ -7,8 +8,10 @@ namespace Winggit.Forms
 {
     public partial class frmReports : Form
     {
+        private bool hasDateChanged;
         public frmReports()
         {
+            hasDateChanged = false;
             InitializeComponent();
         }
 
@@ -34,10 +37,23 @@ namespace Winggit.Forms
             {
                 case ReportType.Tags:
                     // TODO If Date selected, find tags only on that date.
+                    if (hasDateChanged)
+                    {
+                        Hashtable oHash = new Hashtable();
+                        oHash.Add("@Date", calTagsRptDate);
+                        
+                    }
                     // TODO if location info provided, find tags at given location.
+
                     break;
                 case ReportType.Sightings:
                     // TODO If Date selected, find sightings only on that date.
+
+                    if (hasDateChanged)
+                    {
+                        Hashtable oHash = new Hashtable();
+                        oHash.Add("@Date", calSightingsRptDate);
+                    }
                     // TODO if location info provided, find sightings at given location.
                     break;
                 case ReportType.Routes:
@@ -88,7 +104,7 @@ namespace Winggit.Forms
                 cmbTagRptStateProv.Enabled = false;
                 cmbTagRptStateProv.SelectedIndex = -1;
             }
-            btnGetReport.Enabled = cmbTagsRptCountry.SelectedIndex > 0 || txtTagRptCity.Text.Trim().Length > 0;
+            btnGetReport.Enabled = hasDateChanged || cmbTagsRptCountry.SelectedIndex > 0 || txtTagRptCity.Text.Trim().Length > 0;
         }
 
         private void txtTagRptCity_TextChanged(object sender, EventArgs e)
@@ -97,7 +113,7 @@ namespace Winggit.Forms
             {
                 txtTagRptCity.Text = "";
             }
-            btnGetReport.Enabled = txtTagRptCity.Text.Length > 0 || cmbTagsRptCountry.SelectedIndex > 0;
+            btnGetReport.Enabled = hasDateChanged || txtTagRptCity.Text.Length > 0 || cmbTagsRptCountry.SelectedIndex > 0;
         }
 
         private void txtSightRptCity_TextChanged(object sender, EventArgs e)
@@ -106,7 +122,7 @@ namespace Winggit.Forms
             {
                 txtSightRptCity.Text = "";
             }
-            btnGetReport.Enabled = txtSightRptCity.Text.Length > 0 || cmbSightRptCountry.SelectedIndex > 0;
+            btnGetReport.Enabled = hasDateChanged || txtSightRptCity.Text.Length > 0 || cmbSightRptCountry.SelectedIndex > 0;
         }
 
         private void cmbSightRptCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -121,7 +137,7 @@ namespace Winggit.Forms
                 cmbSightRptStateProv.Enabled = false;
                 cmbSightRptStateProv.SelectedIndex = -1;
             }
-            btnGetReport.Enabled = cmbSightRptCountry.SelectedIndex > 0 || txtSightRptCity.Text.Trim().Length > 0;
+            btnGetReport.Enabled = hasDateChanged || cmbSightRptCountry.SelectedIndex > 0 || txtSightRptCity.Text.Trim().Length > 0;
         }
 
         private void txtPeaksID_KeyPress(object sender, KeyPressEventArgs e)
@@ -134,16 +150,17 @@ namespace Winggit.Forms
 
         private void txtPeaksID_TextChanged(object sender, EventArgs e)
         {
-            btnGetReport.Enabled = txtPeaksID.Text.Length > 0;
+            btnGetReport.Enabled = hasDateChanged || txtPeaksID.Text.Length > 0;
         }
 
         private void txtReportRouteID_TextChanged(object sender, EventArgs e)
         {
-            btnGetReport.Enabled = txtReportRouteID.Text.Length > 0;
+            btnGetReport.Enabled = hasDateChanged || txtReportRouteID.Text.Length > 0;
         }
 
         private void tbcReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            hasDateChanged = false;
             switch ((ReportType) tbcReportType.SelectedIndex)
             {
                 case ReportType.Tags:
@@ -167,11 +184,19 @@ namespace Winggit.Forms
 
         private void calTagsRptDate_DateSelected(object sender, DateRangeEventArgs e)
         {
+            hasDateChanged = true;
+            btnGetReport.Enabled = true;
         }
 
         private void btnOutput_Click(object sender, EventArgs e)
         {
             // TODO Determine if we can output to file. If not, display messagebox.
+        }
+
+        private void calSightingsRptDate_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            hasDateChanged = true;
+            btnGetReport.Enabled = true;
         }
     }
 }

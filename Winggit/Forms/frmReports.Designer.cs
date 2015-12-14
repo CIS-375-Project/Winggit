@@ -265,6 +265,7 @@
             this.calSightingsRptDate.MaxSelectionCount = 1;
             this.calSightingsRptDate.Name = "calSightingsRptDate";
             this.calSightingsRptDate.TabIndex = 0;
+            this.calSightingsRptDate.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calSightingsRptDate_DateSelected);
             // 
             // tabRoutes
             // 
