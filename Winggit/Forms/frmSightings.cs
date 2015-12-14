@@ -198,12 +198,53 @@ namespace Winggit.Forms
                     }
                     else
                     {
-                        sql += "NULL,NULL";
+                        sql += "NULL,NULL,";
                     }                  
                     oHash.Add("@ID", Butterfly.currentButterfly.ButterflyID);
                     sql += "@ID)";
                     DBFunctions.RunQuery(sql, oHash);
-                    // TODO update butterfly info
+                    int count = 0;
+                    oHash = new Hashtable();
+                    sql = "UPDATE Butterflies SET";
+                    if (Butterfly.currentButterfly.Wingspan != updWingspan.Value)
+                    {
+                        oHash.Add("@Wingspan", updWingspan.Value);
+                        sql += " Wingspan = @Wingspan";
+                        count++;
+                    }
+                    if (rdoMale.Checked)
+                    {
+                        if(count > 0)
+                        {
+                            sql += ",";
+                        }
+                        sql += " Gender = 'Male'";
+                        count++;
+                    }
+                    else if (rdoFemale.Checked)
+                    {
+                        if (count > 0)
+                        {
+                            sql += ",";
+                        }
+                        sql += " Gender = 'Female'";
+                        count++;
+                    }
+                    else if (rdoUnknown.Checked)
+                    {
+                        if (count > 0)
+                        {
+                            sql += ",";
+                        }
+                        sql += " Gender = 'Unknown'";
+                        count++;
+                    }
+                    if(count > 0)
+                    {
+                        oHash.Add("@ID", Butterfly.currentButterfly.ButterflyID);
+                        sql += " WHERE ButterflyID = @ID";
+                        DBFunctions.RunQuery(sql, oHash);
+                    }
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
                     Close();
