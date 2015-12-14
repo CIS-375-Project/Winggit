@@ -87,10 +87,12 @@ namespace Winggit.Forms
             string sql;
             if (chkNewTag.Checked)
             {
+                if (!CheckButterfly(int.Parse(txtTagID.Text)))
+                {
                 oHash = new Hashtable();
                 oHash.Add("@WingSpan", updWingspan.Value);
                 oHash.Add("@Species", txtSightingSpecies.Text.Trim());
-                if(rdoMale.Checked)
+                    if (rdoMale.Checked)
                 {
                     oHash.Add("@Gender", "Male");
                 }
@@ -109,7 +111,7 @@ namespace Winggit.Forms
                     oHash = new Hashtable();
                     sql = "INSERT INTO Tags VALUES (@Date,";
                     oHash.Add("@Date", calSightingDate.SelectionStart);
-                    if(!string.IsNullOrEmpty(txtSightingCity.Text))
+                        if (!string.IsNullOrEmpty(txtSightingCity.Text))
                     {
                         oHash.Add("@City", txtSightingCity.Text.Trim());
                         oHash.Add("@State", cmbSightingStateProv.SelectedItem.ToString());
@@ -153,6 +155,12 @@ namespace Winggit.Forms
             }
             else
             {
+                        MessageBox.Show(@"This tag number is already in use. If the tag number is correct please report it as a sighting",@"Butterfly Not Found", MessageBoxButtons.OK);
+                        Butterfly.currentButterfly = null;
+                }
+            }
+            else
+            {
                 if (CheckButterfly(int.Parse(txtTagID.Text)))
                 {
                     oHash = new Hashtable();
@@ -169,7 +177,16 @@ namespace Winggit.Forms
                     {
                         sql += "NULL,NULL,NULL,";
                     }
+                    if (rdoCelcius.Checked)
+                    {
+                        double i = double.Parse(updTemperature.Value.ToString());
+                        i = i * 1.8 + 32;
+                        oHash.Add("@Temp", i);
+                    }
+                    else
+                    {
                     oHash.Add("@Temp", updTemperature.Value);
+                    }
                     oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
                     sql += "@Temp,@WingerNum,0,";
                     if (updLatitude.Value > 0 || updLongitude.Value > 0)
@@ -189,7 +206,11 @@ namespace Winggit.Forms
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
                     Close();
                 }
+                else
+                {
+                    MessageBox.Show(@"No Butterflies found with that Tag ID #. But you can add it as a new one.",@"Butterfly Not Found",MessageBoxButtons.OK);
             }
+        }
         }
 
         private bool HasEnoughInfo()
@@ -357,8 +378,6 @@ namespace Winggit.Forms
             {
                 if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
                 {
-                    MessageBox.Show(@"No Butterflies found with that Tag ID #. But you can add it as a new one.",
-                        @"Butterfly Not Found");
                     Butterfly.currentButterfly = null;
                     return false;
                 }
@@ -385,9 +404,6 @@ namespace Winggit.Forms
                     int rows1, rows2;
                     rows1 = oDataSet.Tables[0].Rows.Count;
                     rows2 = (int) oDataSet2.Tables[0].Rows[0]["NumButterflies"];
-
-                    //completionPercentage = (oDataSet.Tables[0].Rows.Count/
-                                                  //(int)oDataSet2.Tables[0].Rows[0]["NumButterflies"])*100;
 
                     completionPercentage = ((float)rows1/(float)rows2)*100;
                 }
