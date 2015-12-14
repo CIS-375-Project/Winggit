@@ -15,11 +15,13 @@ namespace Winggit.Forms
     public partial class frmSightings : Form
     {
         private bool isButterflyLoaded;
+        private bool isFinished;
         private int loadedID;
         public frmSightings()
         {
             InitializeComponent();
             isButterflyLoaded = false;
+            isFinished = false;
             loadedID = 0;
         }
 
@@ -140,6 +142,8 @@ namespace Winggit.Forms
                     DBFunctions.RunQuery(sql, oHash);
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
+                    isFinished = true;
+                    Close();
                 }
             }
             else
@@ -287,14 +291,12 @@ namespace Winggit.Forms
 
         private void frmSightings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (isFinished) return;
+            SystemSounds.Asterisk.Play();
+            if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
+                DialogResult.No)
             {
-                SystemSounds.Asterisk.Play();
-                if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) ==
-                    DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
+                e.Cancel = true;
             }
         }
 
