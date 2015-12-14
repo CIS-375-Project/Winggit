@@ -23,8 +23,6 @@ namespace Winggit.Forms
                 txtRegPhoneNum.Text = Winger.currentWinger.PhoneNum;
                 txtRegHouseNumStreet.Text = Winger.currentWinger.Address;
                 txtRegCity.Text = Winger.currentWinger.City;
-                //cmbRegCountry.SelectedIndex = int.Parse(Winger.currentWinger.Country);
-                cmbRegStateProv.SelectedText = Winger.currentWinger.State;
             }
         }
 

@@ -232,7 +232,7 @@ namespace Winggit.Forms
         {
             if (string.IsNullOrEmpty(txtSightingCity.Text))
             {
-                string url = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=42.4853,-83.3769&key=AIzaSyDXWy0DPLRt8eYBRMZTMB3l_d4RjvSz7N8";
+                string url = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=" + updLatitude.Value + "," + updLongitude.Value + "&key=AIzaSyDXWy0DPLRt8eYBRMZTMB3l_d4RjvSz7N8";
                 WebRequest request = WebRequest.Create(url);
                 using (WebResponse response = (HttpWebResponse)request.GetResponse())
                 {
@@ -241,7 +241,14 @@ namespace Winggit.Forms
                         using (DataSet oDataSet = new DataSet())
                         {
                             oDataSet.ReadXml(reader);
+                            if (oDataSet.Tables[0].Rows[0][0].ToString() != "ZERO_RESULTS")
+                            {
+                                
+                            }
                             string[] location = oDataSet.Tables[1].Rows[1][1].ToString().Split(',');
+                            txtSightingCity.Text = location[0];
+                            cmbSightingCountry.SelectedIndex = cmbSightingCountry.FindString(location[1]);
+                            cmbSightingStateProv.SelectedIndex = cmbSightingStateProv.FindString(location[2]);
                         }
                     }
                 }
