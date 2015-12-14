@@ -96,7 +96,7 @@ namespace Winggit.Forms
                     oHash.Add("@Gender", "Unknown");
                 }
                 oHash.Add("@TagNum", txtTagID.Text);
-                sql = "INSERT INTO Butterflies OUTPUT inserted.* VALUES(@WingSpan,@Species,@Gender,0,@TagNum)";
+                sql = "INSERT INTO Butterflies OUTPUT inserted.* VALUES(@WingSpan,@Species,@Gender,@TagNum)";
                 using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
                 {
                     oHash = new Hashtable();
@@ -107,13 +107,22 @@ namespace Winggit.Forms
                         oHash.Add("@City", txtSightingCity.Text.Trim());
                         oHash.Add("@State", cmbSightingStateProv.SelectedItem.ToString());
                         oHash.Add("@Country", cmbSightingCountry.SelectedItem.ToString());
-                        sql += "@City,@State,Country,";
+                        sql += "@City,@State,@Country,";
                     }
                     else
                     {
                         sql += "NULL,NULL,NULL,";
                     }
-                    oHash.Add("@Temp", updTemperature.Value);
+                    if (rdoCelcius.Checked)
+                    {
+                        double i = double.Parse(updTemperature.Value.ToString());
+                        i = i * 1.8 + 32;
+                        oHash.Add("@Temp", i);
+                    }
+                    else
+                    {
+                        oHash.Add("@Temp", updTemperature.Value);
+                    }
                     oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
                     sql += "@Temp,@WingerNum,1,";
                     if (updLatitude.Value > 0 || updLongitude.Value > 0)
@@ -198,7 +207,7 @@ namespace Winggit.Forms
 
         private void btnSightingGeocode_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSightingCity.Text))
+            if (tbcLocationPicker.SelectedIndex == 0)
             {
                 string url = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=" + updLatitude.Value + "," + updLongitude.Value + "&key=AIzaSyDXWy0DPLRt8eYBRMZTMB3l_d4RjvSz7N8";
                 WebRequest request = WebRequest.Create(url);
@@ -209,25 +218,44 @@ namespace Winggit.Forms
                         using (DataSet oDataSet = new DataSet())
                         {
                             oDataSet.ReadXml(reader);
-                            if (oDataSet.Tables[0].Rows[0][0].ToString() != "ZERO_RESULTS")
+                            if (oDataSet.Tables[0].Rows[0][0].ToString() != "OK")
                             {
-                                
+                                MessageBox.Show(@"No information for that Latitude and Longitude set. Please check your coordinates and try again.", @"Not found", MessageBoxButtons.OK);
+                                return;
                             }
                             string[] location = oDataSet.Tables[1].Rows[1][1].ToString().Split(',');
+                            for (int i = 0; i < 3; i++)
+                            {
+                                location[i] = location[i].Trim();
+                            }
                             txtSightingCity.Text = location[0];
-                            cmbSightingCountry.SelectedIndex = cmbSightingCountry.FindString(location[1]);
-                            cmbSightingStateProv.SelectedIndex = cmbSightingStateProv.FindString(location[2]);
+                            cmbSightingCountry.SelectedIndex = cmbSightingCountry.FindString(location[2]);
+                            cmbSightingStateProv.SelectedIndex = cmbSightingStateProv.FindString(location[1]);
                         }
                     }
                 }
             }
-            if (tbcLocationPicker.SelectedIndex == 0)
-            {
-                // TODO try to load city/state/country
-            }
             else
             {
-                // TODO try to load lat/long
+                string url = "https://maps.googleapis.com/maps/api/geocode/xml?address=" + txtSightingCity.Text.Trim().Replace(' ','+') + ",+" + cmbSightingStateProv.SelectedItem + ",+" + cmbSightingCountry.SelectedItem + "&key=AIzaSyDXWy0DPLRt8eYBRMZTMB3l_d4RjvSz7N8";
+                WebRequest request = WebRequest.Create(url);
+                using (WebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+                    {
+                        using (DataSet oDataSet = new DataSet())
+                        {
+                            oDataSet.ReadXml(reader);
+                            if (oDataSet.Tables[0].Rows[0][0].ToString() != "OK")
+                            {
+                                MessageBox.Show(@"No information for that Latitude and Longitude set. Please check your coordinates and try again.", @"Not found", MessageBoxButtons.OK);
+                                return;
+                            }
+                            updLatitude.Value = decimal.Parse(oDataSet.Tables[5].Rows[0][0].ToString());
+                            updLongitude.Value = decimal.Parse(oDataSet.Tables[5].Rows[0][1].ToString());
+                        }
+                    }
+                }
             }
         }
 
