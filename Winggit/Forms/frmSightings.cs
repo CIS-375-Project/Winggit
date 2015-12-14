@@ -90,74 +90,74 @@ namespace Winggit.Forms
             {
                 if (!CheckButterfly(int.Parse(txtTagID.Text)))
                 {
-                oHash = new Hashtable();
-                oHash.Add("@WingSpan", updWingspan.Value);
-                oHash.Add("@Species", txtSightingSpecies.Text.Trim());
+                    oHash = new Hashtable();
+                    oHash.Add("@WingSpan", updWingspan.Value);
+                    oHash.Add("@Species", txtSightingSpecies.Text.Trim());
                     if (rdoMale.Checked)
-                {
-                    oHash.Add("@Gender", "Male");
-                }
-                else if (rdoFemale.Checked)
-                {
-                    oHash.Add("@Gender", "Female");
+                    {
+                        oHash.Add("@Gender", "Male");
+                    }
+                    else if (rdoFemale.Checked)
+                    {
+                        oHash.Add("@Gender", "Female");
+                    }
+                    else
+                    {
+                        oHash.Add("@Gender", "Unknown");
+                    }
+                    oHash.Add("@TagNum", txtTagID.Text);
+                    sql = "INSERT INTO Butterflies OUTPUT inserted.* VALUES(@WingSpan,@Species,@Gender,@TagNum)";
+                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                    {
+                        oHash = new Hashtable();
+                        sql = "INSERT INTO Tags VALUES (@Date,";
+                        oHash.Add("@Date", calSightingDate.SelectionStart);
+                        if (!string.IsNullOrEmpty(txtSightingCity.Text))
+                        {
+                            oHash.Add("@City", txtSightingCity.Text.Trim());
+                            oHash.Add("@State", cmbSightingStateProv.SelectedItem.ToString());
+                            oHash.Add("@Country", cmbSightingCountry.SelectedItem.ToString());
+                            sql += "@City,@State,@Country,";
+                        }
+                        else
+                        {
+                            sql += "NULL,NULL,NULL,";
+                        }
+                        if (rdoCelcius.Checked)
+                        {
+                            double i = double.Parse(updTemperature.Value.ToString());
+                            i = i * 1.8 + 32;
+                            oHash.Add("@Temp", i);
+                        }
+                        else
+                        {
+                            oHash.Add("@Temp", updTemperature.Value);
+                        }
+                        oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
+                        sql += "@Temp,@WingerNum,1,";
+                        if (updLatitude.Value > 0 || updLongitude.Value > 0)
+                        {
+                            oHash.Add("@Long", updLongitude.Value);
+                            oHash.Add("@Lat", updLatitude.Value);
+                            sql += "@Long,@Lat,";
+                        }
+                        else
+                        {
+                            sql += "NULL,NULL,";
+                        }
+                        oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
+                        sql += "@ID)";
+                        DBFunctions.RunQuery(sql, oHash);
+                        SetCompletionRate();
+                        MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
+                        isFinished = true;
+                        Close();
+                    }
                 }
                 else
                 {
-                    oHash.Add("@Gender", "Unknown");
-                }
-                oHash.Add("@TagNum", txtTagID.Text);
-                sql = "INSERT INTO Butterflies OUTPUT inserted.* VALUES(@WingSpan,@Species,@Gender,@TagNum)";
-                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
-                {
-                    oHash = new Hashtable();
-                    sql = "INSERT INTO Tags VALUES (@Date,";
-                    oHash.Add("@Date", calSightingDate.SelectionStart);
-                        if (!string.IsNullOrEmpty(txtSightingCity.Text))
-                    {
-                        oHash.Add("@City", txtSightingCity.Text.Trim());
-                        oHash.Add("@State", cmbSightingStateProv.SelectedItem.ToString());
-                        oHash.Add("@Country", cmbSightingCountry.SelectedItem.ToString());
-                        sql += "@City,@State,@Country,";
-                    }
-                    else
-                    {
-                        sql += "NULL,NULL,NULL,";
-                    }
-                    if (rdoCelcius.Checked)
-                    {
-                        double i = double.Parse(updTemperature.Value.ToString());
-                        i = i * 1.8 + 32;
-                        oHash.Add("@Temp", i);
-                    }
-                    else
-                    {
-                        oHash.Add("@Temp", updTemperature.Value);
-                    }
-                    oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
-                    sql += "@Temp,@WingerNum,1,";
-                    if (updLatitude.Value > 0 || updLongitude.Value > 0)
-                    {
-                        oHash.Add("@Long", updLongitude.Value);
-                        oHash.Add("@Lat", updLatitude.Value);
-                        sql += "@Long,@Lat,";
-                    }
-                    else
-                    {
-                        sql += "NULL,NULL,";
-                    }
-                    oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
-                    sql += "@ID)";
-                    DBFunctions.RunQuery(sql, oHash);
-                    SetCompletionRate();
-                    MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
-                    isFinished = true;
-                    Close();
-                }
-            }
-            else
-            {
-                        MessageBox.Show(@"This tag number is already in use. If the tag number is correct please report it as a sighting",@"Butterfly Not Found", MessageBoxButtons.OK);
-                        Butterfly.currentButterfly = null;
+                    MessageBox.Show(@"This tag number is already in use. If the tag number is correct please report it as a sighting", @"Butterfly Not Found", MessageBoxButtons.OK);
+                    Butterfly.currentButterfly = null;
                 }
             }
             else
@@ -203,6 +203,7 @@ namespace Winggit.Forms
                     oHash.Add("@ID", Butterfly.currentButterfly.ButterflyID);
                     sql += "@ID)";
                     DBFunctions.RunQuery(sql, oHash);
+                    // TODO update butterfly info
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
                     Close();
@@ -210,8 +211,8 @@ namespace Winggit.Forms
                 else
                 {
                     MessageBox.Show(@"No Butterflies found with that Tag ID #. But you can add it as a new one.",@"Butterfly Not Found",MessageBoxButtons.OK);
+                }
             }
-        }
         }
 
         private bool HasEnoughInfo()
