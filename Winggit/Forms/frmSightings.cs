@@ -140,8 +140,8 @@ namespace Winggit.Forms
                     }
                     else
                     {
-                        oHash.Add("@Long", null);
-                        oHash.Add("@Lat", null);
+                        oHash.Add("@Long", 0);
+                        oHash.Add("@Lat", 0);
                     }
                     oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
                     DBFunctions.RunQuery(sql, oHash);
@@ -177,8 +177,8 @@ namespace Winggit.Forms
                     }
                     else
                     {
-                        oHash.Add("@Long", null);
-                        oHash.Add("@Lat", null);
+                        oHash.Add("@Long", 0);
+                        oHash.Add("@Lat", 0);
                     }                  
                     oHash.Add("@ID", Butterfly.currentButterfly.ButterflyID);
                     DBFunctions.RunQuery(sql, oHash);
