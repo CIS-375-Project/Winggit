@@ -42,6 +42,7 @@ namespace Winggit.Forms
         private void chkNewTag_CheckedChanged(object sender, EventArgs e)
         {
             btnLoadInfo.Enabled = !chkNewTag.Checked;
+            btnSightingGeocode.Enabled = isButterflyLoaded || chkNewTag.Checked;
             txtSightingSpecies.Enabled = chkNewTag.Checked;
             tbcLocationPicker.Enabled = isButterflyLoaded || chkNewTag.Checked;
             grpTempSystem.Enabled = isButterflyLoaded || chkNewTag.Checked;
@@ -368,6 +369,7 @@ namespace Winggit.Forms
             grpGender.Enabled = isButterflyLoaded || chkNewTag.Checked;
             updTemperature.Enabled = isButterflyLoaded || chkNewTag.Checked;
             updWingspan.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            btnSightingGeocode.Enabled = isButterflyLoaded || chkNewTag.Checked;
         }
 
         private bool CheckButterfly(int id)
