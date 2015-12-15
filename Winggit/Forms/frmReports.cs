@@ -140,7 +140,6 @@ namespace Winggit.Forms
                     }
                     break;
                 case ReportType.Sightings:
-                    // TODO If Date selected, find sightings only on that date.
                     if (hasDateChanged && cmbSightRptCountry.SelectedIndex == 0 && string.IsNullOrWhiteSpace(txtSightRptCity.Text))
                     {
                         oHash = new Hashtable();
@@ -240,15 +239,29 @@ namespace Winggit.Forms
                     break;
                 case ReportType.Routes:
                     // TODO Check if Tag ID is registered
-                    bool isRegistered = true;
-                    if (isRegistered) // TODO replace
+                    oHash = new Hashtable();
+                    oHash.Add("@Tracker_Num", txtReportRouteID.Text);
+
+                    sql = "SELECT T.Date, T.City, T.State_Providence, T.Country, T.Latitude, T.Longitude, T.ButterflyID FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE B.Tracker_Num = @Tracker_Num ORDER BY T.Date";
+
+                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
                     {
-                        // TODO load sightings to show the route of a particular butterfly based on physical tag ID 
+                        if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                        {
+                            MessageBox.Show("That tag does not exist!", "Non-existent tag", MessageBoxButtons.OK);
+                            return;
+                        }
+                        else
+                        {
+                            dgdReportTable.DataSource = oDataSet.Tables[0];
+                            dgdReportTable.AllowUserToAddRows = false;
+                            dgdReportTable.ReadOnly = true;
+                        }
+
                     }
-                    else
-                    {
-                        MessageBox.Show(@"Tag not registered.", @"Invalid Tag", MessageBoxButtons.OK);
-                    }
+
+                    
+                   
                     break;
                 case ReportType.Peaks:
                     break;
