@@ -31,7 +31,7 @@ namespace Winggit.Controls
             for (int i = 1; i < 6; i++)
             {
                 List <string> parts = file[i].Split(' ').ToList();
-                parts.RemoveAll(isBlank);
+                parts.RemoveAll(IsBlank);
                 if (parts.Count < 10)
                 {
                     MessageBox.Show(@"Not enough info given.", @"Insufficient info", MessageBoxButtons.OK);
@@ -75,15 +75,19 @@ namespace Winggit.Controls
             }
         }
 
-        private static bool isBlank(String s)
+        private static bool IsBlank(String s)
         {
             return s.ToLower().Equals("");
         }
 
         static void FileOutput()
         {
-            
-
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = @"Text Files|output.txt",
+                Title = @"Please Choose Where to Save Output File"
+            };
+            if (sfd.ShowDialog() != DialogResult.OK) return;
             Hashtable oHash = new Hashtable();
             oHash.Add("@");
             string sqlOnTag =
@@ -115,7 +119,7 @@ namespace Winggit.Controls
                     
                 }
 
-                File.WriteAllLines(@"C:\Users\Public\Test Folder\output.txt", lines);
+                File.WriteAllLines(sfd.FileName, lines);
             }
         }
     }
