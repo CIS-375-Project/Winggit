@@ -22,6 +22,14 @@ namespace Winggit.Controls
             string[] file = File.ReadAllLines(ofd.FileName);
             int numRecords = int.Parse(file[file.Length - 1].Substring(3, 6).Trim());
             int fileNum = int.Parse(file[0].Substring(3, 6).Trim());
+            sql = "SELECT LastUpload FROM Upload";
+            using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+            {
+                if (fileNum - int.Parse(oDataSet.Tables[0].Rows[0]["LastUpload"].ToString()) != 1)
+                {
+                    return;
+                }
+            }
             if (numRecords == (file.Length - 2))
             {
                 for (int i = 1; i < (file.Length - 1); i++)
@@ -50,7 +58,7 @@ namespace Winggit.Controls
                         oHash.Add("@Tracker", pTag);
                         sql = "SELECT * FROM Butterflies WHERE Tracker_Num = @Tracker";
                         DataSet check = DBFunctions.GetDataSet(sql, oHash);
-                        while (check.Tables.Count == 0 || check.Tables[0].Rows.Count == 0)
+                        while (check.Tables[0].Rows.Count != 0)
                         {
                             pTag = rnd.Next(999999999);
                             oHash = new Hashtable();
@@ -60,14 +68,14 @@ namespace Winggit.Controls
                         }
                         check.Dispose();
                         oHash.Add(@"Species", species);
-                        sql = "INSERT INTO Butterflies OUTPUT.* VALUES(NULL,@Species,NULL,@Tracker";
+                        sql = "INSERT INTO Butterflies OUTPUT Inserted.* VALUES(0,@Species,'Unknown',@Tracker)";
                         using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
-            {
+                        {
                             sql = "INSERT INTO Tags VALUES(";
                             if (string.IsNullOrEmpty(date))
-                {
-                    continue;
-                }
+                            {
+                                continue;
+                            }
                             oHash.Add("@Date", DateTime.Parse(date));
                             sql += "@Date,";
                             if (string.IsNullOrEmpty(city))
@@ -99,9 +107,9 @@ namespace Winggit.Controls
                             }
                             sql += "NULL,";
                             if (string.IsNullOrEmpty(user))
-                {
-                    continue;
-                }
+                            {
+                                continue;
+                            }
                             oHash.Add("@UserID", int.Parse(user));
                             sql += "@UserID,1,";
                             decimal temp1 = decimal.Parse(lat);
@@ -116,72 +124,82 @@ namespace Winggit.Controls
                             {
                                 sql += "NULL,NULL,";
                             }
-                            oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["Tracker_Num"]);
+                            oHash.Add("@ID", oDataSet.Tables[0].Rows[0]["ButterflyID"]);
                             sql += "@ID)";
                             DBFunctions.RunQuery(sql, oHash);
                         }
                     }
                     else if (type == "S" && !string.IsNullOrEmpty(tag))
                     {
-                        sql = "INSERT INTO Tags VALUES(";
-                        if (string.IsNullOrEmpty(date))
-                {
-                    continue;
-                }
-                        oHash.Add("@Date", DateTime.Parse(date));
-                        sql += "@Date,";
-                        if (string.IsNullOrEmpty(city))
+                        oHash = new Hashtable();
+                        oHash.Add("@Tracker", tag);
+                        sql = "SELECT ButterflyID FROM Butterflies WHERE Tracker_Num = @Tracker";
+                        using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
                         {
+                            sql = "INSERT INTO Tags VALUES(";
+                            if (string.IsNullOrEmpty(date))
+                            {
+                                continue;
+                            }
+                            oHash.Add("@Date", DateTime.Parse(date));
+                            sql += "@Date,";
+                            if (string.IsNullOrEmpty(city))
+                            {
+                                sql += "NULL,";
+                            }
+                            else
+                            {
+                                oHash.Add("@City", city);
+                                sql += "@City,";
+                            }
+                            if (string.IsNullOrEmpty(state))
+                            {
+                                sql += "NULL,";
+                            }
+                            else
+                            {
+                                oHash.Add("@State", state);
+                                sql += "@State,";
+                            }
+                            if (string.IsNullOrEmpty(country))
+                            {
+                                sql += "NULL,";
+                            }
+                            else
+                            {
+                                oHash.Add("@Country", country);
+                                sql += "@Country,";
+                            }
                             sql += "NULL,";
-                        }
-                        else
-                        {
-                            oHash.Add("@City", city);
-                            sql += "@City,";
-                        }
-                        if (string.IsNullOrEmpty(state))
-                        {
-                            sql += "NULL,";
-                        }
-                        else
-                        {
-                            oHash.Add("@State", state);
-                            sql += "@State,";
-                        }
-                        if (string.IsNullOrEmpty(country))
-                {
-                            sql += "NULL,";
-                        }
-                        else
-                        {
-                            oHash.Add("@Country", country);
-                            sql += "@Country,";
-                        }
-                        sql += "NULL,";
-                        if (string.IsNullOrEmpty(user))
-                        {
-                    continue;
-                }
-                        oHash.Add("@UserID", int.Parse(user));
-                        sql += "@UserID,0,";
-                        decimal temp1 = decimal.Parse(lat);
-                        decimal temp2 = decimal.Parse(log);
-                        if (temp1 != 0 || temp2 != 0)
-                {
-                            oHash.Add("@lat", temp1);
-                            oHash.Add("@long", temp2);
-                            sql += "@lat,@long,";
-                }
-                        else
-                {
-                            sql += "NULL,NULL,";
-                        }
-                        oHash.Add("@ID", tag);
-                        sql += "@ID)";
-                        DBFunctions.RunQuery(sql, oHash);
+                            if (string.IsNullOrEmpty(user))
+                            {
+                                continue;
+                            }
+                            oHash.Add("@UserID", int.Parse(user));
+                            sql += "@UserID,0,";
+                            decimal temp1 = decimal.Parse(lat);
+                            decimal temp2 = decimal.Parse(log);
+                            if (temp1 != 0 || temp2 != 0)
+                            {
+                                oHash.Add("@lat", temp1);
+                                oHash.Add("@long", temp2);
+                                sql += "@lat,@long,";
+                            }
+                            else
+                            {
+                                sql += "NULL,NULL,";
+                            }
+                            oHash.Add("@ID", int.Parse(oDataSet.Tables[0].Rows[0]["ButterflyID"].ToString()));
+                            sql += "@ID)";
+                            DBFunctions.RunQuery(sql, oHash);
+                        }   
                     }
                 }
             }
+            oHash = new Hashtable();
+            oHash.Add("@Last", fileNum);
+            sql = "UPDATE Upload SET LastUpload = @Last WHERE InUse = 1";
+            DBFunctions.RunQuery(sql, oHash);
         }
 
         private static bool IsBlank(String s)
