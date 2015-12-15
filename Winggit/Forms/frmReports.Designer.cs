@@ -60,7 +60,7 @@
             this.tabPeaks = new System.Windows.Forms.TabPage();
             this.lblPeaksID = new System.Windows.Forms.Label();
             this.txtPeaksID = new System.Windows.Forms.TextBox();
-            this.tabHeatmap = new System.Windows.Forms.TabPage();
+            this.tabGraph = new System.Windows.Forms.TabPage();
             this.btnOutput = new System.Windows.Forms.Button();
             this.cTags = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dgdReportTable)).BeginInit();
@@ -69,7 +69,7 @@
             this.tabSightings.SuspendLayout();
             this.tabRoutes.SuspendLayout();
             this.tabPeaks.SuspendLayout();
-            this.tabHeatmap.SuspendLayout();
+            this.tabGraph.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cTags)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,7 +109,7 @@
             this.tbcReportType.Controls.Add(this.tabSightings);
             this.tbcReportType.Controls.Add(this.tabRoutes);
             this.tbcReportType.Controls.Add(this.tabPeaks);
-            this.tbcReportType.Controls.Add(this.tabHeatmap);
+            this.tbcReportType.Controls.Add(this.tabGraph);
             this.tbcReportType.Location = new System.Drawing.Point(16, 149);
             this.tbcReportType.Name = "tbcReportType";
             this.tbcReportType.SelectedIndex = 0;
@@ -333,15 +333,15 @@
             this.txtPeaksID.TextChanged += new System.EventHandler(this.txtPeaksID_TextChanged);
             this.txtPeaksID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPeaksID_KeyPress);
             // 
-            // tabHeatmap
+            // tabGraph
             // 
-            this.tabHeatmap.Controls.Add(this.cTags);
-            this.tabHeatmap.Location = new System.Drawing.Point(4, 22);
-            this.tabHeatmap.Name = "tabHeatmap";
-            this.tabHeatmap.Size = new System.Drawing.Size(474, 185);
-            this.tabHeatmap.TabIndex = 4;
-            this.tabHeatmap.Text = "Heatmap";
-            this.tabHeatmap.UseVisualStyleBackColor = true;
+            this.tabGraph.Controls.Add(this.cTags);
+            this.tabGraph.Location = new System.Drawing.Point(4, 22);
+            this.tabGraph.Name = "tabGraph";
+            this.tabGraph.Size = new System.Drawing.Size(474, 185);
+            this.tabGraph.TabIndex = 4;
+            this.tabGraph.Text = "Graph";
+            this.tabGraph.UseVisualStyleBackColor = true;
             // 
             // btnOutput
             // 
@@ -373,7 +373,7 @@
             this.cTags.Series.Add(series1);
             this.cTags.Series.Add(series2);
             this.cTags.Series.Add(series3);
-            this.cTags.Size = new System.Drawing.Size(379, 179);
+            this.cTags.Size = new System.Drawing.Size(467, 179);
             this.cTags.TabIndex = 0;
             this.cTags.Text = "chart1";
             // 
@@ -408,7 +408,7 @@
             this.tabRoutes.PerformLayout();
             this.tabPeaks.ResumeLayout(false);
             this.tabPeaks.PerformLayout();
-            this.tabHeatmap.ResumeLayout(false);
+            this.tabGraph.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cTags)).EndInit();
             this.ResumeLayout(false);
 
@@ -424,7 +424,7 @@
         private System.Windows.Forms.TabPage tabSightings;
         private System.Windows.Forms.TabPage tabRoutes;
         private System.Windows.Forms.TabPage tabPeaks;
-        private System.Windows.Forms.TabPage tabHeatmap;
+        private System.Windows.Forms.TabPage tabGraph;
         private System.Windows.Forms.Label lblReportRouteID;
         private System.Windows.Forms.TextBox txtReportRouteID;
         private System.Windows.Forms.MonthCalendar calSightingsRptDate;

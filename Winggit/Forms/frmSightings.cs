@@ -135,7 +135,7 @@ namespace Winggit.Forms
                         }
                         oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
                         sql += "@Temp,@WingerNum,1,";
-                        if (updLatitude.Value > 0 || updLongitude.Value > 0)
+                        if (updLatitude.Value !=  0 || updLongitude.Value != 0)
                         {
                             oHash.Add("@Long", updLongitude.Value);
                             oHash.Add("@Lat", updLatitude.Value);
@@ -190,7 +190,7 @@ namespace Winggit.Forms
                     }
                     oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
                     sql += "@Temp,@WingerNum,0,";
-                    if (updLatitude.Value > 0 || updLongitude.Value > 0)
+                    if (updLatitude.Value != 0 || updLongitude.Value != 0)
                     {
                         oHash.Add("@Long", updLongitude.Value);
                         oHash.Add("@Lat", updLatitude.Value);
@@ -321,7 +321,7 @@ namespace Winggit.Forms
                             oDataSet.ReadXml(reader);
                             if (oDataSet.Tables[0].Rows[0][0].ToString() != "OK")
                             {
-                                MessageBox.Show(@"No information for that Latitude and Longitude set. Please check your coordinates and try again.", @"Not found", MessageBoxButtons.OK);
+                                MessageBox.Show(@"No information for that City, State, and Country set. Please check your entry and try again.", @"Not found", MessageBoxButtons.OK);
                                 return;
                             }
                             updLatitude.Value = decimal.Parse(oDataSet.Tables[5].Rows[0][0].ToString());
