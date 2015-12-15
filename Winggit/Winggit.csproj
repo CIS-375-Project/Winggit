@@ -47,6 +47,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="SimpleFixedWidthParser, Version=0.9.5825.1068, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleFixedWidthParser.0.9.5825.1068\lib\net452\SimpleFixedWidthParser.exe</HintPath>
       <Private>True</Private>
