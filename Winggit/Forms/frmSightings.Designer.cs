@@ -435,6 +435,11 @@
             // 
             this.updWingspan.Enabled = false;
             this.updWingspan.Location = new System.Drawing.Point(228, 203);
+            this.updWingspan.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.updWingspan.Name = "updWingspan";
             this.updWingspan.Size = new System.Drawing.Size(91, 20);
             this.updWingspan.TabIndex = 15;

@@ -40,6 +40,7 @@
             this.picBee = new System.Windows.Forms.PictureBox();
             this.btnGoToPokedex = new System.Windows.Forms.Button();
             this.btnEditYourInfo = new System.Windows.Forms.Button();
+            this.btnReadFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBee)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,12 +156,23 @@
             this.btnEditYourInfo.UseVisualStyleBackColor = true;
             this.btnEditYourInfo.Click += new System.EventHandler(this.btnEditYourInfo_Click);
             // 
+            // btnReadFile
+            // 
+            this.btnReadFile.Location = new System.Drawing.Point(167, 50);
+            this.btnReadFile.Name = "btnReadFile";
+            this.btnReadFile.Size = new System.Drawing.Size(75, 23);
+            this.btnReadFile.TabIndex = 10;
+            this.btnReadFile.Text = "Read File";
+            this.btnReadFile.UseVisualStyleBackColor = true;
+            this.btnReadFile.Click += new System.EventHandler(this.btnReadFile_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(396, 109);
+            this.Controls.Add(this.btnReadFile);
             this.Controls.Add(this.btnEditYourInfo);
             this.Controls.Add(this.btnGoToPokedex);
             this.Controls.Add(this.btnOpenSightings);
@@ -198,5 +210,6 @@
         private System.Windows.Forms.PictureBox picBee;
         private System.Windows.Forms.Button btnGoToPokedex;
         private System.Windows.Forms.Button btnEditYourInfo;
+        private System.Windows.Forms.Button btnReadFile;
     }
 }
