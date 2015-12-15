@@ -376,7 +376,10 @@ namespace Winggit.Forms
             if (!isButterflyLoaded)
             {
                 if (!CheckButterfly(int.Parse(txtTagID.Text)))
+                {
+                    MessageBox.Show(@"No Butterflies found with that Tag ID #. But you can add it as a new one.", @"Butterfly Not Found", MessageBoxButtons.OK);
                     return;
+                }   
                 txtSightingSpecies.Text = Butterfly.currentButterfly.Species;
                 txtSightingSpecies.Enabled = false;
                 if (Butterfly.currentButterfly.Gender == "Male")
