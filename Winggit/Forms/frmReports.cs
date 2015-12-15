@@ -3,6 +3,7 @@ using System.Data;
 using System.Collections;
 using System.Media;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Winggit.Controls;
 using Winggit.Enums;
 
@@ -252,7 +253,7 @@ namespace Winggit.Forms
                     break;
                 case ReportType.Peaks:
                     break;
-                case ReportType.Heatmap:
+                case ReportType.Graph:
                     break;
             }
         }
@@ -357,7 +358,48 @@ namespace Winggit.Forms
                 case ReportType.Peaks:
                     btnGetReport.Enabled = txtPeaksID.Text.Length > 0;
                     break;
-                case ReportType.Heatmap:
+                case ReportType.Graph:
+                    cTags.Series["Tags"].XValueType = ChartValueType.DateTime;
+                    cTags.Series["Sightings"].XValueType = ChartValueType.DateTime;
+                    cTags.Series["All"].XValueType = ChartValueType.DateTime;
+                    Hashtable oHash = new Hashtable();
+                    string sql = "SELECT COUNT(*) as 'Count', Date, Type_of_Reporting FROM Tags GROUP BY Date, Type_of_Reporting ORDER BY Date";
+                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                    {
+                        if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                        {
+                            break;
+                        }
+                        foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                        {
+                            if (bool.Parse(oRow["Type_Of_Reporting"].ToString()))
+                            {
+                                DateTime x = DateTime.Parse(oRow["Date"].ToString());
+                                cTags.Series["Tags"].Points.AddXY(x.ToOADate(), int.Parse(oRow["Count"].ToString()));
+                            }
+                            else
+                            {
+                                DateTime x = DateTime.Parse(oRow["Date"].ToString());
+                                cTags.Series["Sightings"].Points.AddXY(x.ToOADate(), int.Parse(oRow["Count"].ToString()));
+                            }
+                        }
+                        cTags.Series["Tags"].ChartType = SeriesChartType.FastLine;
+                        cTags.Series["Sightings"].ChartType = SeriesChartType.FastLine;
+                    }
+                    sql = "SELECT COUNT(*) as 'Count', Date FROM Tags GROUP BY Date ORDER BY Date";
+                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                    {
+                        if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                        {
+                            break;
+                        }
+                        foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                        {
+                            DateTime x = DateTime.Parse(oRow["Date"].ToString());
+                            cTags.Series["All"].Points.AddXY(x.ToOADate(), int.Parse(oRow["Count"].ToString()));
+                        }
+                    }
+                    cTags.Series["All"].ChartType = SeriesChartType.FastLine;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
