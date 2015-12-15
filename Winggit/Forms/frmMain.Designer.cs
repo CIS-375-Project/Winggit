@@ -142,7 +142,7 @@
             this.btnGoToPokedex.Name = "btnGoToPokedex";
             this.btnGoToPokedex.Size = new System.Drawing.Size(105, 23);
             this.btnGoToPokedex.TabIndex = 8;
-            this.btnGoToPokedex.Text = "Pokedex";
+            this.btnGoToPokedex.Text = "Pokédex";
             this.btnGoToPokedex.UseVisualStyleBackColor = true;
             this.btnGoToPokedex.Click += new System.EventHandler(this.btnGoToPokedex_Click);
             // 
