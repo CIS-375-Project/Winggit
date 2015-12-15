@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReports));
             this.btnCancelReports = new System.Windows.Forms.Button();
             this.dgdReportTable = new System.Windows.Forms.DataGridView();
@@ -55,14 +60,17 @@
             this.tabPeaks = new System.Windows.Forms.TabPage();
             this.lblPeaksID = new System.Windows.Forms.Label();
             this.txtPeaksID = new System.Windows.Forms.TextBox();
-            this.tabHeatmap = new System.Windows.Forms.TabPage();
+            this.tabGraph = new System.Windows.Forms.TabPage();
             this.btnOutput = new System.Windows.Forms.Button();
+            this.cTags = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dgdReportTable)).BeginInit();
             this.tbcReportType.SuspendLayout();
             this.tabTags.SuspendLayout();
             this.tabSightings.SuspendLayout();
             this.tabRoutes.SuspendLayout();
             this.tabPeaks.SuspendLayout();
+            this.tabGraph.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cTags)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelReports
@@ -101,7 +109,7 @@
             this.tbcReportType.Controls.Add(this.tabSightings);
             this.tbcReportType.Controls.Add(this.tabRoutes);
             this.tbcReportType.Controls.Add(this.tabPeaks);
-            this.tbcReportType.Controls.Add(this.tabHeatmap);
+            this.tbcReportType.Controls.Add(this.tabGraph);
             this.tbcReportType.Location = new System.Drawing.Point(16, 149);
             this.tbcReportType.Name = "tbcReportType";
             this.tbcReportType.SelectedIndex = 0;
@@ -325,14 +333,15 @@
             this.txtPeaksID.TextChanged += new System.EventHandler(this.txtPeaksID_TextChanged);
             this.txtPeaksID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPeaksID_KeyPress);
             // 
-            // tabHeatmap
+            // tabGraph
             // 
-            this.tabHeatmap.Location = new System.Drawing.Point(4, 22);
-            this.tabHeatmap.Name = "tabHeatmap";
-            this.tabHeatmap.Size = new System.Drawing.Size(474, 185);
-            this.tabHeatmap.TabIndex = 4;
-            this.tabHeatmap.Text = "Heatmap";
-            this.tabHeatmap.UseVisualStyleBackColor = true;
+            this.tabGraph.Controls.Add(this.cTags);
+            this.tabGraph.Location = new System.Drawing.Point(4, 22);
+            this.tabGraph.Name = "tabGraph";
+            this.tabGraph.Size = new System.Drawing.Size(474, 185);
+            this.tabGraph.TabIndex = 4;
+            this.tabGraph.Text = "Graph";
+            this.tabGraph.UseVisualStyleBackColor = true;
             // 
             // btnOutput
             // 
@@ -343,6 +352,30 @@
             this.btnOutput.Text = "Output to File";
             this.btnOutput.UseVisualStyleBackColor = true;
             this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
+            // 
+            // cTags
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.cTags.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.cTags.Legends.Add(legend1);
+            this.cTags.Location = new System.Drawing.Point(4, 3);
+            this.cTags.Name = "cTags";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Tags";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Sightings";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "All";
+            this.cTags.Series.Add(series1);
+            this.cTags.Series.Add(series2);
+            this.cTags.Series.Add(series3);
+            this.cTags.Size = new System.Drawing.Size(467, 179);
+            this.cTags.TabIndex = 0;
+            this.cTags.Text = "chart1";
             // 
             // frmReports
             // 
@@ -375,6 +408,8 @@
             this.tabRoutes.PerformLayout();
             this.tabPeaks.ResumeLayout(false);
             this.tabPeaks.PerformLayout();
+            this.tabGraph.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cTags)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -389,7 +424,7 @@
         private System.Windows.Forms.TabPage tabSightings;
         private System.Windows.Forms.TabPage tabRoutes;
         private System.Windows.Forms.TabPage tabPeaks;
-        private System.Windows.Forms.TabPage tabHeatmap;
+        private System.Windows.Forms.TabPage tabGraph;
         private System.Windows.Forms.Label lblReportRouteID;
         private System.Windows.Forms.TextBox txtReportRouteID;
         private System.Windows.Forms.MonthCalendar calSightingsRptDate;
@@ -409,5 +444,6 @@
         private System.Windows.Forms.Label lblPeaksID;
         private System.Windows.Forms.TextBox txtPeaksID;
         private System.Windows.Forms.Button btnOutput;
+        private System.Windows.Forms.DataVisualization.Charting.Chart cTags;
     }
 }
