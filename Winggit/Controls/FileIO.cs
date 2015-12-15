@@ -31,6 +31,7 @@ namespace Winggit.Controls
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string[] file = File.ReadAllLines(ofd.FileName);
             int numRecords = int.Parse(file[file.Length - 1].Substring(3, 6).Trim());
+            int fileNum = int.Parse(file[0].Substring(3, 6).Trim());
             if (numRecords == (file.Length - 2))
             {
                 for (int i = 1; i < (file.Length - 1); i++)
@@ -71,12 +72,12 @@ namespace Winggit.Controls
                         oHash.Add(@"Species", species);
                         sql = "INSERT INTO Butterflies OUTPUT.* VALUES(NULL,@Species,NULL,@Tracker";
                         using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
-            {
+                        {
                             sql = "INSERT INTO Tags VALUES(";
                             if (string.IsNullOrEmpty(date))
-                {
-                    continue;
-                }
+                            {
+                                continue;
+                            }
                             oHash.Add("@Date", DateTime.Parse(date));
                             sql += "@Date,";
                             if (string.IsNullOrEmpty(city))
@@ -108,9 +109,9 @@ namespace Winggit.Controls
                             }
                             sql += "NULL,";
                             if (string.IsNullOrEmpty(user))
-                {
-                    continue;
-                }
+                            {
+                                continue;
+                            }
                             oHash.Add("@UserID", int.Parse(user));
                             sql += "@UserID,1,";
                             decimal temp1 = decimal.Parse(lat);
@@ -134,9 +135,9 @@ namespace Winggit.Controls
                     {
                         sql = "INSERT INTO Tags VALUES(";
                         if (string.IsNullOrEmpty(date))
-                {
-                    continue;
-                }
+                        {
+                            continue;
+                        }
                         oHash.Add("@Date", DateTime.Parse(date));
                         sql += "@Date,";
                         if (string.IsNullOrEmpty(city))
@@ -158,7 +159,7 @@ namespace Winggit.Controls
                             sql += "@State,";
                         }
                         if (string.IsNullOrEmpty(country))
-                {
+                        {
                             sql += "NULL,";
                         }
                         else
@@ -169,20 +170,20 @@ namespace Winggit.Controls
                         sql += "NULL,";
                         if (string.IsNullOrEmpty(user))
                         {
-                    continue;
-                }
+                            continue;
+                        }
                         oHash.Add("@UserID", int.Parse(user));
                         sql += "@UserID,0,";
                         decimal temp1 = decimal.Parse(lat);
                         decimal temp2 = decimal.Parse(log);
                         if (temp1 != 0 || temp2 != 0)
-                {
+                        {
                             oHash.Add("@lat", temp1);
                             oHash.Add("@long", temp2);
                             sql += "@lat,@long,";
-                }
+                        }
                         else
-                {
+                        {
                             sql += "NULL,NULL,";
                         }
                         oHash.Add("@ID", tag);
