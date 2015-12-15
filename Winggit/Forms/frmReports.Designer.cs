@@ -163,6 +163,7 @@
             this.cmbTagRptStateProv.Name = "cmbTagRptStateProv";
             this.cmbTagRptStateProv.Size = new System.Drawing.Size(121, 21);
             this.cmbTagRptStateProv.TabIndex = 3;
+            this.cmbTagRptStateProv.SelectedIndexChanged += new System.EventHandler(this.cmbTagRptStateProv_SelectedIndexChanged);
             // 
             // lblTagRptCountry
             // 
@@ -242,6 +243,7 @@
             this.cmbSightRptStateProv.Name = "cmbSightRptStateProv";
             this.cmbSightRptStateProv.Size = new System.Drawing.Size(121, 21);
             this.cmbSightRptStateProv.TabIndex = 9;
+            this.cmbSightRptStateProv.SelectedIndexChanged += new System.EventHandler(this.cmbSightRptStateProv_SelectedIndexChanged);
             // 
             // lblSightRptCountry
             // 
@@ -336,6 +338,7 @@
             // 
             // btnOutput
             // 
+            this.btnOutput.Enabled = false;
             this.btnOutput.Location = new System.Drawing.Point(212, 366);
             this.btnOutput.Name = "btnOutput";
             this.btnOutput.Size = new System.Drawing.Size(84, 23);

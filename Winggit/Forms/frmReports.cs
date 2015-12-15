@@ -265,6 +265,7 @@ namespace Winggit.Forms
 
                     break;
                 case ReportType.Graph:
+                    btnOutput.Enabled = false;
                     break;
             }
         }
@@ -299,6 +300,7 @@ namespace Winggit.Forms
                 cmbTagRptStateProv.SelectedIndex = -1;
             }
             btnGetReport.Enabled = hasDateChanged || cmbTagsRptCountry.SelectedIndex > 0 || txtTagRptCity.Text.Trim().Length > 0;
+            btnOutput.Enabled = cmbTagsRptCountry.SelectedIndex > 0 && cmbTagRptStateProv.SelectedIndex > 0;
         }
 
         private void txtTagRptCity_TextChanged(object sender, EventArgs e)
@@ -332,6 +334,7 @@ namespace Winggit.Forms
                 cmbSightRptStateProv.SelectedIndex = -1;
             }
             btnGetReport.Enabled = hasDateChanged || cmbSightRptCountry.SelectedIndex > 0 || txtSightRptCity.Text.Trim().Length > 0;
+            btnOutput.Enabled = cmbSightRptCountry.SelectedIndex > 0 && cmbSightRptStateProv.SelectedIndex > 0;
         }
 
         private void txtPeaksID_KeyPress(object sender, KeyPressEventArgs e)
@@ -345,6 +348,7 @@ namespace Winggit.Forms
         private void txtReportRouteID_TextChanged(object sender, EventArgs e)
         {
             btnGetReport.Enabled = hasDateChanged || txtReportRouteID.Text.Length > 0;
+            btnOutput.Enabled = txtReportRouteID.Text.Length > 0;
         }
 
         private void tbcReportType_SelectedIndexChanged(object sender, EventArgs e)
@@ -591,6 +595,16 @@ namespace Winggit.Forms
         {
             hasDateChanged = true;
             btnGetReport.Enabled = true;
+        }
+
+        private void cmbTagRptStateProv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnOutput.Enabled = cmbTagsRptCountry.SelectedIndex > 0 && cmbTagRptStateProv.SelectedIndex > 0;
+        }
+
+        private void cmbSightRptStateProv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnOutput.Enabled = cmbSightRptCountry.SelectedIndex > 0 && cmbSightRptStateProv.SelectedIndex > 0;
         }
     }
 }
