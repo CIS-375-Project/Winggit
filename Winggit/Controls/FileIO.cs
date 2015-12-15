@@ -34,17 +34,17 @@ namespace Winggit.Controls
                 ofd.FileName,
                 new List<dynamic>
                 {
-                    new FixedWidthColumn<DateTime>
+                    new FixedWidthColumn<string>
                     (
-                        "date",
-                        19,
-                        DateTime.Parse,
-                        date => date.ToString(@"yyyy-MM-dd"),
-                        test => DateTime.TryParse(test, out testDate)
+                        "EventType",
+                        1,
+                        eventString => eventString,
+                        butterflyEvent => butterflyEvent,
+                        test => true
                     ),
                     new FixedWidthColumn<string>
                     (
-                        "latlong",
+                        "taggerID",
                         23,
                         latLongString => latLongString,
                         latLong => latLong.Trim(),

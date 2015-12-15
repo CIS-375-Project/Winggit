@@ -5,7 +5,6 @@
         Tags,
         Sightings,
         Routes,
-        Peaks,
         Graph
     }
 }
