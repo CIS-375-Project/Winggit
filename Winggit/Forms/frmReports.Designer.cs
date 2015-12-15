@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReports));
             this.btnCancelReports = new System.Windows.Forms.Button();
             this.dgdReportTable = new System.Windows.Forms.DataGridView();
@@ -57,12 +62,15 @@
             this.txtPeaksID = new System.Windows.Forms.TextBox();
             this.tabHeatmap = new System.Windows.Forms.TabPage();
             this.btnOutput = new System.Windows.Forms.Button();
+            this.cTags = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dgdReportTable)).BeginInit();
             this.tbcReportType.SuspendLayout();
             this.tabTags.SuspendLayout();
             this.tabSightings.SuspendLayout();
             this.tabRoutes.SuspendLayout();
             this.tabPeaks.SuspendLayout();
+            this.tabHeatmap.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cTags)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelReports
@@ -327,6 +335,7 @@
             // 
             // tabHeatmap
             // 
+            this.tabHeatmap.Controls.Add(this.cTags);
             this.tabHeatmap.Location = new System.Drawing.Point(4, 22);
             this.tabHeatmap.Name = "tabHeatmap";
             this.tabHeatmap.Size = new System.Drawing.Size(474, 185);
@@ -343,6 +352,30 @@
             this.btnOutput.Text = "Output to File";
             this.btnOutput.UseVisualStyleBackColor = true;
             this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
+            // 
+            // cTags
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.cTags.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.cTags.Legends.Add(legend1);
+            this.cTags.Location = new System.Drawing.Point(4, 3);
+            this.cTags.Name = "cTags";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Tags";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Sightings";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "All";
+            this.cTags.Series.Add(series1);
+            this.cTags.Series.Add(series2);
+            this.cTags.Series.Add(series3);
+            this.cTags.Size = new System.Drawing.Size(379, 179);
+            this.cTags.TabIndex = 0;
+            this.cTags.Text = "chart1";
             // 
             // frmReports
             // 
@@ -375,6 +408,8 @@
             this.tabRoutes.PerformLayout();
             this.tabPeaks.ResumeLayout(false);
             this.tabPeaks.PerformLayout();
+            this.tabHeatmap.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cTags)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -409,5 +444,6 @@
         private System.Windows.Forms.Label lblPeaksID;
         private System.Windows.Forms.TextBox txtPeaksID;
         private System.Windows.Forms.Button btnOutput;
+        private System.Windows.Forms.DataVisualization.Charting.Chart cTags;
     }
 }
