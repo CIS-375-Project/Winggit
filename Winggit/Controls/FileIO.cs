@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SimpleFixedWidthParser;
-using Winggit.Entities;
-using Winggit.Enums;
-using static System.IO.Path;
 
 namespace Winggit.Controls
 {
@@ -31,7 +21,7 @@ namespace Winggit.Controls
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string[] file = File.ReadAllLines(ofd.FileName);
             int numRecords = int.Parse(file[file.Length - 1].Substring(3, 6).Trim());
-            if (numRecords == (file.Length - 2))
+            if (numRecords == file.Length - 2)
             {
                 for (int i = 1; i < (file.Length - 1); i++)
                 {
@@ -196,49 +186,6 @@ namespace Winggit.Controls
         private static bool IsBlank(String s)
         {
             return s.ToLower().Equals("");
-        }
-
-        static void FileOutput()
-        {
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                Filter = @"Text Files|output.txt",
-                Title = @"Please Choose Where to Save Output File"
-            };
-            if (sfd.ShowDialog() != DialogResult.OK) return;
-            Hashtable oHash = new Hashtable();
-            //oHash.Add("@");
-            string sqlOnTag =
-                "SELECT * FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE B.Tracker_Num = @Tracker_Num";
-            //if user is downloading after specifying a tag#
-            using (DataSet oDataSet = DBFunctions.GetDataSet(sqlOnTag, oHash))
-            {
-                string[] lines = new string[100];
-                
-
-                foreach (DataRow oRow in oDataSet.Tables[0].Rows)
-                {
-                    
-                }
-
-            }
-
-            oHash = new Hashtable();
-
-            string sqlOnLocation = "SELECT * FROM Tags WHERE City = @City, State = @State";
-            
-            //if user is downloading after specifying a location
-            using (DataSet oDataSet = DBFunctions.GetDataSet(sqlOnLocation, oHash))
-            {
-                string[] lines = {"", ""};
-
-                foreach (DataRow oRow in oDataSet.Tables[0].Rows)
-                {
-                    
-                }
-
-                File.WriteAllLines(sfd.FileName, lines);
-            }
         }
     }
 }

@@ -16,13 +16,13 @@ namespace Winggit.Forms
     {
         private bool isButterflyLoaded;
         private bool isFinished;
-        private int loadedID;
+        private int loadedId;
         public frmSightings()
         {
             InitializeComponent();
             isButterflyLoaded = false;
             isFinished = false;
-            loadedID = 0;
+            loadedId = 0;
         }
 
         private void txtTagID_TextChanged(object sender, EventArgs e)

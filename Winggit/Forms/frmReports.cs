@@ -427,10 +427,13 @@ namespace Winggit.Forms
             Hashtable oHash;
             string sql;
 
+            SaveFileDialog sfd = new SaveFileDialog {Filter = @"Text Files|*.txt", Title = @"Select Where to Save Your File"};
+            if (sfd.ShowDialog() != DialogResult.OK) return;
             switch ((ReportType) tbcReportType.SelectedIndex)
             {
-                case ReportType.Tags: case ReportType.Sightings:
-                    
+                case ReportType.Tags:
+                case ReportType.Sightings:
+
                     if (cmbTagsRptCountry.SelectedIndex > 0 || cmbSightRptCountry.SelectedIndex > 0)
                     {
                         if (cmbTagRptStateProv.SelectedIndex > 0 || cmbSightRptStateProv.SelectedIndex > 0)
@@ -455,7 +458,7 @@ namespace Winggit.Forms
 
                                         lines[0] = "HD" + DateTime.Today.ToString() + "Location: " + txtTagRptCity.Text + ", " + cmbTagRptStateProv.SelectedItem.ToString() + ", " + cmbTagsRptCountry.SelectedItem.ToString();
 
-                                        foreach(DataRow oRow in oDataSet.Tables[0].Rows)
+                                        foreach (DataRow oRow in oDataSet.Tables[0].Rows)
                                         {
                                             lines[i] = oRow["Date"].ToString() + " " + oRow["Latitude"].ToString() + oRow["Longitude"].ToString() + " " + oRow["City"].ToString() + " " + oRow["State_Providence"].ToString() + " " + oRow["Country"] + " " + oRow["Species"].ToString() + " " + oRow["Tracker_Num"].ToString();
                                             i++;
@@ -463,7 +466,7 @@ namespace Winggit.Forms
 
                                         lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
 
-                                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                                        File.WriteAllLines(sfd.FileName, lines);
                                     }
                                 }
                                 else
@@ -491,16 +494,16 @@ namespace Winggit.Forms
 
                                         lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
 
-                                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                                        File.WriteAllLines(sfd.FileName, lines);
                                     }
-                                }                           
+                                }
                             }
                             else
                             {
                                 if ((ReportType) tbcReportType.SelectedIndex == ReportType.Tags)
                                 {
                                     oHash = new Hashtable();
-                                    
+
                                     oHash.Add("@State_Providence", cmbTagRptStateProv.SelectedItem.ToString());
                                     oHash.Add("@Country", cmbTagsRptCountry.SelectedItem.ToString());
 
@@ -522,13 +525,13 @@ namespace Winggit.Forms
 
                                         lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
 
-                                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                                        File.WriteAllLines(sfd.FileName, lines);
                                     }
-                                }                            
+                                }
                                 else
                                 {
                                     oHash = new Hashtable();
-                                    
+
                                     oHash.Add("@State_Providence", cmbSightRptStateProv.SelectedItem.ToString());
                                     oHash.Add("@Country", cmbSightRptCountry.SelectedItem.ToString());
 
@@ -550,12 +553,12 @@ namespace Winggit.Forms
 
                                         lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
 
-                                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                                        File.WriteAllLines(sfd.FileName, lines);
                                     }
                                 }
                             }
                         }
-                    }                  
+                    }
                     break;
                 case ReportType.Routes:
                     //TODO Generate tag-based report.
@@ -582,10 +585,8 @@ namespace Winggit.Forms
 
                         lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
 
-                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                        File.WriteAllLines(sfd.FileName, lines);
                     }
-                    break;
-                default:
                     break;
             }
             // TODO Determine if we can output to file. If not, display messagebox.
