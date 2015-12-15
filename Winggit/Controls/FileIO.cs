@@ -29,15 +29,52 @@ namespace Winggit.Controls
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string[] file = File.ReadAllLines(ofd.FileName);
             for (int i = 1; i < 6; i++)
-                {
+            {
                 List <string> parts = file[i].Split(' ').ToList();
                 parts.RemoveAll(isBlank);
-                string something = "other";
-            }
+                if (parts.Count < 10)
+                {
+                    MessageBox.Show(@"Not enough info given.", @"Insufficient info", MessageBoxButtons.OK);
+                    continue;
                 }
+                if (parts[1].Any(char.IsLetter)) // IDs don't have letters.
+                {
+                    MessageBox.Show(@"ID is not a number.", @"Invalid ID", MessageBoxButtons.OK);
+                    continue;
+                }
+                DateTime testDate;
+                if (!DateTime.TryParse(parts[2] + " " + parts[3], out testDate))
+                {
+                    MessageBox.Show(@"Date cannot be parsed.", @"Invalid Date", MessageBoxButtons.OK);
+                    continue;
+                }
+                if (parts[4].Length != 22)
+                {
+                    MessageBox.Show(@"Latitude and Longitude not valid.", @"Invalid Lat/Long", MessageBoxButtons.OK);
+                    continue;
+                }
+                double lat = double.Parse(parts[4].Substring(1, 10));
+                lat *= parts[4][0] == '-' ? -1 : 1;
+                double longit = double.Parse(parts[4].Substring(12));
+                longit *= parts[4][11] == '-' ? -1 : 1;
+
+                if (parts[7] != "USA" && parts[7] != "Canada")
+                {
+                    MessageBox.Show(@"Not USA or Canada.", @"Invalid country", MessageBoxButtons.OK);
+                    continue;
+                }
+                List<string> statesProvs = parts[7] == "USA" ? Enum.GetNames(typeof (State)).ToList() : Enum.GetNames(typeof (Province)).ToList();
+                if (!statesProvs.Contains(parts[6]))
+                {
+                    MessageBox.Show(@"State/Province not valid.", @"Invalid state/province", MessageBoxButtons.OK);
+                    continue;
+                }
+                // TODO deal with multiword cities.
+            }
+        }
 
         private static bool isBlank(String s)
-                {
+        {
             return s.ToLower().Equals("");
         }
 
