@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Data;
 using System.Collections;
 using System.Media;
@@ -416,13 +417,169 @@ namespace Winggit.Forms
 
         private void btnOutput_Click(object sender, EventArgs e)
         {
+            int cityPad = 28, statePad = 28, countryPad = 28;
+            int speciesPad = 18;
+            int tagPad = 9;
+            Hashtable oHash;
+            string sql;
+
             switch ((ReportType) tbcReportType.SelectedIndex)
             {
                 case ReportType.Tags: case ReportType.Sightings:
-                    // TODO Generate Location-based report.
+                    
+                    if (cmbTagsRptCountry.SelectedIndex > 0 || cmbSightRptCountry.SelectedIndex > 0)
+                    {
+                        if (cmbTagRptStateProv.SelectedIndex > 0 || cmbSightRptStateProv.SelectedIndex > 0)
+                        {
+                            if (!string.IsNullOrWhiteSpace(txtTagRptCity.Text) ||
+                                !string.IsNullOrWhiteSpace(txtSightRptCity.Text))
+                            {
+                                if ((ReportType) tbcReportType.SelectedIndex == ReportType.Tags)
+                                {
+                                    oHash = new Hashtable();
+                                    oHash.Add("@City", txtTagRptCity.Text);
+                                    oHash.Add("@State_Providence", cmbTagRptStateProv.SelectedItem.ToString());
+                                    oHash.Add("@Country", cmbTagsRptCountry.SelectedItem.ToString());
+
+                                    sql = "SELECT T.Date, T.Latitude, T.Longitude, T.City, T.State_Providence, T.Country, B.Species, B.Tracker_Num FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE T.City = @City AND T.State_Providence = @State_Providence";
+
+                                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                    {
+                                        int count = oDataSet.Tables[0].Rows.Count + 2;
+                                        string[] lines = new string[count];
+                                        int i = 1;
+
+                                        lines[0] = "HD" + DateTime.Today.ToString() + "Location: " + txtTagRptCity.Text + ", " + cmbTagRptStateProv.SelectedItem.ToString() + ", " + cmbTagsRptCountry.SelectedItem.ToString();
+
+                                        foreach(DataRow oRow in oDataSet.Tables[0].Rows)
+                                        {
+                                            lines[i] = oRow["Date"].ToString() + " " + oRow["Latitude"].ToString() + oRow["Longitude"].ToString() + " " + oRow["City"].ToString() + " " + oRow["State_Providence"].ToString() + " " + oRow["Country"] + " " + oRow["Species"].ToString() + " " + oRow["Tracker_Num"].ToString();
+                                            i++;
+                                        }
+
+                                        lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
+
+                                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                                    }
+                                }
+                                else
+                                {
+                                    oHash = new Hashtable();
+                                    oHash.Add("@City", txtSightRptCity.Text);
+                                    oHash.Add("@State_Providence", cmbSightRptStateProv.SelectedItem.ToString());
+                                    oHash.Add("@Country", cmbSightRptCountry.SelectedItem.ToString());
+
+                                    sql = "SELECT T.Date, T.Latitude, T.Longitude, T.City, T.State_Providence, T.Country, B.Species, B.Tracker_Num FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE T.City = @City AND T.State_Providence = @State_Providence";
+
+                                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                    {
+                                        int count = oDataSet.Tables[0].Rows.Count + 2;
+                                        string[] lines = new string[count];
+                                        int i = 1;
+
+                                        lines[0] = "HD" + DateTime.Today.ToString() + "Location: " + txtSightRptCity.Text + ", " + cmbSightRptStateProv.SelectedItem.ToString() + ", " + cmbSightRptCountry.SelectedItem.ToString();
+
+                                        foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                                        {
+                                            lines[i] = oRow["Date"].ToString() + " " + oRow["Latitude"].ToString() + oRow["Longitude"].ToString() + " " + oRow["City"].ToString() + " " + oRow["State_Providence"].ToString() + " " + oRow["Country"] + " " + oRow["Species"].ToString() + " " + oRow["Tracker_Num"].ToString();
+                                            i++;
+                                        }
+
+                                        lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
+
+                                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                                    }
+                                }                           
+                            }
+                            else
+                            {
+                                if ((ReportType) tbcReportType.SelectedIndex == ReportType.Tags)
+                                {
+                                    oHash = new Hashtable();
+                                    
+                                    oHash.Add("@State_Providence", cmbTagRptStateProv.SelectedItem.ToString());
+                                    oHash.Add("@Country", cmbTagsRptCountry.SelectedItem.ToString());
+
+                                    sql = "SELECT T.Date, T.Latitude, T.Longitude, T.City, T.State_Providence, T.Country, B.Species, B.Tracker_Num FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE T.State_Providence = @State_Providence";
+
+                                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                    {
+                                        int count = oDataSet.Tables[0].Rows.Count + 2;
+                                        string[] lines = new string[count];
+                                        int i = 1;
+
+                                        lines[0] = "HD" + DateTime.Today.ToString() + "Location: " + txtTagRptCity.Text + ", " + cmbTagRptStateProv.SelectedItem.ToString() + ", " + cmbTagsRptCountry.SelectedItem.ToString();
+
+                                        foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                                        {
+                                            lines[i] = oRow["Date"].ToString() + " " + oRow["Latitude"].ToString() + oRow["Longitude"].ToString() + " " + oRow["City"].ToString() + " " + oRow["State_Providence"].ToString() + " " + oRow["Country"] + " " + oRow["Species"].ToString() + " " + oRow["Tracker_Num"].ToString();
+                                            i++;
+                                        }
+
+                                        lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
+
+                                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                                    }
+                                }                            
+                                else
+                                {
+                                    oHash = new Hashtable();
+                                    
+                                    oHash.Add("@State_Providence", cmbSightRptStateProv.SelectedItem.ToString());
+                                    oHash.Add("@Country", cmbSightRptCountry.SelectedItem.ToString());
+
+                                    sql = "SELECT T.Date, T.Latitude, T.Longitude, T.City, T.State_Providence, T.Country, B.Species, B.Tracker_Num FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE T.State_Providence = @State_Providence";
+
+                                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                    {
+                                        int count = oDataSet.Tables[0].Rows.Count + 2;
+                                        string[] lines = new string[count];
+                                        int i = 1;
+
+                                        lines[0] = "HD" + DateTime.Today.ToString() + "Location: " + txtSightRptCity.Text + ", " + cmbSightRptStateProv.SelectedItem.ToString() + ", " + cmbSightRptCountry.SelectedItem.ToString();
+
+                                        foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                                        {
+                                            lines[i] = oRow["Date"].ToString() + " " + oRow["Latitude"].ToString() + oRow["Longitude"].ToString() + " " + oRow["City"].ToString() + " " + oRow["State_Providence"].ToString() + " " + oRow["Country"] + " " + oRow["Species"].ToString() + " " + oRow["Tracker_Num"].ToString();
+                                            i++;
+                                        }
+
+                                        lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
+
+                                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                                    }
+                                }
+                            }
+                        }
+                    }                  
                     break;
                 case ReportType.Routes:
                     //TODO Generate tag-based report.
+
+                    oHash = new Hashtable();
+                    oHash.Add("@Tracker_Num", txtReportRouteID.Text);
+
+                    sql =
+                        "SELECT T.Date, T.Latitude, T.Longitude, T.City, T.State_Providence, T.Country, B.Species, B.Tracker_Num FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE B.Tracker_Num = @Tracker_Num";
+
+                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                    {
+                        int count = oDataSet.Tables[0].Rows.Count + 2;
+                        string[] lines = new string[count];
+                        int i = 1;
+
+                        lines[0] = "HD" + DateTime.Today.ToString() + "Tag: " + txtReportRouteID.Text;
+
+                        foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                        {
+                            lines[i] = oRow["Date"].ToString() + " " + oRow["Latitude"].ToString() + oRow["Longitude"].ToString() + " " + oRow["City"].ToString() + " " + oRow["State_Providence"].ToString() + " " + oRow["Country"] + " " + oRow["Species"].ToString() + " " + oRow["Tracker_Num"].ToString();
+                            i++;
+                        }
+
+                        lines[lines.Length - 1] = "T " + oDataSet.Tables[0].Rows.Count.ToString();
+
+                        File.WriteAllLines(@"C:\Users\dstep\Test Output\output.txt", lines);
+                    }
                     break;
                 default:
                     break;

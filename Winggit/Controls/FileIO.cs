@@ -85,7 +85,7 @@ namespace Winggit.Controls
             
 
             Hashtable oHash = new Hashtable();
-            oHash.Add("@");
+            //oHash.Add("@");
             string sqlOnTag =
                 "SELECT * FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE B.Tracker_Num = @Tracker_Num";
             //if user is downloading after specifying a tag#
