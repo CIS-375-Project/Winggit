@@ -125,6 +125,7 @@
             // txtTagID
             // 
             this.txtTagID.Location = new System.Drawing.Point(12, 25);
+            this.txtTagID.MaxLength = 9;
             this.txtTagID.Name = "txtTagID";
             this.txtTagID.ShortcutsEnabled = false;
             this.txtTagID.Size = new System.Drawing.Size(100, 20);

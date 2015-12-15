@@ -57,9 +57,6 @@
             this.tabRoutes = new System.Windows.Forms.TabPage();
             this.lblReportRouteID = new System.Windows.Forms.Label();
             this.txtReportRouteID = new System.Windows.Forms.TextBox();
-            this.tabPeaks = new System.Windows.Forms.TabPage();
-            this.lblPeaksID = new System.Windows.Forms.Label();
-            this.txtPeaksID = new System.Windows.Forms.TextBox();
             this.tabGraph = new System.Windows.Forms.TabPage();
             this.cTags = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnOutput = new System.Windows.Forms.Button();
@@ -68,7 +65,6 @@
             this.tabTags.SuspendLayout();
             this.tabSightings.SuspendLayout();
             this.tabRoutes.SuspendLayout();
-            this.tabPeaks.SuspendLayout();
             this.tabGraph.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cTags)).BeginInit();
             this.SuspendLayout();
@@ -108,7 +104,6 @@
             this.tbcReportType.Controls.Add(this.tabTags);
             this.tbcReportType.Controls.Add(this.tabSightings);
             this.tbcReportType.Controls.Add(this.tabRoutes);
-            this.tbcReportType.Controls.Add(this.tabPeaks);
             this.tbcReportType.Controls.Add(this.tabGraph);
             this.tbcReportType.Location = new System.Drawing.Point(16, 149);
             this.tbcReportType.Name = "tbcReportType";
@@ -298,40 +293,12 @@
             // txtReportRouteID
             // 
             this.txtReportRouteID.Location = new System.Drawing.Point(13, 26);
+            this.txtReportRouteID.MaxLength = 9;
             this.txtReportRouteID.Name = "txtReportRouteID";
             this.txtReportRouteID.Size = new System.Drawing.Size(100, 20);
             this.txtReportRouteID.TabIndex = 0;
             this.txtReportRouteID.TextChanged += new System.EventHandler(this.txtReportRouteID_TextChanged);
             this.txtReportRouteID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReportRouteID_KeyPress);
-            // 
-            // tabPeaks
-            // 
-            this.tabPeaks.Controls.Add(this.lblPeaksID);
-            this.tabPeaks.Controls.Add(this.txtPeaksID);
-            this.tabPeaks.Location = new System.Drawing.Point(4, 22);
-            this.tabPeaks.Name = "tabPeaks";
-            this.tabPeaks.Size = new System.Drawing.Size(474, 185);
-            this.tabPeaks.TabIndex = 3;
-            this.tabPeaks.Text = "Migration Peaks";
-            this.tabPeaks.UseVisualStyleBackColor = true;
-            // 
-            // lblPeaksID
-            // 
-            this.lblPeaksID.AutoSize = true;
-            this.lblPeaksID.Location = new System.Drawing.Point(15, 11);
-            this.lblPeaksID.Name = "lblPeaksID";
-            this.lblPeaksID.Size = new System.Drawing.Size(43, 13);
-            this.lblPeaksID.TabIndex = 3;
-            this.lblPeaksID.Text = "Tag ID:";
-            // 
-            // txtPeaksID
-            // 
-            this.txtPeaksID.Location = new System.Drawing.Point(15, 30);
-            this.txtPeaksID.Name = "txtPeaksID";
-            this.txtPeaksID.Size = new System.Drawing.Size(100, 20);
-            this.txtPeaksID.TabIndex = 2;
-            this.txtPeaksID.TextChanged += new System.EventHandler(this.txtPeaksID_TextChanged);
-            this.txtPeaksID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPeaksID_KeyPress);
             // 
             // tabGraph
             // 
@@ -406,8 +373,6 @@
             this.tabSightings.PerformLayout();
             this.tabRoutes.ResumeLayout(false);
             this.tabRoutes.PerformLayout();
-            this.tabPeaks.ResumeLayout(false);
-            this.tabPeaks.PerformLayout();
             this.tabGraph.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cTags)).EndInit();
             this.ResumeLayout(false);
@@ -423,7 +388,6 @@
         private System.Windows.Forms.TabPage tabTags;
         private System.Windows.Forms.TabPage tabSightings;
         private System.Windows.Forms.TabPage tabRoutes;
-        private System.Windows.Forms.TabPage tabPeaks;
         private System.Windows.Forms.TabPage tabGraph;
         private System.Windows.Forms.Label lblReportRouteID;
         private System.Windows.Forms.TextBox txtReportRouteID;
@@ -441,8 +405,6 @@
         private System.Windows.Forms.ComboBox cmbSightRptStateProv;
         private System.Windows.Forms.Label lblSightRptCountry;
         private System.Windows.Forms.ComboBox cmbSightRptCountry;
-        private System.Windows.Forms.Label lblPeaksID;
-        private System.Windows.Forms.TextBox txtPeaksID;
         private System.Windows.Forms.Button btnOutput;
         private System.Windows.Forms.DataVisualization.Charting.Chart cTags;
     }

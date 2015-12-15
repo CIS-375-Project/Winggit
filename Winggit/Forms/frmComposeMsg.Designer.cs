@@ -72,6 +72,7 @@
             // txtNewMsgRecipient
             // 
             this.txtNewMsgRecipient.Location = new System.Drawing.Point(73, 6);
+            this.txtNewMsgRecipient.MaxLength = 9;
             this.txtNewMsgRecipient.Name = "txtNewMsgRecipient";
             this.txtNewMsgRecipient.Size = new System.Drawing.Size(276, 20);
             this.txtNewMsgRecipient.TabIndex = 3;
