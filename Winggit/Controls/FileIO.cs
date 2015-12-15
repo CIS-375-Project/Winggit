@@ -11,14 +11,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleFixedWidthParser;
 using Winggit.Entities;
+using Winggit.Enums;
 using static System.IO.Path;
 
 namespace Winggit.Controls
 {
-    class FileIO
+    internal static class FileIO
     {
        
-        public FileIO()
+        public static void FileInput()
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
@@ -28,7 +29,7 @@ namespace Winggit.Controls
             if (ofd.ShowDialog() != DialogResult.OK) return;
             DateTime testDate;
             int testTag;
-            FixedWidthParser parser = new FixedWidthParser
+            var parser = new FixedWidthParser
             (
                 ofd.FileName,
                 new List<dynamic>
@@ -44,9 +45,9 @@ namespace Winggit.Controls
                     new FixedWidthColumn<string>
                     (
                         "latlong",
-                        22, // TODO might be 24
+                        23,
                         latLongString => latLongString,
-                        latLong => latLong,
+                        latLong => latLong.Trim(),
                         test => true
                     ),
                     new FixedWidthColumn<string>
@@ -61,7 +62,7 @@ namespace Winggit.Controls
                     (
                         "stateprov",
                         29, // TODO might be 31
-                        stateProvString => stateProvString.Trim(),
+                        stateProvString => stateProvString,
                         stateProv => stateProv,
                         test => true
                     ),
@@ -91,9 +92,27 @@ namespace Winggit.Controls
                     )
                 }
             );
+            parser.Read();
+            foreach (dynamic sighting in parser)
+            {
+                DateTime sightDate = sighting.date;
+                string latAndLong = sighting[1];
+                latAndLong = latAndLong.Trim();
+                double lat = double.Parse(latAndLong.Substring(0, 11), NumberStyles.AllowLeadingSign);
+                double longit = double.Parse(latAndLong.Substring(11), NumberStyles.AllowLeadingSign);
+                string tagID = sighting.tag.ToString();
+                string spec = sighting.species;
+                string ctry = sighting.country;
+                List<string> stateProvList = ctry == "USA" ? new List<string>(Enum.GetNames(typeof (State))) : new List<string>(Enum.GetNames(typeof (Province)));
+                int stateIndex = stateProvList.IndexOf(sighting.stateprov);
+                if (stateIndex > 0)
+                {
+                    // TODO Send to database.
+                }
+            }
         }
 
-        private void OutputFile()
+        static void FileOutput()
         {
             
 

@@ -78,7 +78,7 @@
             // btnCancelSightings
             // 
             this.btnCancelSightings.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelSightings.Location = new System.Drawing.Point(504, 237);
+            this.btnCancelSightings.Location = new System.Drawing.Point(504, 268);
             this.btnCancelSightings.Name = "btnCancelSightings";
             this.btnCancelSightings.Size = new System.Drawing.Size(75, 23);
             this.btnCancelSightings.TabIndex = 0;
@@ -308,7 +308,7 @@
             // updTemperature
             // 
             this.updTemperature.Enabled = false;
-            this.updTemperature.Location = new System.Drawing.Point(348, 224);
+            this.updTemperature.Location = new System.Drawing.Point(407, 211);
             this.updTemperature.Name = "updTemperature";
             this.updTemperature.Size = new System.Drawing.Size(75, 20);
             this.updTemperature.TabIndex = 8;
@@ -316,7 +316,7 @@
             // lblSightingTemperature
             // 
             this.lblSightingTemperature.AutoSize = true;
-            this.lblSightingTemperature.Location = new System.Drawing.Point(353, 205);
+            this.lblSightingTemperature.Location = new System.Drawing.Point(412, 192);
             this.lblSightingTemperature.Name = "lblSightingTemperature";
             this.lblSightingTemperature.Size = new System.Drawing.Size(70, 13);
             this.lblSightingTemperature.TabIndex = 9;
@@ -327,7 +327,7 @@
             this.grpTempSystem.Controls.Add(this.rdoCelcius);
             this.grpTempSystem.Controls.Add(this.rdoFahrenheit);
             this.grpTempSystem.Enabled = false;
-            this.grpTempSystem.Location = new System.Drawing.Point(438, 205);
+            this.grpTempSystem.Location = new System.Drawing.Point(497, 192);
             this.grpTempSystem.Name = "grpTempSystem";
             this.grpTempSystem.Size = new System.Drawing.Size(60, 65);
             this.grpTempSystem.TabIndex = 10;
@@ -378,6 +378,7 @@
             // 
             // btnSightingGeocode
             // 
+            this.btnSightingGeocode.Enabled = false;
             this.btnSightingGeocode.Location = new System.Drawing.Point(93, 268);
             this.btnSightingGeocode.Name = "btnSightingGeocode";
             this.btnSightingGeocode.Size = new System.Drawing.Size(92, 23);
@@ -434,10 +435,16 @@
             // updWingspan
             // 
             this.updWingspan.Enabled = false;
-            this.updWingspan.Location = new System.Drawing.Point(228, 203);
+            this.updWingspan.Location = new System.Drawing.Point(231, 203);
+            this.updWingspan.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.updWingspan.Name = "updWingspan";
-            this.updWingspan.Size = new System.Drawing.Size(91, 20);
+            this.updWingspan.Size = new System.Drawing.Size(137, 20);
             this.updWingspan.TabIndex = 15;
+            this.updWingspan.ThousandsSeparator = true;
             // 
             // lblWingspan
             // 

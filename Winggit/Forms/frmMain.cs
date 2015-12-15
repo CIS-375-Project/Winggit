@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Media;
 using System.Windows.Forms;
+using Winggit.Controls;
 
 namespace Winggit.Forms
 {
@@ -66,6 +67,11 @@ namespace Winggit.Forms
         private void btnEditYourInfo_Click(object sender, EventArgs e)
         {
             new frmRegister(true).ShowDialog();
+        }
+
+        private void btnReadFile_Click(object sender, EventArgs e)
+        {
+            FileIO.FileInput();
         }
     }
 }
