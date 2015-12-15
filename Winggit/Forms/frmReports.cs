@@ -416,6 +416,17 @@ namespace Winggit.Forms
 
         private void btnOutput_Click(object sender, EventArgs e)
         {
+            switch ((ReportType) tbcReportType.SelectedIndex)
+            {
+                case ReportType.Tags: case ReportType.Sightings:
+                    // TODO Generate Location-based report.
+                    break;
+                case ReportType.Routes:
+                    //TODO Generate tag-based report.
+                    break;
+                default:
+                    break;
+            }
             // TODO Determine if we can output to file. If not, display messagebox.
         }
 
