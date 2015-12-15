@@ -54,12 +54,12 @@ namespace Winggit.Forms
 
         private void updLatitude_ValueChanged(object sender, EventArgs e)
         {
-            btnFinishTagSighting.Enabled = HasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo() && (updLatitude.Value != 0 || updLongitude.Value != 0);
         }
 
         private void updLongitude_ValueChanged(object sender, EventArgs e)
         {
-            btnFinishTagSighting.Enabled = HasEnoughInfo();
+            btnFinishTagSighting.Enabled = HasEnoughInfo() && (updLatitude.Value != 0 || updLongitude.Value != 0);
         }
 
         private void cmbSightingCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -371,6 +371,8 @@ namespace Winggit.Forms
 
         private void btnLoadInfo_Click(object sender, EventArgs e)
         {
+            if (txtTagID.Text.Length == 0)
+                return;
             if (!isButterflyLoaded)
             {
                 if (!CheckButterfly(int.Parse(txtTagID.Text)))
@@ -411,6 +413,7 @@ namespace Winggit.Forms
             updTemperature.Enabled = isButterflyLoaded || chkNewTag.Checked;
             updWingspan.Enabled = isButterflyLoaded || chkNewTag.Checked;
             btnSightingGeocode.Enabled = isButterflyLoaded || chkNewTag.Checked;
+            btnFinishTagSighting.Enabled = updLatitude.Value != 0 || updLongitude.Value != 0;
         }
 
         private bool CheckButterfly(int id)
