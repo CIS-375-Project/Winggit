@@ -69,6 +69,7 @@
             // txtLogInID
             // 
             this.txtLogInID.Location = new System.Drawing.Point(76, 18);
+            this.txtLogInID.MaxLength = 9;
             this.txtLogInID.Name = "txtLogInID";
             this.txtLogInID.ShortcutsEnabled = false;
             this.txtLogInID.Size = new System.Drawing.Size(126, 20);
