@@ -71,12 +71,12 @@ namespace Winggit.Controls
                         oHash.Add(@"Species", species);
                         sql = "INSERT INTO Butterflies OUTPUT.* VALUES(NULL,@Species,NULL,@Tracker";
                         using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
-                        {
+            {
                             sql = "INSERT INTO Tags VALUES(";
                             if (string.IsNullOrEmpty(date))
-                            {
-                                continue;
-                            }
+                {
+                    continue;
+                }
                             oHash.Add("@Date", DateTime.Parse(date));
                             sql += "@Date,";
                             if (string.IsNullOrEmpty(city))
@@ -108,9 +108,9 @@ namespace Winggit.Controls
                             }
                             sql += "NULL,";
                             if (string.IsNullOrEmpty(user))
-                            {
-                                continue;
-                            }
+                {
+                    continue;
+                }
                             oHash.Add("@UserID", int.Parse(user));
                             sql += "@UserID,1,";
                             decimal temp1 = decimal.Parse(lat);
@@ -134,9 +134,9 @@ namespace Winggit.Controls
                     {
                         sql = "INSERT INTO Tags VALUES(";
                         if (string.IsNullOrEmpty(date))
-                        {
-                            continue;
-                        }
+                {
+                    continue;
+                }
                         oHash.Add("@Date", DateTime.Parse(date));
                         sql += "@Date,";
                         if (string.IsNullOrEmpty(city))
@@ -158,7 +158,7 @@ namespace Winggit.Controls
                             sql += "@State,";
                         }
                         if (string.IsNullOrEmpty(country))
-                        {
+                {
                             sql += "NULL,";
                         }
                         else
@@ -169,20 +169,20 @@ namespace Winggit.Controls
                         sql += "NULL,";
                         if (string.IsNullOrEmpty(user))
                         {
-                            continue;
-                        }
+                    continue;
+                }
                         oHash.Add("@UserID", int.Parse(user));
                         sql += "@UserID,0,";
                         decimal temp1 = decimal.Parse(lat);
                         decimal temp2 = decimal.Parse(log);
                         if (temp1 != 0 || temp2 != 0)
-                        {
+                {
                             oHash.Add("@lat", temp1);
                             oHash.Add("@long", temp2);
                             sql += "@lat,@long,";
-                        }
+                }
                         else
-                        {
+                {
                             sql += "NULL,NULL,";
                         }
                         oHash.Add("@ID", tag);
@@ -193,22 +193,33 @@ namespace Winggit.Controls
             }
         }
 
-        private static bool isBlank(String s)
+        private static bool IsBlank(String s)
         {
             return s.ToLower().Equals("");
         }
 
         static void FileOutput()
         {
-            
-
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = @"Text Files|output.txt",
+                Title = @"Please Choose Where to Save Output File"
+            };
+            if (sfd.ShowDialog() != DialogResult.OK) return;
             Hashtable oHash = new Hashtable();
+            oHash.Add("@");
             string sqlOnTag =
                 "SELECT * FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE B.Tracker_Num = @Tracker_Num";
             //if user is downloading after specifying a tag#
             using (DataSet oDataSet = DBFunctions.GetDataSet(sqlOnTag, oHash))
             {
-                string[] lines = {"", ""};
+                string[] lines = new string[100];
+                
+
+                foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                {
+                    
+                }
 
             }
 
@@ -221,7 +232,12 @@ namespace Winggit.Controls
             {
                 string[] lines = {"", ""};
 
-                File.WriteAllLines(@"C:\Users\Public\Test Folder\output.txt", lines);
+                foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                {
+                    
+                }
+
+                File.WriteAllLines(sfd.FileName, lines);
             }
         }
     }

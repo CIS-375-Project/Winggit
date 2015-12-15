@@ -141,7 +141,7 @@ namespace Winggit.Forms
                     }
                     break;
                 case ReportType.Sightings:
-                    // TODO If Date selected, find sightings only on that date.
+                    
                     if (hasDateChanged && cmbSightRptCountry.SelectedIndex == 0 && string.IsNullOrWhiteSpace(txtSightRptCity.Text))
                     {
                         oHash = new Hashtable();
@@ -240,7 +240,7 @@ namespace Winggit.Forms
                     }
                     break;
                 case ReportType.Routes:
-                    // TODO Check if Tag ID is registered
+                    
                     oHash = new Hashtable();
                     oHash.Add("@Tracker_Num", txtReportRouteID.Text);
 
@@ -262,8 +262,6 @@ namespace Winggit.Forms
 
                     }
 
-                    
-                   
                     break;
                 case ReportType.Graph:
                     break;
@@ -418,6 +416,17 @@ namespace Winggit.Forms
 
         private void btnOutput_Click(object sender, EventArgs e)
         {
+            switch ((ReportType) tbcReportType.SelectedIndex)
+            {
+                case ReportType.Tags: case ReportType.Sightings:
+                    // TODO Generate Location-based report.
+                    break;
+                case ReportType.Routes:
+                    //TODO Generate tag-based report.
+                    break;
+                default:
+                    break;
+            }
             // TODO Determine if we can output to file. If not, display messagebox.
         }
 
