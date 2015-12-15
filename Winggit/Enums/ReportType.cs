@@ -6,6 +6,6 @@
         Sightings,
         Routes,
         Peaks,
-        Graph
+        Heatmap
     }
 }
