@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Data;
 using System.Collections;
 using System.Media;
 using System.Windows.Forms;
+using Winggit.Controls;
 using Winggit.Enums;
 
 namespace Winggit.Forms
 {
     public partial class frmReports : Form
     {
-        private bool hasDateChanged;
+        private bool hasDateChanged;        
         public frmReports()
         {
             hasDateChanged = false;
@@ -32,36 +34,216 @@ namespace Winggit.Forms
 
         private void btnGetReport_Click(object sender, EventArgs e)
         {
+
+            Hashtable oHash;
+            string sql;
             int reportTypeIndex = tbcReportType.SelectedIndex;
             switch ((ReportType) reportTypeIndex)
             {
                 case ReportType.Tags:
-                    // TODO If Date selected, find tags only on that date.
-                    if (hasDateChanged)
+                    
+                    if (hasDateChanged && cmbTagsRptCountry.SelectedIndex == 0 && string.IsNullOrWhiteSpace(txtTagRptCity.Text))
                     {
-                        Hashtable oHash = new Hashtable();
-                        oHash.Add("@Date", calTagsRptDate);
-                        
-                    }
-                    // TODO if location info provided, find tags at given location.
+                        oHash = new Hashtable();
+                        oHash.Add("@Date", calTagsRptDate.SelectionStart);
+                        sql = "SELECT * FROM Tags WHERE Date = @Date AND Type_of_Reporting = 1";
 
+                        using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                        {
+                            dgdReportTable.DataSource = oDataSet.Tables[0];
+                            dgdReportTable.AllowUserToAddRows = false;
+                            dgdReportTable.ReadOnly = true;
+                        }
+
+                    }
+
+                    if (cmbTagsRptCountry.SelectedIndex > 0 && !hasDateChanged)
+                    {
+                        if (cmbTagRptStateProv.SelectedIndex > 0)
+                        {
+                            if (!string.IsNullOrWhiteSpace(txtTagRptCity.Text))
+                            {
+                                oHash = new Hashtable();
+                                oHash.Add("@City", txtTagRptCity.Text);
+                                oHash.Add("@State_Providence", cmbTagRptStateProv.SelectedItem.ToString());
+                                oHash.Add("@Country", cmbTagsRptCountry.SelectedItem.ToString());
+
+                                sql =
+                                    "SELECT * FROM Tags WHERE City = @City AND State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 1";
+
+                                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                {
+                                    dgdReportTable.DataSource = oDataSet.Tables[0];
+                                    dgdReportTable.AllowUserToAddRows = false;
+                                    dgdReportTable.ReadOnly = true;
+                                }
+
+                            }
+                            else
+                            {
+                                oHash = new Hashtable();
+                                oHash.Add("@State_Providence", cmbTagRptStateProv.SelectedItem.ToString());
+                                oHash.Add("@Country", cmbTagsRptCountry.SelectedItem.ToString());
+
+                                sql =
+                                    "SELECT * FROM Tags WHERE State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 1";
+
+                                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                {
+                                    dgdReportTable.DataSource = oDataSet.Tables[0];
+                                    dgdReportTable.AllowUserToAddRows = false;
+                                    dgdReportTable.ReadOnly = true;
+                                }
+                            }
+                        }
+                    }
+                    else if(cmbTagsRptCountry.SelectedIndex > 0 && hasDateChanged)
+                    {
+                        if (cmbTagRptStateProv.SelectedIndex > 0)
+                        {
+                            if (!string.IsNullOrWhiteSpace(txtTagRptCity.Text))
+                            {
+                                oHash = new Hashtable();
+                                oHash.Add("@Date", calTagsRptDate.SelectionStart);
+                                oHash.Add("@City", txtTagRptCity.Text);
+                                oHash.Add("@State_Providence", cmbTagRptStateProv.SelectedItem.ToString());
+                                oHash.Add("@Country", cmbTagsRptCountry.SelectedItem.ToString());
+
+                                sql =
+                                    "SELECT * FROM Tags WHERE Date = @Date AND City = @City AND State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 1";
+
+                                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                {
+                                    dgdReportTable.DataSource = oDataSet.Tables[0];
+                                    dgdReportTable.AllowUserToAddRows = false;
+                                    dgdReportTable.ReadOnly = true;
+                                }
+                            }
+                            else
+                            {
+                                oHash = new Hashtable();
+                                oHash.Add("@Date", calTagsRptDate.SelectionStart);
+                                oHash.Add("@State_Providence", cmbTagRptStateProv.SelectedItem.ToString());
+                                oHash.Add("@Country", cmbTagsRptCountry.SelectedItem.ToString());
+
+                                sql =
+                                    "SELECT * FROM Tags WHERE Date = @Date AND State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 1";
+
+                                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                {
+                                    dgdReportTable.DataSource = oDataSet.Tables[0];
+                                    dgdReportTable.AllowUserToAddRows = false;
+                                    dgdReportTable.ReadOnly = true;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case ReportType.Sightings:
                     // TODO If Date selected, find sightings only on that date.
-
-                    if (hasDateChanged)
+                    if (hasDateChanged && cmbSightRptCountry.SelectedIndex == 0 && string.IsNullOrWhiteSpace(txtSightRptCity.Text))
                     {
-                        Hashtable oHash = new Hashtable();
-                        oHash.Add("@Date", calSightingsRptDate);
+                        oHash = new Hashtable();
+                        oHash.Add("@Date", calSightingsRptDate.SelectionStart);
+                        sql = "SELECT * FROM Tags WHERE Date = @Date AND Type_of_Reporting = 0";
+
+                        using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                        {
+                            dgdReportTable.DataSource = oDataSet.Tables[0];
+                            dgdReportTable.AllowUserToAddRows = false;
+                            dgdReportTable.ReadOnly = true;
+                        }
+
                     }
-                    // TODO if location info provided, find sightings at given location.
+
+                    if (cmbSightRptCountry.SelectedIndex > 0 && !hasDateChanged)
+                    {
+                        if (cmbSightRptStateProv.SelectedIndex > 0)
+                        {
+                            if (!string.IsNullOrWhiteSpace(txtSightRptCity.Text))
+                            {
+                                oHash = new Hashtable();
+                                oHash.Add("@City", txtSightRptCity.Text);
+                                oHash.Add("@State_Providence", cmbSightRptStateProv.SelectedItem.ToString());
+                                oHash.Add("@Country", cmbSightRptCountry.SelectedItem.ToString());
+
+                                sql =
+                                    "SELECT * FROM Tags WHERE City = @City AND State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 0";
+
+                                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                {
+                                    dgdReportTable.DataSource = oDataSet.Tables[0];
+                                    dgdReportTable.AllowUserToAddRows = false;
+                                    dgdReportTable.ReadOnly = true;
+                                }
+
+                            }
+                            else
+                            {
+                                oHash = new Hashtable();
+                                oHash.Add("@State_Providence", cmbSightRptStateProv.SelectedItem.ToString());
+                                oHash.Add("@Country", cmbSightRptCountry.SelectedItem.ToString());
+
+                                sql =
+                                    "SELECT * FROM Tags WHERE State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 0";
+
+                                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                {
+                                    dgdReportTable.DataSource = oDataSet.Tables[0];
+                                    dgdReportTable.AllowUserToAddRows = false;
+                                    dgdReportTable.ReadOnly = true;
+                                }
+                            }
+                        }
+                    }
+                    else if (cmbSightRptCountry.SelectedIndex > 0 && hasDateChanged)
+                    {
+                        if (cmbSightRptStateProv.SelectedIndex > 0)
+                        {
+                            if (!string.IsNullOrWhiteSpace(txtSightRptCity.Text))
+                            {
+                                oHash = new Hashtable();
+                                oHash.Add("@Date", calSightingsRptDate.SelectionStart);
+                                oHash.Add("@City", txtSightRptCity.Text);
+                                oHash.Add("@State_Providence", cmbSightRptStateProv.SelectedItem.ToString());
+                                oHash.Add("@Country", cmbSightRptCountry.SelectedItem.ToString());
+
+                                sql =
+                                    "SELECT * FROM Tags WHERE Date = @Date AND City = @City AND State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 0";
+
+                                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                {
+                                    dgdReportTable.DataSource = oDataSet.Tables[0];
+                                    dgdReportTable.AllowUserToAddRows = false;
+                                    dgdReportTable.ReadOnly = true;
+                                }
+                            }
+                            else
+                            {
+                                oHash = new Hashtable();
+                                oHash.Add("@Date", calSightingsRptDate.SelectionStart);
+                                oHash.Add("@State_Providence", cmbSightRptStateProv.SelectedItem.ToString());
+                                oHash.Add("@Country", cmbSightRptCountry.SelectedItem.ToString());
+
+                                sql =
+                                    "SELECT * FROM Tags WHERE Date = @Date AND State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 0";
+
+                                using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
+                                {
+                                    dgdReportTable.DataSource = oDataSet.Tables[0];
+                                    dgdReportTable.AllowUserToAddRows = false;
+                                    dgdReportTable.ReadOnly = true;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case ReportType.Routes:
                     // TODO Check if Tag ID is registered
                     bool isRegistered = true;
                     if (isRegistered) // TODO replace
                     {
-                        // TODO load sightings
+                        // TODO load sightings to show the route of a particular butterfly based on physical tag ID 
                     }
                     else
                     {
