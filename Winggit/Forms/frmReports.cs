@@ -11,7 +11,7 @@ namespace Winggit.Forms
 {
     public partial class frmReports : Form
     {
-        private bool hasDateChanged;        
+        private bool hasDateChanged;
         public frmReports()
         {
             hasDateChanged = false;
@@ -48,13 +48,13 @@ namespace Winggit.Forms
                         oHash = new Hashtable();
                         oHash.Add("@Date", calTagsRptDate.SelectionStart);
                         sql = "SELECT * FROM Tags WHERE Date = @Date AND Type_of_Reporting = 1";
-
+                        
                         using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
                         {
                             dgdReportTable.DataSource = oDataSet.Tables[0];
                             dgdReportTable.AllowUserToAddRows = false;
                             dgdReportTable.ReadOnly = true;
-                        }
+                    }
 
                     }
 
@@ -230,7 +230,7 @@ namespace Winggit.Forms
                                     "SELECT * FROM Tags WHERE Date = @Date AND State_Providence = @State_Providence AND Country = @Country AND Type_of_Reporting = 0";
 
                                 using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
-                                {
+                    {
                                     dgdReportTable.DataSource = oDataSet.Tables[0];
                                     dgdReportTable.AllowUserToAddRows = false;
                                     dgdReportTable.ReadOnly = true;
@@ -241,15 +241,29 @@ namespace Winggit.Forms
                     break;
                 case ReportType.Routes:
                     // TODO Check if Tag ID is registered
-                    bool isRegistered = true;
-                    if (isRegistered) // TODO replace
+                    oHash = new Hashtable();
+                    oHash.Add("@Tracker_Num", txtReportRouteID.Text);
+
+                    sql = "SELECT T.Date, T.City, T.State_Providence, T.Country, T.Latitude, T.Longitude, T.ButterflyID FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE B.Tracker_Num = @Tracker_Num ORDER BY T.Date";
+
+                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
                     {
-                        // TODO load sightings to show the route of a particular butterfly based on physical tag ID 
+                        if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
+                    {
+                            MessageBox.Show("That tag does not exist!", "Non-existent tag", MessageBoxButtons.OK);
+                            return;
                     }
                     else
                     {
-                        MessageBox.Show(@"Tag not registered.", @"Invalid Tag", MessageBoxButtons.OK);
+                            dgdReportTable.DataSource = oDataSet.Tables[0];
+                            dgdReportTable.AllowUserToAddRows = false;
+                            dgdReportTable.ReadOnly = true;
+                        }
+
                     }
+
+                    
+                   
                     break;
                 case ReportType.Peaks:
                     break;
