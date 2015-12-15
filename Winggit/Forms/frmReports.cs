@@ -35,6 +35,8 @@ namespace Winggit.Forms
 
         private void btnGetReport_Click(object sender, EventArgs e)
         {
+            Hashtable oHash;
+            string sql;
             int reportTypeIndex = tbcReportType.SelectedIndex;
             switch ((ReportType) reportTypeIndex)
             {
@@ -42,52 +44,34 @@ namespace Winggit.Forms
                     // TODO If Date selected, find tags only on that date.
                     if (hasDateChanged)
                     {
-                        Hashtable oHash = new Hashtable();
+                        oHash = new Hashtable();
                         oHash.Add("@Date", calTagsRptDate);
 
-                        }
-                    // TODO if location info provided, find tags at given location.
+                    }
+                    
 
                     break;
                 case ReportType.Sightings:
-                    if (hasDateChanged && cmbSightRptCountry.SelectedIndex == 0 && string.IsNullOrWhiteSpace(txtSightRptCity.Text))
+                    if (hasDateChanged && cmbSightRptCountry.SelectedIndex == 0 &&
+                        string.IsNullOrWhiteSpace(txtSightRptCity.Text))
                     {
                         oHash = new Hashtable();
                         oHash.Add("@Date", calSightingsRptDate.SelectionStart);
                         sql = "SELECT * FROM Tags WHERE Date = @Date AND Type_of_Reporting = 0";
-
+                    }
                     if (hasDateChanged)
-                        {
-                        Hashtable oHash = new Hashtable();
+                    {
+                        oHash = new Hashtable();
                         oHash.Add("@Date", calSightingsRptDate);
-                        }
-                    // TODO if location info provided, find sightings at given location.
+                    }
+                    
                     break;
                 case ReportType.Routes:
                     // TODO Check if Tag ID is registered
-                    oHash = new Hashtable();
-                    oHash.Add("@Tracker_Num", txtReportRouteID.Text);
-
-                    sql = "SELECT T.Date, T.City, T.State_Providence, T.Country, T.Latitude, T.Longitude, T.ButterflyID FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE B.Tracker_Num = @Tracker_Num ORDER BY T.Date";
-
-                    using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
-                    {
-                        if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
-                        {
-                            MessageBox.Show("That tag does not exist!", "Non-existent tag", MessageBoxButtons.OK);
-                            return;
-                    }
-                    else
-                    {
-                            dgdReportTable.DataSource = oDataSet.Tables[0];
-                            dgdReportTable.AllowUserToAddRows = false;
-                            dgdReportTable.ReadOnly = true;
-                        }
-
-                    }
-
-                    
                    
+
+
+
                     break;
                 case ReportType.Peaks:
                     break;
