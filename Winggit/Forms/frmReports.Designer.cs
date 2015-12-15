@@ -61,8 +61,8 @@
             this.lblPeaksID = new System.Windows.Forms.Label();
             this.txtPeaksID = new System.Windows.Forms.TextBox();
             this.tabGraph = new System.Windows.Forms.TabPage();
-            this.btnOutput = new System.Windows.Forms.Button();
             this.cTags = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnOutput = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgdReportTable)).BeginInit();
             this.tbcReportType.SuspendLayout();
             this.tabTags.SuspendLayout();
@@ -343,16 +343,6 @@
             this.tabGraph.Text = "Graph";
             this.tabGraph.UseVisualStyleBackColor = true;
             // 
-            // btnOutput
-            // 
-            this.btnOutput.Location = new System.Drawing.Point(212, 366);
-            this.btnOutput.Name = "btnOutput";
-            this.btnOutput.Size = new System.Drawing.Size(84, 23);
-            this.btnOutput.TabIndex = 7;
-            this.btnOutput.Text = "Output to File";
-            this.btnOutput.UseVisualStyleBackColor = true;
-            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
-            // 
             // cTags
             // 
             chartArea1.Name = "ChartArea1";
@@ -376,6 +366,16 @@
             this.cTags.Size = new System.Drawing.Size(467, 179);
             this.cTags.TabIndex = 0;
             this.cTags.Text = "chart1";
+            // 
+            // btnOutput
+            // 
+            this.btnOutput.Location = new System.Drawing.Point(212, 366);
+            this.btnOutput.Name = "btnOutput";
+            this.btnOutput.Size = new System.Drawing.Size(84, 23);
+            this.btnOutput.TabIndex = 7;
+            this.btnOutput.Text = "Output to File";
+            this.btnOutput.UseVisualStyleBackColor = true;
+            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
             // 
             // frmReports
             // 
