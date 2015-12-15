@@ -117,12 +117,19 @@ namespace Winggit.Controls
             
 
             Hashtable oHash = new Hashtable();
+            oHash.Add("@");
             string sqlOnTag =
                 "SELECT * FROM Tags AS T JOIN Butterflies AS B ON T.ButterflyID = B.ButterflyID WHERE B.Tracker_Num = @Tracker_Num";
             //if user is downloading after specifying a tag#
             using (DataSet oDataSet = DBFunctions.GetDataSet(sqlOnTag, oHash))
             {
-                string[] lines = {"", ""};
+                string[] lines = new string[100];
+                
+
+                foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                {
+                    
+                }
 
             }
 
@@ -134,6 +141,11 @@ namespace Winggit.Controls
             using (DataSet oDataSet = DBFunctions.GetDataSet(sqlOnLocation, oHash))
             {
                 string[] lines = {"", ""};
+
+                foreach (DataRow oRow in oDataSet.Tables[0].Rows)
+                {
+                    
+                }
 
                 File.WriteAllLines(@"C:\Users\Public\Test Folder\output.txt", lines);
             }
