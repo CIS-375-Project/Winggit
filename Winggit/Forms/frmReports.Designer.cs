@@ -293,6 +293,7 @@
             // txtReportRouteID
             // 
             this.txtReportRouteID.Location = new System.Drawing.Point(13, 26);
+            this.txtReportRouteID.MaxLength = 9;
             this.txtReportRouteID.Name = "txtReportRouteID";
             this.txtReportRouteID.Size = new System.Drawing.Size(100, 20);
             this.txtReportRouteID.TabIndex = 0;

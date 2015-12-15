@@ -170,6 +170,7 @@
             // txtSearchTaggerID
             // 
             this.txtSearchTaggerID.Location = new System.Drawing.Point(101, 42);
+            this.txtSearchTaggerID.MaxLength = 9;
             this.txtSearchTaggerID.Name = "txtSearchTaggerID";
             this.txtSearchTaggerID.ShortcutsEnabled = false;
             this.txtSearchTaggerID.Size = new System.Drawing.Size(201, 20);
