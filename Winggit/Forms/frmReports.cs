@@ -250,7 +250,7 @@ namespace Winggit.Forms
                     {
                         if (oDataSet.Tables.Count == 0 || oDataSet.Tables[0].Rows.Count == 0)
                     {
-                            MessageBox.Show("That tag does not exist!", "Non-existent tag", MessageBoxButtons.OK);
+                            MessageBox.Show(@"That tag does not exist!", @"Non-existent tag", MessageBoxButtons.OK);
                             return;
                     }
                     else
@@ -264,8 +264,6 @@ namespace Winggit.Forms
 
                     
                    
-                    break;
-                case ReportType.Peaks:
                     break;
                 case ReportType.Graph:
                     break;
@@ -345,11 +343,6 @@ namespace Winggit.Forms
             }
         }
 
-        private void txtPeaksID_TextChanged(object sender, EventArgs e)
-        {
-            btnGetReport.Enabled = hasDateChanged || txtPeaksID.Text.Length > 0;
-        }
-
         private void txtReportRouteID_TextChanged(object sender, EventArgs e)
         {
             btnGetReport.Enabled = hasDateChanged || txtReportRouteID.Text.Length > 0;
@@ -368,9 +361,6 @@ namespace Winggit.Forms
                     break;
                 case ReportType.Routes:
                     btnGetReport.Enabled = txtReportRouteID.Text.Length > 0;
-                    break;
-                case ReportType.Peaks:
-                    btnGetReport.Enabled = txtPeaksID.Text.Length > 0;
                     break;
                 case ReportType.Graph:
                     cTags.Series["Tags"].XValueType = ChartValueType.DateTime;

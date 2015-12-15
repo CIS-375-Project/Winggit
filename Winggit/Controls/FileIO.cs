@@ -29,15 +29,15 @@ namespace Winggit.Controls
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string[] file = File.ReadAllLines(ofd.FileName);
             for (int i = 1; i < 6; i++)
-            {
+                {
                 List <string> parts = file[i].Split(' ').ToList();
                 parts.RemoveAll(isBlank);
                 string something = "other";
             }
-        }
+                }
 
         private static bool isBlank(String s)
-        {
+                {
             return s.ToLower().Equals("");
         }
 
