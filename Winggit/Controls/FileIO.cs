@@ -21,7 +21,8 @@ namespace Winggit.Controls
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string[] file = File.ReadAllLines(ofd.FileName);
             int numRecords = int.Parse(file[file.Length - 1].Substring(3, 6).Trim());
-            if (numRecords == file.Length - 2)
+            int fileNum = int.Parse(file[0].Substring(3, 6).Trim());
+            if (numRecords == (file.Length - 2))
             {
                 for (int i = 1; i < (file.Length - 1); i++)
                 {
