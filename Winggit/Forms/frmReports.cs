@@ -29,14 +29,13 @@ namespace Winggit.Forms
             calSightingsRptDate.MaxDate = DateTime.Today;
             calTagsRptDate.MaxDate = DateTime.Today;
             cmbTagsRptCountry.DataSource = Enum.GetValues(typeof (Country));
-            //cmbTagsRptCountry.SelectedIndex = 0; Might not be needed
             cmbSightRptCountry.DataSource = Enum.GetValues(typeof (Country));
 
         }
 
         private void btnGetReport_Click(object sender, EventArgs e)
         {
-
+            // Generates reports based on which tab is selected
             Hashtable oHash;
             string sql;
             int reportTypeIndex = tbcReportType.SelectedIndex;
@@ -272,6 +271,7 @@ namespace Winggit.Forms
 
         private void frmReports_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Provides closing popup
             SystemSounds.Asterisk.Play();
             if (MessageBox.Show(@"Any info you entered will be lost.", @"Are you sure?", MessageBoxButtons.YesNo) == DialogResult.No)
             {
@@ -281,6 +281,7 @@ namespace Winggit.Forms
 
         private void txtReportRouteID_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // accepts only numbers for input
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
@@ -289,6 +290,7 @@ namespace Winggit.Forms
 
         private void cmbTagsRptCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Loads states when tag country is selected
             if (cmbTagsRptCountry.SelectedIndex > 0)
             {
                 cmbTagRptStateProv.Enabled = true;
@@ -305,6 +307,7 @@ namespace Winggit.Forms
 
         private void txtTagRptCity_TextChanged(object sender, EventArgs e)
         {
+            // determines if get report button can be pressed
             if (txtTagRptCity.Text.Trim().Length == 0)
             {
                 txtTagRptCity.Text = "";
@@ -314,6 +317,7 @@ namespace Winggit.Forms
 
         private void txtSightRptCity_TextChanged(object sender, EventArgs e)
         {
+            // determines if get report button can be pressed
             if (txtSightRptCity.Text.Trim().Length == 0)
             {
                 txtSightRptCity.Text = "";
@@ -323,6 +327,7 @@ namespace Winggit.Forms
 
         private void cmbSightRptCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Loads states when tag country is selected
             if (cmbSightRptCountry.SelectedIndex > 0)
             {
                 cmbSightRptStateProv.Enabled = true;
@@ -337,22 +342,16 @@ namespace Winggit.Forms
             btnOutput.Enabled = cmbSightRptCountry.SelectedIndex > 0 && cmbSightRptStateProv.SelectedIndex > 0;
         }
 
-        private void txtPeaksID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void txtReportRouteID_TextChanged(object sender, EventArgs e)
         {
+            // determines if get report button can be pressed
             btnGetReport.Enabled = hasDateChanged || txtReportRouteID.Text.Length > 0;
             btnOutput.Enabled = txtReportRouteID.Text.Length > 0;
         }
 
         private void tbcReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //enables controls for reports based on tab
             hasDateChanged = false;
             switch ((ReportType) tbcReportType.SelectedIndex)
             {
@@ -415,15 +414,14 @@ namespace Winggit.Forms
 
         private void calTagsRptDate_DateSelected(object sender, DateRangeEventArgs e)
         {
+            // determines if get reports can be pressed
             hasDateChanged = true;
             btnGetReport.Enabled = true;
         }
 
         private void btnOutput_Click(object sender, EventArgs e)
         {
-            int cityPad = 28, statePad = 28, countryPad = 28;
-            int speciesPad = 18;
-            int tagPad = 9;
+            // generates and outputs files
             Hashtable oHash;
             string sql;
 
@@ -589,22 +587,24 @@ namespace Winggit.Forms
                     }
                     break;
             }
-            
         }
 
         private void calSightingsRptDate_DateSelected(object sender, DateRangeEventArgs e)
         {
+            // determines if get reports can be pressed
             hasDateChanged = true;
             btnGetReport.Enabled = true;
         }
 
         private void cmbTagRptStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // determines if get ouput can be pressed
             btnOutput.Enabled = cmbTagsRptCountry.SelectedIndex > 0 && cmbTagRptStateProv.SelectedIndex > 0;
         }
 
         private void cmbSightRptStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // determines if get output can be pressed
             btnOutput.Enabled = cmbSightRptCountry.SelectedIndex > 0 && cmbSightRptStateProv.SelectedIndex > 0;
         }
     }
