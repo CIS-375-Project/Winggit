@@ -589,7 +589,7 @@ namespace Winggit.Forms
                     }
                     break;
             }
-            // TODO Determine if we can output to file. If not, display messagebox.
+            
         }
 
         private void calSightingsRptDate_DateSelected(object sender, DateRangeEventArgs e)
