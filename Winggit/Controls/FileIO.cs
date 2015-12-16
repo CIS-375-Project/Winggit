@@ -34,7 +34,6 @@ namespace Winggit.Controls
             {
                 for (int i = 1; i < (file.Length - 1); i++)
                 {
-                    int count = 0;
                     oHash = new Hashtable();
                     while (file[i].Length <= 172)
                     {
