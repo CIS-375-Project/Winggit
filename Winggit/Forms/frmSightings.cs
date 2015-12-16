@@ -440,31 +440,35 @@ namespace Winggit.Forms
         {
             float completionPercentage; 
             Hashtable oHash = new Hashtable();
-            oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
-            string sql =
-                "SELECT COUNT(*) AS 'NumSightings', ButterflyID FROM Tags WHERE WingerNum = @WingerNum GROUP BY ButterflyID";
-
+            string sql = "SELECT WingerNum From Wingers";
             using (DataSet oDataSet = DBFunctions.GetDataSet(sql, oHash))
             {
-                sql = "SELECT COUNT(*) AS 'NumButterflies' FROM Butterflies";
-                oHash = new Hashtable();
-
-                using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
+                foreach (DataRow oRow in oDataSet.Tables[0].Rows)
                 {
-                    int rows1, rows2;
-                    rows1 = oDataSet.Tables[0].Rows.Count;
-                    rows2 = (int) oDataSet2.Tables[0].Rows[0]["NumButterflies"];
+                    oHash = new Hashtable();
+                    oHash.Add("@WingerNum", oRow["WingerNum"]);
+                    sql = "SELECT COUNT(*) AS 'NumSightings', ButterflyID FROM Tags WHERE WingerNum = @WingerNum GROUP BY ButterflyID";
+                    using (DataSet oDataSet2 = DBFunctions.GetDataSet(sql, oHash))
+                    {
+                        sql = "SELECT COUNT(*) AS 'NumButterflies' FROM Butterflies";
+                        oHash = new Hashtable();
+                        using (DataSet oDataSet3 = DBFunctions.GetDataSet(sql, oHash))
+                        {
+                            int rows1, rows2;
+                            rows1 = oDataSet2.Tables[0].Rows.Count;
+                            rows2 = (int)oDataSet3.Tables[0].Rows[0]["NumButterflies"];
 
-                    completionPercentage = ((float)rows1/(float)rows2)*100;
+                            completionPercentage = ((float)rows1 / (float)rows2) * 100;
+                        }
+                    }
+
+                    oHash = new Hashtable();
+                    oHash.Add("@WingerNum", oRow["WingerNum"]);
+                    oHash.Add("@Percent_Complete", completionPercentage);
+                    sql = "UPDATE Wingers SET Percent_Complete = @Percent_Complete WHERE WingerNum = @WingerNum";
+                    DBFunctions.RunQuery(sql, oHash);
                 }
-            }
-
-            oHash = new Hashtable();
-            oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
-            oHash.Add("@Percent_Complete", completionPercentage);
-            sql = "UPDATE Wingers SET Percent_Complete = @Percent_Complete WHERE WingerNum = @WingerNum";
-
-            DBFunctions.RunQuery(sql, oHash);
+            }     
         }
     }
 }
