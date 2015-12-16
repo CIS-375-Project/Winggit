@@ -21,6 +21,7 @@ namespace Winggit.Forms
 
         private void txtSearchTaggerID_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // ensure only numbers can be entered
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
@@ -29,7 +30,7 @@ namespace Winggit.Forms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            // TODO Search for taggers.
+            // performs search
             int count = 0;
             Hashtable oHash = new Hashtable();
             string sql = "SELECT * From Wingers WHERE";
@@ -92,6 +93,7 @@ namespace Winggit.Forms
 
         private void cmbSearchCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // load states
             if (cmbSearchCountry.SelectedIndex > 0)
             {
                 cmbSearchStateProv.Enabled = true;
@@ -109,6 +111,7 @@ namespace Winggit.Forms
 
         private void frmTaggerSearch_Load(object sender, EventArgs e)
         {
+            // load search results
             cmbSearchCountry.DataSource = Enum.GetValues(typeof (Country));
         }
 
@@ -124,11 +127,13 @@ namespace Winggit.Forms
 
         private void cmbSearchStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // check if can search
             btnSearch.Enabled = cmbSearchStateProv.SelectedIndex > 0 || txtSearchCity.Text.Trim().Length > 0;
         }
 
         private void rdoSearchByLocation_CheckedChanged(object sender, EventArgs e)
         {
+            // check if can search
             if (rdoSearchByLocation.Checked)
             {
                 grpByLocation.Enabled = true;
@@ -144,6 +149,7 @@ namespace Winggit.Forms
 
         private void rdoSearchByTaggerInfo_CheckedChanged(object sender, EventArgs e)
         {
+            // switch search criteria
             if (rdoSearchByTaggerInfo.Checked)
             {
                 grpByLocation.Enabled = false;
@@ -159,16 +165,19 @@ namespace Winggit.Forms
 
         private void txtSearchName_TextChanged(object sender, EventArgs e)
         {
+            // check if can search
             btnSearch.Enabled = txtSearchName.Text.Trim().Length + txtSearchTaggerID.Text.Length > 0;
         }
 
         private void txtSearchTaggerID_TextChanged(object sender, EventArgs e)
         {
+            // check if can search
             btnSearch.Enabled = txtSearchTaggerID.Text.Length + txtSearchName.Text.Trim().Length > 0;
         }
 
         private void txtSearchCity_TextChanged(object sender, EventArgs e)
         {
+            // check if can search
             btnSearch.Enabled = txtSearchCity.Text.Trim().Length > 0 || cmbSearchCountry.SelectedIndex > 0;
         }
     }

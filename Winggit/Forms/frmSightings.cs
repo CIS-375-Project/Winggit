@@ -25,12 +25,14 @@ namespace Winggit.Forms
 
         private void txtTagID_TextChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnLoadInfo.Enabled = txtTagID.Text.Length > 0;
             btnFinishTagSighting.Enabled = btnLoadInfo.Text == @"Go Back" && HasEnoughInfo();
         }
 
         private void txtSightingTagID_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // allows only numbers to be entered
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
@@ -39,6 +41,7 @@ namespace Winggit.Forms
 
         private void chkNewTag_CheckedChanged(object sender, EventArgs e)
         {
+            // sets up fields for tag or sighting
             btnLoadInfo.Enabled = !chkNewTag.Checked;
             btnSightingGeocode.Enabled = isButterflyLoaded || chkNewTag.Checked;
             txtSightingSpecies.Enabled = chkNewTag.Checked;
@@ -52,16 +55,19 @@ namespace Winggit.Forms
 
         private void updLatitude_ValueChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnFinishTagSighting.Enabled = HasEnoughInfo() && (updLatitude.Value != 0 || updLongitude.Value != 0);
         }
 
         private void updLongitude_ValueChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnFinishTagSighting.Enabled = HasEnoughInfo() && (updLatitude.Value != 0 || updLongitude.Value != 0);
         }
 
         private void cmbSightingCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // load states when country is selected
             if (cmbSightingCountry.SelectedIndex > 0)
             {
                 cmbSightingStateProv.Enabled = true;
@@ -77,11 +83,13 @@ namespace Winggit.Forms
 
         private void cmbSightingStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void btnFinishTagSighting_Click(object sender, EventArgs e)
         {
+            // add sighting or tagging to the table
             Hashtable oHash;
             string sql;
             if (chkNewTag.Checked)
@@ -257,6 +265,7 @@ namespace Winggit.Forms
 
         private bool HasEnoughInfo()
         {
+            // determine if finish can be pressed
             if (chkNewTag.Checked && txtSightingSpecies.Text.Trim().Length == 0)
                 return false;
             if (txtTagID.Text.Length == 0)
@@ -274,11 +283,13 @@ namespace Winggit.Forms
 
         private void txtSightingCity_TextChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void btnSightingGeocode_Click(object sender, EventArgs e)
         {
+            // Location lookup code
             if (tbcLocationPicker.SelectedIndex == 0)
             {
                 string url = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=" + updLatitude.Value + "," + updLongitude.Value + "&key=AIzaSyDXWy0DPLRt8eYBRMZTMB3l_d4RjvSz7N8";
@@ -333,27 +344,32 @@ namespace Winggit.Forms
 
         private void frmSightings_Load(object sender, EventArgs e)
         {
+            // load countries and date
             calSightingDate.MaxDate = DateTime.Today;
             cmbSightingCountry.DataSource = Enum.GetValues(typeof (Country));
         }
 
         private void txtSightingSpecies_TextChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void rdoFahrenheit_CheckedChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void rdoCelcius_CheckedChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
         private void tbcLocationPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // determine if finish can be pressed
             btnFinishTagSighting.Enabled = HasEnoughInfo();
         }
 
@@ -370,6 +386,7 @@ namespace Winggit.Forms
 
         private void btnLoadInfo_Click(object sender, EventArgs e)
         {
+            // loads butterfly info from database for sighting
             if (txtTagID.Text.Length == 0)
                 return;
             if (!isButterflyLoaded)
@@ -420,6 +437,7 @@ namespace Winggit.Forms
 
         private bool CheckButterfly(int id)
         {
+            // checks if butterfly is in the table
             Hashtable oHash = new Hashtable();
             oHash.Add("@TagNum", id);
             string sql = "SELECT * FROM Butterflies WHERE Tracker_Num = @TagNum";
@@ -437,6 +455,7 @@ namespace Winggit.Forms
 
         private void SetCompletionRate()
         {
+            // updates percentage complete for all users for Pokedex functionality
             float completionPercentage; 
             Hashtable oHash = new Hashtable();
             string sql = "SELECT WingerNum From Wingers";
@@ -460,7 +479,6 @@ namespace Winggit.Forms
                             completionPercentage = ((float)rows1 / (float)rows2) * 100;
                         }
                     }
-
                     oHash = new Hashtable();
                     oHash.Add("@WingerNum", oRow["WingerNum"]);
                     oHash.Add("@Percent_Complete", completionPercentage);

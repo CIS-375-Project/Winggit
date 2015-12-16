@@ -11,6 +11,7 @@ namespace Winggit.Controls
        
         public static void FileInput()
         {
+            // Takes in a file in the format provied by Prof Steiner and added Tags/Sightings into the database
             Hashtable oHash = new Hashtable();
             string sql;
             OpenFileDialog ofd = new OpenFileDialog
@@ -199,11 +200,6 @@ namespace Winggit.Controls
             oHash.Add("@Last", fileNum);
             sql = "UPDATE Upload SET LastUpload = @Last WHERE InUse = 1";
             DBFunctions.RunQuery(sql, oHash);
-        }
-
-        private static bool IsBlank(String s)
-        {
-            return s.ToLower().Equals("");
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Winggit.Forms
         private readonly bool isEditing;
         public frmRegister(bool isEd)
         {
+            // load the form
             isEditing = isEd;
             InitializeComponent();
             if (isEditing)
@@ -34,6 +35,7 @@ namespace Winggit.Forms
 
         private void frmRegister_Load(object sender, EventArgs e)
         {
+            // load countries
             cmbRegCountry.DataSource = Enum.GetValues(typeof (Country));
             btnRegister.Enabled = false;
             if (isEditing)
@@ -45,6 +47,7 @@ namespace Winggit.Forms
 
         private void txtRegPhoneNum_TextChanged(object sender, EventArgs e)
         {
+            // see if can register
             if (txtRegCity.Text.Length > 0 && txtRegPhoneNum.Text.Length == 10 && txtRegHouseNumStreet.Text.Length > 0
                 && cmbRegCountry.SelectedIndex > 0 && cmbRegStateProv.SelectedIndex > 0)
             {
@@ -58,6 +61,7 @@ namespace Winggit.Forms
 
         private void txtRegPhoneNum_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // ensure only numbers are entered
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
@@ -66,6 +70,7 @@ namespace Winggit.Forms
 
         private void txtRegName_TextChanged(object sender, EventArgs e)
         {
+            // check if can register
             if (txtRegCity.Text.Length > 0 && txtRegPhoneNum.Text.Length == 10 && txtRegHouseNumStreet.Text.Length > 0
                 && cmbRegCountry.SelectedIndex > 0 && cmbRegStateProv.SelectedIndex > 0)
             {
@@ -79,6 +84,7 @@ namespace Winggit.Forms
 
         private void txtRegHouseNumStreet_TextChanged(object sender, EventArgs e)
         {
+            // check if can register
             if (txtRegCity.Text.Length > 0 && txtRegPhoneNum.Text.Length == 10 && txtRegName.Text.Length > 0
                 && cmbRegCountry.SelectedIndex > 0 && cmbRegStateProv.SelectedIndex > 0)
             {
@@ -92,6 +98,7 @@ namespace Winggit.Forms
 
         private void txtRegCity_TextChanged(object sender, EventArgs e)
         {
+            // check if can register
             if (txtRegHouseNumStreet.Text.Length > 0 && txtRegPhoneNum.Text.Length == 10 && txtRegName.Text.Length > 0
                 && cmbRegCountry.SelectedIndex > 0 && cmbRegStateProv.SelectedIndex > 0)
             {
@@ -105,6 +112,7 @@ namespace Winggit.Forms
 
         private void cmbRegStateProv_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // check if can register
             if (cmbRegStateProv.SelectedIndex > 0 && txtRegHouseNumStreet.Text.Length > 0
                 && txtRegPhoneNum.Text.Length == 10 && txtRegName.Text.Length > 0)
             {
@@ -118,6 +126,7 @@ namespace Winggit.Forms
 
         private void cmbRegCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // check if can register
             if (cmbRegCountry.SelectedIndex > 0)
             {
                 cmbRegStateProv.Enabled = true;
@@ -137,6 +146,7 @@ namespace Winggit.Forms
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            // register or update
             string[] splitAddress = txtRegHouseNumStreet.Text.Split(' ');
             int houseNumber = 0;
             if (splitAddress.Length < 2)

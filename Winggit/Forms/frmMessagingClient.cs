@@ -23,6 +23,7 @@ namespace Winggit.Forms
 
         private void btnDeleteMsg_Click(object sender, EventArgs e)
         {
+            // delete message
             SystemSounds.Asterisk.Play();
             if (MessageBox.Show(@"This can't be undone. Are you sure?", @"Delete message?", MessageBoxButtons.YesNo) !=
                 DialogResult.Yes) return;
@@ -38,20 +39,20 @@ namespace Winggit.Forms
 
         private void btnCompose_Click(object sender, EventArgs e)
         {
+            // compose message
             new frmComposeMsg(msgString).ShowDialog();
-
-           
-
         }
 
         private void frmMessagingClient_Load(object sender, EventArgs e)
         {
+            // Load the form
             btnCompose.Text = @"Compose";
             LoadMessages();
         }
 
         private void LoadMessages()
         {
+            // load the messages into the table
             Hashtable oHash = new Hashtable();
             oHash.Add("@WingerNum", Winger.currentWinger.WingerNum);
             string sql = "SELECT W.Name as 'Sender', M.Subject, M.TimeStamp, M.Body, M.MessageID, M.Source FROM Messages as M JOIN Wingers as W ON WingerNum = Source WHERE Destination = @WingerNum";
@@ -84,6 +85,7 @@ namespace Winggit.Forms
 
         private void btnRefreshInbox_Click(object sender, EventArgs e)
         {
+            // refresh the table
             LoadMessages();
             btnDeleteMsg.Enabled = false;
             btnCompose.Text = @"Compose";
@@ -92,6 +94,7 @@ namespace Winggit.Forms
 
         private void dgdMsgInbox_SelectionChanged(object sender, EventArgs e)
         {
+            // selected a message, update fields for reading
             if (dgdMsgInbox.SelectedRows.Count > 0)
             {
                 btnDeleteMsg.Enabled = true;
