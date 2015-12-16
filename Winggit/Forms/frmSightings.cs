@@ -247,6 +247,7 @@ namespace Winggit.Forms
                     }
                     SetCompletionRate();
                     MessageBox.Show(@"Registered under Tag ID #" + txtTagID.Text, @"Butterfly tagged!", MessageBoxButtons.OK);
+                    isFinished = true;
                     Close();
                 }
                 else
