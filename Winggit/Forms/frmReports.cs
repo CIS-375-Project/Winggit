@@ -421,9 +421,6 @@ namespace Winggit.Forms
 
         private void btnOutput_Click(object sender, EventArgs e)
         {
-            int cityPad = 28, statePad = 28, countryPad = 28;
-            int speciesPad = 18;
-            int tagPad = 9;
             Hashtable oHash;
             string sql;
 
